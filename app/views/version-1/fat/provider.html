@@ -1,0 +1,135 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+{{ govukBackLink({
+    text: "Back",
+    href: "#"
+}) }}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl govuk-!-margin-top-8 govuk-!-margin-bottom-4">
+            PROVIDER NAME
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+     <p>
+        UKPRN:
+        10007859
+    </p>
+
+    <h2 class="govuk-heading-s">
+        About this provider
+    </h2>
+
+    <p>
+        At WCG, we offer a bespoke solution that makes it easy to take on and up-skill apprentices. We handle all administration and training arrangements, as well as mentoring apprentices so you get the best results for your business and your apprentices receive the best start to their career.
+    </p>
+
+    <p>
+        WCG trains over 2000 apprentices every year and offers world-class facilities, expert tuition and dedicated support. We have an excellent track record of high-quality training and work with over 960 employers, from large global organisations to small local businesses.
+    </p>
+
+    <p>
+        With over 70 frameworks plus more being developed all the time, we can help you to develop an apprenticeship programme that meets your training needs and leads to your business growth.
+    </p>
+
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-0">
+        What employers are saying
+    </h2>
+
+    <p class="govuk-!-font-size-16 govuk-!-margin-top-0">
+        Based on 7 reviews from employers that work with this training provider.
+    </p>
+
+    <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+        Overall rating from October 2018 to now
+    </h3>
+
+    <ul class="graph-list">
+        <li class="level-1">
+            <span class="label">Excellent</span>
+            <span class="chart">
+                <span class="graph">
+                    <span class="bar" style="width: 28.57%"></span>
+                </span>
+            </span>
+            <span class="figure">2 <span class="govuk-visually-hidden">out of 7 </span>reviews</span>
+        </li>
+        <li class="level-2">
+            <span class="label">Good</span>
+            <span class="chart">
+                <span class="graph">
+                    <span class="bar" style="width: 71.43%"></span>
+                </span>
+            </span>
+            <span class="figure">5 <span class="govuk-visually-hidden">out of 7 </span>reviews</span>
+        </li>
+        <li class="level-3">
+            <span class="label">Poor</span>
+            <span class="chart">
+                <span class="graph">
+                    <span class="bar" style="width: 0%"></span>
+                </span>
+            </span>
+            <span class="figure">0 <span class="govuk-visually-hidden">out of 7 </span>reviews</span>
+        </li>
+        <li class="level-4">
+            <span class="label">Very poor</span>
+            <span class="chart">
+                <span class="graph">
+                    <span class="bar" style="width: 0%"></span>
+                </span>
+            </span>
+            <span class="figure">0 <span class="govuk-visually-hidden">out of 7 </span>reviews</span>
+        </li>
+    </ul>
+
+    <div class="govuk-grid-row govuk-!-margin-top-8">
+        <div class="govuk-grid-column-one-half">
+            <h4 class="govuk-heading-s">
+                Strengths
+            </h4>
+
+            <ul class="govuk-list">
+                <li>Adapting to my needs (5)</li>
+                <li>Improving apprentice skills (3)</li>
+                <li>Working with small numbers of apprentices (3)</li>
+                <li>Getting new apprentices started (2)</li>
+                <li>Reporting on progress of apprentices (2)</li>
+                <li>Initial assessment of apprentices (1)</li>
+                <li>Training facilities (1)</li>
+            </ul>
+        </div>
+
+        <div class="govuk-grid-column-one-half">
+            <h4 class="govuk-heading-s">
+                Things to improve
+            </h4>
+
+            <ul class="govuk-list">
+                <li>Communication with employers (3)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr class="govuk-section-break govuk-section-break--xl">
+
+    <h3 class="govuk-heading-m">
+        114 Apprenticeships offered
+    </h3>
+
+    Apprenticeship  Type    Level   
+    Accounting  Framework   2   Details
+    Accounting  Framework   3   Details
+</div>
+
+<div class="govuk-grid-column-one-third">
+
+</div>
+</div>
+
+{% endblock %}

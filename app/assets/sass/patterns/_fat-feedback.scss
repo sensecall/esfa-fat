@@ -1,0 +1,50 @@
+.graph-list {
+    @extend .govuk-list;
+
+    li {
+        display: table-row;
+        @include govuk-font($size: 19);
+
+        .label, .chart, .figure {
+            display: table-cell;
+            white-space: nowrap;
+            vertical-align: middle;
+            padding: 5px 0;
+        }
+
+        .chart {
+            width: 100%;
+
+            .bar, .graph {
+                display: block;
+                height: 24px;
+            }
+
+            .graph {
+                background: govuk-colour("grey-4");
+                border: 2px solid #ccc;
+                margin: 3px 10px;
+            }
+
+            .bar {
+                background: govuk-colour("blue");
+            }
+        }
+    }
+
+    li.level-1 .bar {
+        background: govuk-colour("green");
+    }
+
+    li.level-2 .bar {
+        background: govuk-colour("light-green");
+    }
+
+    li.level-3 .bar {
+        background: govuk-colour("orange");
+    }
+
+    li.level-4 .bar {
+        background: govuk-colour("red");
+    }
+}

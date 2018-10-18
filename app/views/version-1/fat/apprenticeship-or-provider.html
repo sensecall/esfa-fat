@@ -1,0 +1,41 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl govuk-!-margin-top-6 govuk-!-margin-bottom-8">
+            Find apprenticeship training
+        </h1>
+
+        {{ govukRadios({
+            idPrefix: "where-do-you-live",
+            name: "where-do-you-live",
+            fieldset:
+            {
+                legend:
+                {
+                    text: "Search by apprenticeships or named training provider",
+                    isPageHeading: false,
+                    classes: "govuk-fieldset__legend--s"
+                }
+            },
+            items: [
+            {
+                value: "apprenticeships",
+                text: "apprenticeships"
+            },
+            {
+                value: "training-provider",
+                text: "the name of a training provider you already know"
+            }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Continue"
+        }) }}
+    </div>
+</div>
+
+{% endblock %}
