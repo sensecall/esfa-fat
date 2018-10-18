@@ -1,0 +1,173 @@
+{% extends "../layout-estimator.html" %}
+{% set phaseBanner = true %}
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+
+{% set currentPage = 'finance' %}
+{% set loggedIn = data['logged-in'] === 'true' %}
+{% set levyPayer = data['annual-payroll'] >= '36000000' %}
+
+{% block content %}
+
+{% if levyPayer %}
+{% set apprenticeshipCost = 9000 %}
+{% else %}
+{% set apprenticeshipCost = 900 %}
+{% endif %}
+
+{% set totalCost = 0 %}
+
+{% for i in range(1, 999) %}
+{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+{% set totalCost = (data['apprenticeship_' + i + '-count'] * apprenticeshipCost) + totalCost %}
+{% endif %}
+{% endfor %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		<h1 class="govuk-heading-xl">
+			Cost of apprenticeship training
+		</h1>
+
+		{% macro apprenticeship(id, attribute) %}
+		{{ data['apprenticeship_' + id + '-' + attribute] }}
+		{% endmacro %}
+
+		<div class="govuk-grid-row govuk-!-margin-bottom-2">
+			{% for i in range(1, 999) %}
+			{% set el = 'apprenticeship_' + i %}
+			{% if data[el + '-name'] and data[el + '-count'] %}
+
+			{% set name = apprenticeship(i,'name').split("|")[0] %}
+			{% set level = apprenticeship(i,'name').split("|")[1] %}
+			{% set standard = apprenticeship(i,'name').split("|")[2] %}
+			{% set id = apprenticeship(i,'name').split("|")[3] %}
+			{% set startDate = apprenticeship(i,'name').split("|")[4] %}
+
+			<div class="govuk-grid-column-two-thirds">
+				<div class="govuk-inset-text govuk-!-margin-top-0">
+					<h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+						{{name}} Level: {{level}} {{" (Standard)" if standard === 'true'}}
+					</h2>
+					<p>
+						<a href="../edit-apprenticeship?edit-apprenticeship_id={{i}}">Change your selection</a>
+					</p>
+						<!-- <li>
+							You pay: £{{ (apprenticeship(i,'count') * apprenticeshipCost) | numeral().format('0,0')}}
+						</li>
+						<li>
+							Government pays: £{{ (apprenticeship(i,'count') * apprenticeshipCost * 9) | numeral().format('0,0')}}
+						</li> -->
+					</div>
+					<!-- <p>
+						<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{'Standard' if standard === 'true' else 'Framework'}}/{{id}}" target="_blank">Find out more about this apprenticeship</a>  on the Find apprenticeship training service.
+					</p>
+ -->
+				</div>
+
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-full">
+			{% if data["apprenticeship-added"] === 'true' %}
+		<!-- <div class="govuk-inset-text govuk-inset-text--success">
+			Apprenticeships added.
+		</div> -->
+		{% endif %}
+
+		{% if data["apprenticeship-removed"] === 'true' %}
+		<!-- <div class="govuk-inset-text govuk-inset-text--warning">
+			Apprenticeships removed.
+		</div> -->
+		{% endif %}
+
+		{% if data["apprenticeship-updated"] === 'true' %}
+		<!-- <div class="govuk-inset-text govuk-inset-text--info">
+			Apprenticeships updated.
+		</div> -->
+		{% endif %}
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<p class="govuk-body-l govuk-!-margin-bottom-4">
+			You would pay no more than
+
+			<span class="govuk-heading-xl govuk-!-margin-top-2 govuk-!-margin-bottom-0">
+				£{{(totalCost) | numeral().format('0,0')}}
+			</span>
+		</p>
+		<p class="govuk-!-margin-bottom-6">
+			You would also have to pay the apprentice at least the current <a href="https://www.gov.uk/national-minimum-wage-rates">minimum wage rate</a> for apprentices, which is £3.70 per hour.
+		</p>
+		
+		<p>
+			Government will contribute at least
+			<span class="govuk-heading-l govuk-!-margin-top-2 govuk-!-margin-bottom-0">
+				£{{(totalCost * 9) | numeral().format('0,0')}} <span class="govuk-!-font-size-19"> towards your training costs</span>
+			</span>
+		</p>
+	</div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+	<div class="govuk-grid-column-two-thirds">
+		<h2 class="govuk-heading-m">
+			Register to reserve funds to pay for these apprenticeships
+		</h2>
+		<p>
+			If you are ready to register on the apprenticeship service, you need to set up your account.
+		</p>
+
+		<p class="govuk-!-margin-bottom-0">
+			<a href="https://manage-apprenticeships.service.gov.uk/" target="_blank" class="govuk-button govuk-!-margin-bottom-2">Register on the apprenticeship service</a>
+		</p>
+
+		<p class="govuk-!-font-size-14">
+			This link will open in a new tab
+		</p>
+	</div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+	<div class="govuk-grid-column-two-thirds">
+		<h2 class="govuk-heading-m">
+			Previous answers
+		</h2>
+
+		<dl class="app-check-your-answers app-check-your-answers--short">
+			<div class="app-check-your-answers__contents">
+				<dt class="app-check-your-answers__question">
+					
+				</dt>
+				<dd class="app-check-your-answers__answer">
+					
+				</dd>
+				<dd class="app-check-your-answers__change">
+					<a href="/{{version}}/estimator">
+						Start again
+					</a>
+				</dd>
+			</div>
+
+			<div class="app-check-your-answers__contents">
+				<dt class="app-check-your-answers__question">
+					Your annual payroll
+				</dt>
+				<dd class="app-check-your-answers__answer">
+					less than £3 million
+				</dd>
+				<dd class="app-check-your-answers__change">
+					<a href="business-details">
+						Change
+					</a>
+				</dd>
+			</div>
+		</dl>
+	</div>
+</div>
+{% endblock %}

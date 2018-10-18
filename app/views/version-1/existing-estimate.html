@@ -1,0 +1,60 @@
+{% extends "layout-account.html" %}
+
+{% set currentPage = 'finance' %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Your saved apprenticeship estimates
+		</h1>
+		<form method="post">
+			{{ govukRadios(
+				{
+					classes: "",
+					idPrefix: "use-existing-estimate",
+					name: "use-existing-estimate",
+					fieldset:
+					{
+						legend:
+						{
+							text: "Do you want to see your existing plan?",
+							isPageHeading: false,
+							classes: "govuk-fieldset__legend--m"
+						}
+					},
+					hint:
+					{
+						text: "You have estimated apprenticeship costs before. If you want to, you can view and make changes to this saved estimate or replace it with a new one"
+					},
+					items:[
+					{
+						value: "yes",
+						text: "Yes, I want to use my saved estimate"
+					},
+					{
+						value: "no",
+						text: "No, I want to start a new estimate"
+					}]
+				})
+			}}
+
+			<input type="hidden" value="true" name="loggedIn">
+			<input type="hidden" value="38000000" name="annual-payroll">
+			<input type="hidden" value="190000" name="total-levy">
+			<input type="hidden" value="false" name="apprenticeship-removed">
+			<input type="hidden" value="false" name="apprenticeship-added">
+
+			{% from "button/macro.njk" import govukButton %}
+
+			{{ govukButton({
+				text: "Continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

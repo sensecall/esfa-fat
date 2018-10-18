@@ -1,0 +1,72 @@
+{% if data['logged-in'] === 'true' %}
+{% extends "layout-account.html" %}
+{% else %}
+{% extends "../layout-estimator.html" %}
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+{% endif %}
+
+{% block head %}
+{% include "includes/head.html" %}
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.autocomplete-element').each(function() {
+			var selectEl = document.querySelector('#' + $(this).attr('id') )
+			accessibleAutocomplete.enhanceSelectElement({
+				autoselect: false,
+				defaultValue: '',
+				minLength: 2,
+				selectElement: selectEl,
+				placeholder: 'Search for an apprenticeship',
+				showAllValues: true
+			})
+		})
+	})
+</script>
+{% endblock %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% if not apprenticeshipId %}
+{% set apprenticeshipId = "1" %}
+{% else %}
+{% endif %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			What job role will the apprentice be doing?
+		</h1>
+
+		{% for i in range(1, 999) %}
+		{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+		{% set apprenticeshipId = i + 1 %}
+		{% endif %}
+		{% endfor %}
+
+		<form method="post">
+			{{ govukInput({
+				label:
+				{
+					text: "Job role",
+					classes: "govuk-!-width-one-half"
+				},
+				hint: {
+				text: "Proident in occaecat cillum mollit consequat qui in nulla id exercitation cillum eiusmod culpa sint aliquip ut ut dolore ullamco quis in duis in eu officia sit."
+			},
+				classes: "govuk-!-width-one-half",
+				id: "job-role",
+				name: "job-role"
+			}) }}
+
+			{{ govukButton({
+				text: "Continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

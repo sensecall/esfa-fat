@@ -1,0 +1,84 @@
+{% if data['loggedIn'] === 'true' %}
+{% extends "layout-account.html" %}
+{% else %}
+{% extends "../layout-estimator.html" %}
+{% endif %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% set serviceName = "Calculate future apprenticeship costs" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{% set payrollHtml %}
+			{{ govukInput({
+				label:
+				{
+					text: "Your organisation’s monthly UK payroll"
+				},
+				hint:
+				{
+					text: "For example 4000000. Enter '0' if you’re unsure"
+				},
+				id: "monthly-payroll",
+				name: "monthly-payroll",
+				classes: "govuk-input--width-10",
+				type: "number",
+				attributes:
+				{
+					min: 3000000
+				},
+				value: data['monthly-payroll']
+			}) }}
+			{% endset -%}
+
+			{{ govukRadios({
+				idPrefix: "payroll",
+				name: "payroll",
+				hint: 
+				{
+					text: "If you don't know, we will assume that your monthly payroll is less than £3 million"
+				},
+				fieldset:
+				{
+					legend:
+					{
+						text: "What is your organisation's monthly UK payroll?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				items: [
+				{
+					value: "under-3million",
+					text: "Less than £3 million"
+				},
+				{
+					value: "over-3million",
+					text: "More than £3 million",
+					conditional:
+					{
+						html: payrollHtml
+					}
+				},
+				{
+					divider: "or"
+				},
+				{
+					value: "under-3million",
+					text: "I don't know"
+				}
+				]
+			}) }}
+
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

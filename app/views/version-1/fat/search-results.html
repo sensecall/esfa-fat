@@ -1,0 +1,127 @@
+{% extends "./layout--fat.html" %}
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">
+            Search results
+        </h1>
+        <p>
+            There are <b>{{data['search-results'].length}}</b> apprenticeships matching your search for '<b>{{data['job-role']}}</b>'.
+        </p>
+        <p>
+            Results labelled <strong class="govuk-tag">New</strong> are apprenticeship standards developed by employer groups.
+        </p>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form class="search-box" method="post">
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold govuk-!-width-three-quarters" for="name">
+                    Showing search results for
+                </label>
+                <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-0" id="name" name="job-role" type="text" value="{{data['job-role']}}">
+                {{ govukButton({
+                    text: "Search"
+                }) }}
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+        <div class="editSearch">
+            <h2 class="govuk-heading-m">
+                Filter results
+            </h2>
+            <div id="EditSearch">
+                <div class="filters-block filter-box">
+                    <form method="get" autocomplete="off">
+                        <fieldset class="filters filters-accordion">
+                            <h2 class="toggler govuk-heading-s">Apprenticeship level</h2>
+                            <div class="toggled-content">
+                                <ul class="govuk-!-margin-top-0 govuk-list">
+                                    <li>
+                                        <input value="2" id="SelectedLevels_2" name="SelectedLevels" type="checkbox" />
+                                        <label for="SelectedLevels_2" class="govuk-body-m">level 2 (2)</label>
+                                    </li>
+                                    <li>
+                                        <input value="3" id="SelectedLevels_3" name="SelectedLevels" type="checkbox" />
+                                        <label for="SelectedLevels_3" class="govuk-body-m">level 3 (3)</label>
+                                    </li>
+                                    <li>
+                                        <input value="4" id="SelectedLevels_4" name="SelectedLevels" type="checkbox" disabled />
+                                        <label for="SelectedLevels_4" class="govuk-body-m disabled">level 4 (0)</label>
+                                    </li>
+                                    <li>
+                                        <input value="5" id="SelectedLevels_5" name="SelectedLevels" type="checkbox" disabled />
+                                        <label for="SelectedLevels_5" class="govuk-body-m disabled">level 5 (0)</label>
+                                    </li>
+                                    <li>
+                                        <input value="6" id="SelectedLevels_6" name="SelectedLevels" type="checkbox" disabled />
+                                        <label for="SelectedLevels_6" class="govuk-body-m disabled">level 6 (0)</label>
+                                    </li>
+                                    <li>
+                                        <input value="7" id="SelectedLevels_7" name="SelectedLevels" type="checkbox" disabled />
+                                        <label for="SelectedLevels_7" class="govuk-body-m disabled">level 7 (0)</label>
+                                    </li>
+                                </ul>
+
+                                {{ govukDetails({
+                                  summaryText: "Explain levels",
+                                  html: '<p>Apprenticeships are set at different levels of difficulty from the equivalent of GCSE (level 2) up to postgraduate (level 7)</p>
+                                  <p><a href="https://www.gov.uk/what-different-qualification-levels-mean/overview" target="_blank" rel="external">More about levels</a></p>',
+                                  classes: "govuk-!-margin-bottom-0"
+                              }) }}
+                          </div>
+                      </fieldset>
+
+                      <input type="submit" class="govuk-button" value="Update results" />
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="apprenticeship-results" class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+            &nbsp;
+        </div>
+        <div class="govuk-grid-column-one-half">
+            <form method="GET" id="search-results-order">
+                <div class="govuk-form-group govuk-!-margin-bottom-0">
+                    <label class="govuk-label govuk-!-font-weight-bold" for="sort" style="display: inline-block">
+                        Sort by
+                    </label>
+                    <select class="govuk-select" id="sort" name="sort" style="display: inline-block; width: auto">
+                        <option selected="selected" value="1">Best match</option>
+                        <option value="2">Level (high to low)</option>
+                        <option value="3">Level (low to high)</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% for result in data['search-results'] %}
+    <article class="app-search-result framework-result" id="framework-560-3-2">
+        <h2 class="result-title">
+            <a attr-ga-result-interval="1-3" href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{ 'Framework/' + result.FrameworkId if result.FrameworkId else 'Standard/' + result.StandardId }}?keyword=fish">{{ result.Title }}</a>
+        </h2>
+        <ul class="govuk-list">
+            <li>
+                <span class="govuk-!-font-weight-bold">Level:</span> {{ result.Level }} (equivalent to GCSEs at grades A* to C)
+            </li>
+            <li>
+                <span class="govuk-!-font-weight-bold">Typical length:</span> {{ result.Duration }} months
+            </li>
+            <li>
+                <span class="govuk-!-font-weight-bold">Cost to you:</span> £{{ (([9,9,9,9,10,11,11,12,19,23,27] | random) * 100) | numeral().format('0,0') }}
+            </li>
+        </ul>
+    </article>
+    {% endfor %}
+    {% endblock %}

@@ -1,0 +1,64 @@
+{% if data['loggedIn'] === 'true' %}
+{% extends "layout-account.html" %}
+{% else %}
+{% extends "./layout-estimator.html" %}
+{% endif %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			You have estimated apprenticeship costs before
+		</h1>
+		<form>
+			{% from "radios/macro.njk" import govukRadios %}
+
+			{{ govukRadios(
+				{
+					classes: "",
+					idPrefix: "use-existing-estimate",
+					name: "use-existing-estimate",
+					fieldset:
+					{
+						legend:
+						{
+							text: "Do you want to use your last estimate?",
+							isPageHeading: false,
+							classes: "govuk-fieldset__legend--m"
+						}
+					},
+					hint:
+					{
+						text: "You have estimated apprenticeship costs before. If you want to, you can view and make changes to this past estimate or replace it with a new one"
+					},
+					items:[
+					{
+						value: "true",
+						text: "Yes, I want to use my last estimate"
+					},
+					{
+						value: "false",
+						text: "No, I want to start a new estimate"
+					}]
+				})
+			}}
+
+			<input type="hidden" value="true" name="loggedIn">
+			<input type="hidden" value="38000000" name="annual-payroll">
+			<input type="hidden" value="190000" name="total-levy">
+			<input type="hidden" value="false" name="apprenticeship-removed">
+			<input type="hidden" value="false" name="apprenticeship-added">
+
+			{% from "button/macro.njk" import govukButton %}
+
+			{{ govukButton({
+				text: "Continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

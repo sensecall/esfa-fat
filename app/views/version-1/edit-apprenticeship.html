@@ -1,0 +1,134 @@
+{% if data['logged-in'] === 'true' %}
+{% extends "layout-account.html" %}
+{% else %}
+{% extends "./layout-estimator.html" %}
+{% endif %}
+
+{% block head %}
+{% include "includes/head.html" %}
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.autocomplete-element').each(function() {
+			var selectEl = document.querySelector('#' + $(this).attr('id') )
+			accessibleAutocomplete.enhanceSelectElement({
+				autoselect: false,
+				defaultValue: '',
+				minLength: 2,
+				selectElement: selectEl,
+				placeholder: 'Search for an apprenticeship',
+				showAllValues: true
+			})
+		})
+	})
+</script>
+{% endblock %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Edit apprenticeship details
+		</h1>
+
+		<p class="govuk-!-margin-bottom-8">
+			Choose one or more apprenticeships to get a more detailed estimate of how much you will spend on apprenticeships.
+		</p>
+
+		{% set apprenticeshipId = data['edit-apprenticeship_id'] %}
+
+		<form method="post">
+			<input type="hidden" value="{{apprenticeshipId}}" name="apprenticeship-id">
+			<input type="hidden" value="false" name="apprenticeship-removed">
+			<input type="hidden" value="false" name="apprenticeship-added">
+			<input type="hidden" value="true" name="apprenticeship-edited">
+
+			<div class="govuk-form-group">
+				<label class="govuk-label" for="choose-apprenticeship">
+					Choose apprenticeship
+				</label>
+				<div class="autocomplete-wrapper">
+					<select class="autocomplete-element" id="choose-apprenticeship" name="apprenticeship_{{apprenticeshipId}}-name">
+						<option value="">Select one</option>
+						{% import 'includes/data-apprenticeships.html' as apprenticeshipsData %}
+						{% for apprenticeship in apprenticeshipsData.apprenticeships %}
+						{% set standard = apprenticeship.standard or "false" %}
+						{% set value = apprenticeship.name + "|" + apprenticeship.level + "|" + standard + "|" + apprenticeship.value %}
+						<option value="{{value}}" {{ "selected" if data['apprenticeship_' + apprenticeshipId + '-name'] === value }}>{{apprenticeship.name}}, Level: {{apprenticeship.level}}{{" (Standard)" if apprenticeship.standard === true}}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+
+			{% if data['annual-payroll'] >= 36000000 %}
+			{{ govukInput({
+				label:
+				{
+					text: "Number of apprentices"
+				},
+				id: "no-of-app",
+				name: "apprenticeship_" + apprenticeshipId + "-count",
+				classes: "govuk-input--width-4",
+				value: data['apprenticeship_' + apprenticeshipId + '-count']
+			}) }}
+
+			{{ govukDateInput({
+				id: "startDate_" + apprenticeshipId,
+				name: "startDate_" + apprenticeshipId,
+				fieldset:
+				{
+					legend:
+					{
+						text: "Start date",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--s"
+					}
+				},
+				hint:
+				{
+					text: "For example, 09 2018"
+				},
+				items: [
+				{
+					name: "month",
+					value: data["startDate_" + apprenticeshipId + "-month"]
+				},
+				{
+					name: "year",
+					value: data["startDate_" + apprenticeshipId + "-year"]
+				}
+				]
+			}) }}
+			{% endif %}
+
+			{{ govukButton({
+				text: "Save and continue",
+				classes: "govuk-!-margin-bottom-0"
+			}) }}
+		</form>
+
+		{% if data['annual-payroll'] >= 36000000 %}
+		<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+		
+		<form action="estimate-apprenticeships">
+			<input type="hidden" name="apprenticeship-removed" value="true">
+			<input type="hidden" name="apprenticeship-added" value="false">
+			<input type="hidden" name="apprenticeship-updated" value="false">
+			<input type="hidden" name="apprenticeship_{{apprenticeshipId}}-count" value="">
+			<input type="hidden" name="apprenticeship_{{apprenticeshipId}}-name" value="">
+			{{ govukButton({
+				text: "Remove apprenticeship from estimate",
+				classes: "govuk-button--red"
+			}) }}
+		</form>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

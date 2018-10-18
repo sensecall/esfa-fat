@@ -1,0 +1,486 @@
+<section>
+	<nav>
+		<ul class="js-tabs" role="tablist">
+			<li role="tab" id="tab-table-1" aria-controls="pane-table-1">
+				<a href="#pane-table-1">
+					September 2018 to March 2019
+				</a>
+			</li>
+			<li role="tab" id="tab-table-2" aria-controls="pane-table-2">
+				<a href="#pane-table-2">
+					April 2019 to March 2020
+				</a>
+			</li>
+			<li role="tab" id="tab-table-3" aria-controls="pane-table-3">
+				<a href="#pane-table-3">
+					April 2020 to March 2021
+				</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div class="panes">
+		<!-- START PANE -->
+		<div class="js-tab-pane" id="pane-table-1" role="tabpanel" style="display: block;" aria-hidden="false">
+			<h3 class="govuk-heading-l govuk-!-margin-top-4">September 2018 to March 2019</h3>
+
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-0">
+				Apprenticeship levy
+			</h3>			
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--white">
+							<dt class="data__data--xl">
+								Levy contributions
+							</dt>
+
+							<dd class="data__data--xl">
+								{% set levyContributions = 38319 %}£{{levyContributions}}
+							</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="transfer-funds">
+							<dt>
+								Training costs
+							</dt>
+
+							<dd class="data__data--l">
+								{% set trainingCosts = 29500 %}£{{trainingCosts}}
+							</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--grey">
+							<dt>
+								Unspent levy funds
+							</dt>
+
+							<dd class="data__data--l">
+								{% set unspentLevy = levyContributions - trainingCosts %}£{{unspentLevy}}
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-4">
+				Expired funds
+			</h3>
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--red">
+							<dt>
+								Expired funds
+							</dt>
+
+							<dd class="">£{{ data["levy-funds"] or "2,040" }}</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--orange">
+							<dt>
+								Funds at risk of expiry
+							</dt>
+
+							<dd class="">£{{ data["levy-funds"] or "4190" }}</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-4">
+				Apprenticeships
+			</h3>			
+			<div class="govuk-grid-row govuk-!-margin-bottom-0">
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--green">
+							<dt>
+								Apprenticeship starts
+							</dt>
+
+							<dd class="">12</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--light-green">
+							<dt>
+								Apprenticeship finishes
+							</dt>
+
+							<dd class="">5</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+
+			<div class="govuk-grid-row govuk-!-margin-bottom-4">
+				<div class="govuk-grid-column-two-thirds">
+					<p>
+						<a href="estimator/apprenticeships-list?apprenticeship-added=false">View apprenticeships in this estimate</a>
+					</p>
+				</div>
+			</div>
+
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-4">
+				Transfers
+			</h3>			
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--purple">
+							<dt>
+								Starting transfer allowance
+							</dt>
+
+							<dd class="">£8000</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--light-purple">
+							<dt>
+								Transfers
+							</dt>
+
+							<dd class="">£1000</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--grey">
+							<dt>
+								Unspent transfer allowance
+							</dt>
+
+							<dd class="">£7000</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div><!-- END PANEL -->
+
+		<div class="js-tab-pane" id="pane-table-2" role="tabpanel" style="display: block;" aria-hidden="false">
+			<h3 class="govuk-heading-l govuk-!-margin-top-4">
+				April 2019 to March 2020
+			</h3>
+
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-0">
+				Apprenticeship levy
+			</h3>			
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--white">
+							<dt class="data__data--xl">
+								Levy contributions
+							</dt>
+
+							<dd class="data__data--xl">
+								{% set levyContributions = 40810 %}£{{levyContributions}}
+							</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="transfer-funds">
+							<dt>
+								Training costs
+							</dt>
+
+							<dd class="data__data--l">
+								{% set trainingCosts = 31200 %}£{{trainingCosts}}
+							</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--grey">
+							<dt>
+								Unspent levy funds
+							</dt>
+
+							<dd class="data__data--l">
+								{% set unspentLevy = levyContributions - trainingCosts %}£{{unspentLevy}}
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-4">
+				Expired funds
+			</h3>
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--red">
+							<dt>
+								Expired funds
+							</dt>
+
+							<dd class="">£{{ data["levy-funds"] or "2,040" }}</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--orange">
+							<dt>
+								Funds at risk of expiry
+							</dt>
+
+							<dd class="">£{{ data["levy-funds"] or "4190" }}</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-4">
+				Apprenticeships
+			</h3>			
+			<div class="govuk-grid-row govuk-!-margin-bottom-4">
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--green">
+							<dt>
+								Apprenticeship starts
+							</dt>
+
+							<dd class="">12</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--light-green">
+							<dt>
+								Apprenticeship finishes
+							</dt>
+
+							<dd class="">5</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-4">
+				Transfers
+			</h3>			
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--purple">
+							<dt>
+								Starting transfer allowance
+							</dt>
+
+							<dd class="">£8000</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--light-purple">
+							<dt>
+								Transfers
+							</dt>
+
+							<dd class="">£1000</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--grey">
+							<dt>
+								Unspent transfer allowance
+							</dt>
+
+							<dd class="">£7000</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div><!-- END PANEL -->
+
+		<div class="js-tab-pane" id="pane-table-3" role="tabpanel" style="display: block;" aria-hidden="false">
+			<h3 class="govuk-heading-l govuk-!-margin-top-4">
+				April 2020 to March 2021
+			</h3>
+
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-0">
+				Apprenticeship levy
+			</h3>			
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--white">
+							<dt class="data__data--xl">
+								Levy contributions
+							</dt>
+
+							<dd class="data__data--xl">
+								{% set levyContributions = 42811 %}£{{levyContributions}}
+							</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="transfer-funds">
+							<dt>
+								Training costs
+							</dt>
+
+							<dd class="data__data--l">
+								{% set trainingCosts = 31500 %}£{{trainingCosts}}
+							</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--grey">
+							<dt>
+								Unspent levy funds
+							</dt>
+
+							<dd class="data__data--l">
+								{% set unspentLevy = levyContributions - trainingCosts %}£{{unspentLevy}}
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-4">
+				Expired funds
+			</h3>
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--red">
+							<dt>
+								Expired funds
+							</dt>
+
+							<dd class="">£{{ data["levy-funds"] or "2,040" }}</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--orange">
+							<dt>
+								Funds at risk of expiry
+							</dt>
+
+							<dd class="">£{{ data["levy-funds"] or "4190" }}</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-4">
+				Apprenticeships
+			</h3>			
+			<div class="govuk-grid-row govuk-!-margin-bottom-4">
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--green">
+							<dt>
+								Apprenticeship starts
+							</dt>
+
+							<dd class="">14</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--light-green">
+							<dt>
+								Apprenticeship finishes
+							</dt>
+
+							<dd class="">8</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-4">
+				Transfers
+			</h3>			
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--purple">
+							<dt>
+								Starting transfer allowance
+							</dt>
+
+							<dd class="">£8000</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--light-purple">
+							<dt>
+								Transfers
+							</dt>
+
+							<dd class="">£1000</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="govuk-grid-column-one-third">
+					<div class="data">
+						<dl class="data--grey">
+							<dt>
+								Unspent transfer allowance
+							</dt>
+
+							<dd class="">£7000</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

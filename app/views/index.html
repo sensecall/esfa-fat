@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'prototype-home' %}
+{% set serviceName = "ESFA" %}
+
+{% block main %}
+<div class="homepage-top">
+  <div class="homepage-top-content">
+    <h1 class="govuk-heading-xl">
+      Estimator (Team WIN)
+      <span class="govuk-caption-xl">Prototypes</span>
+    </h1>
+  </div>
+</div>
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper" id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+       <h2 class="govuk-heading-m">
+        <span class="govuk-tag">latest</span>
+        Version 8
+      </h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="version-8">Manage apprenticeships start page</a>
+        </li>
+        <li>
+          <a href="version-8/estimator">Estimator</a>
+        </li>
+      </ul>
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl">
+
+      <h2 class="govuk-heading-m">
+        Version 7
+      </h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="version-7">Manage apprenticeships start page</a>
+        </li>
+        <li>
+          <a href="version-7/estimator">Estimator</a>
+        </li>
+      </ul>
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl">
+
+      <h2 class="govuk-heading-m">
+        Version 6
+      </h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="version-6">Manage apprenticeships start page</a>
+        </li>
+        <li>
+          <a href="version-6/estimator">Estimator</a>
+        </li>
+      </ul>
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl">
+
+      <h2 class="govuk-heading-m">
+        Version 5
+      </h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="version-5">Manage apprenticeships start page</a>
+        </li>
+        <li>
+          <a href="version-5/estimator">Estimator</a>
+        </li>
+      </ul>
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl">
+
+      <h2 class="govuk-heading-m">
+        Version 4
+      </h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="version-4">Manage apprenticeships start page</a>
+        </li>
+        <li>
+          <a href="version-4/estimator">Estimator</a>
+        </li>
+      </ul>
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl">
+
+      {% include 'summaries/version-3.html' %}
+
+      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+      {% include 'summaries/version-2.html' %}
+
+      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+      {% include 'summaries/version-1.html' %}
+    </div>
+  </div>
+</main>
+</div>
+{% endblock %}

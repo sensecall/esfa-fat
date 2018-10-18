@@ -1,0 +1,257 @@
+{% if data['loggedIn'] === 'true' %}
+{% extends "layout-account.html" %}
+{% else %}
+{% extends "layout.html" %}
+{% endif %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% set serviceName = "Calculate future apprenticeship costs" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{% if data["apprenticeship-added"] === 'true' %}
+		<div class="govuk-inset-text govuk-inset-text--success">
+			Apprenticeship added.
+		</div>
+		{% endif %}
+
+		<h1 class="govuk-heading-xl">
+			Apprenticeships in your estimate
+		</h1>
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		<section>
+			<nav>
+				<ul class="js-tabs" role="tablist">
+					<li role="tab" id="tab-planned-apprenticeships" aria-controls="pane-planned-apprenticeships">
+						<a href="#pane-planned-apprenticeships">
+							Apprenticeships added by you
+						</a>
+					</li>
+					{% if data['loggedIn'] === 'true' %}
+					<li role="tab" id="tab-existing-apprenticeships" aria-controls="pane-existing-apprenticeships">
+						<a href="#pane-existing-apprenticeships">
+							Apprenticeships already in your account
+						</a>
+					</li>
+					{% endif %}
+				</ul>
+			</nav>
+
+			<div class="panes">
+				<!-- START PANE -->
+				<div class="js-tab-pane" id="pane-planned-apprenticeships" role="tabpanel" style="display: block;" aria-hidden="false">
+					{% from "table/macro.njk" import govukTable %}
+
+					{{ govukTable({
+						firstCellIsHeader: false,
+						head: [
+						{
+							text: "Apprenticeship"
+						},
+						{
+							text: "Number of apprentices"
+						},
+						{
+							text: "Start date"
+						},
+						{
+							text: "Cost"
+						}
+						],
+						rows: [
+						[
+						{
+							text: "Able seafarer (deck) "
+						},
+						{
+							text: "3"
+						},
+						{
+							text: "October 2019"
+						},
+						{
+							text: "£18,000"
+						}
+						],
+						[
+						{
+							text: "Able seafarer (deck) "
+						},
+						{
+							text: "3"
+						},
+						{
+							text: "October 2019"
+						},
+						{
+							text: "£18,000"
+						}
+						]
+						]
+					}) }}
+				</div>
+
+				<div class="js-tab-pane" id="pane-existing-apprenticeships" role="tabpanel" style="display: block;" aria-hidden="false">
+					<p>
+						This shows apprentices that are already undertaking an apprenticeship with your business. It uses information from your Apprenticeships account.
+					</p>
+
+					<h2 class="govuk-heading-m">
+						Apprenticeships in your business
+					</h2>
+
+					{{ govukTable({
+						firstCellIsHeader: false,
+						classes: "govuk-!-margin-bottom-8",
+						head: [
+						{
+							text: "Apprenticeship"
+						},
+						{
+							text: "Number of apprentices"
+						},
+						{
+							text: "Start date"
+						},
+						{
+							text: "Cost"
+						}
+						],
+						rows: [
+						[
+						{
+							text: "Able seafarer (deck) "
+						},
+						{
+							text: "3"
+						},
+						{
+							text: "October 2019"
+						},
+						{
+							text: "£18,000"
+						}
+						],
+						[
+						{
+							text: "Able seafarer (deck) "
+						},
+						{
+							text: "3"
+						},
+						{
+							text: "October 2019"
+						},
+						{
+							text: "£18,000"
+						}
+						]
+						]
+					}) }}
+
+					<h2 class="govuk-heading-m">
+						Transfers
+					</h2>
+					{{ govukTable({
+						firstCellIsHeader: false,
+						head: [
+						{
+							text: "Apprenticeship"
+						},
+						{
+							text: "Number of apprentices"
+						},
+						{
+							text: "Start date"
+						},
+						{
+							text: "Cost"
+						}
+						],
+						rows: [
+						[
+						{
+							text: "Able seafarer (deck) "
+						},
+						{
+							text: "3"
+						},
+						{
+							text: "October 2019"
+						},
+						{
+							text: "£18,000"
+						}
+						],
+						[
+						{
+							text: "Able seafarer (deck) "
+						},
+						{
+							text: "3"
+						},
+						{
+							text: "October 2019"
+						},
+						{
+							text: "£18,000"
+						}
+						]
+						]
+					}) }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr class="govuk-section-break govuk-section-break--l">
+
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds">
+			<form>
+				<hr class="govuk-section-break govuk-section-break--xl">
+
+				{{ govukRadios({
+					classes: "",
+					idPrefix: "add-more-apprenticeships",
+					name: "add-more-apprenticeships",
+					fieldset:
+					{
+						legend:
+						{
+							text: "Do you want to add more apprenticeships?",
+							isPageHeading: false,
+							classes: "govuk-fieldset__legend--m"
+						}
+					},
+					hint:
+					{
+						text: ""
+					},
+					items: [
+					{
+						value: "yes",
+						text: "Yes, I want to add more apprenticeships"
+					},
+					{
+						value: "no",
+						text: "No, I want to see my projected costs"
+					}
+					]
+				}) }}
+
+				{{ govukButton({
+					text: "Continue"
+				}) }}
+			</form>
+		</div>
+	</div>
+	{% endblock %}

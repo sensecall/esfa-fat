@@ -1,0 +1,38 @@
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-one-half">
+				<div class="govuk-inset-text govuk-inset-text--info govuk-!-margin-top-0">
+					{% set coinvestment = totalCost - data['total-levy'] %}
+					<p class="govuk-body-l govuk-!-margin-bottom-1">
+						What you have to pay
+					</p>
+					<p class="govuk-!-font-size-48 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
+						£{{ (totalCost) | numeral().format('0,0') }}
+					</p>
+				</div>
+			</div>
+
+			<div class="govuk-grid-column-one-half">
+				<div class="govuk-inset-text govuk-!-margin-top-0">
+					<p class="govuk-body-l govuk-!-margin-bottom-1">
+						What Government will pay
+					</p>
+					<p class="govuk-!-font-size-48 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
+						£{{ (totalCost*9) | numeral().format('0,0') }}
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-two-thirds">
+				{{ govukDetails({
+					summaryText: "How these figures are calculated",
+					text: "These estimates are calulated using data from your apprenticeships account, including the future cost of any apprenticeships that are confirmed and started, and any planned apprenticeships that you have added manually.",
+					classes: "govuk-!-margin-top-0"
+				}) }}
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,59 @@
+{% extends "../layout-estimator.html" %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{{ govukPanel({
+			titleText: "You have to pay the Apprenticeship levy",
+			html: '<span class="govuk-!-font-size-24">You’ll have about <strong>£' + (data['annual-levy-amount'] / 12) | numeral().format('0,0') + '</strong> to spend on apprenticeship training each month</span>',
+			classes: "govuk-!-margin-bottom-6"
+		}) }}
+		<!-- <h1 class="govuk-heading-xl">
+			You have to pay the Apprenticeship levy
+		</h1> -->
+
+		{% from "details/macro.njk" import govukDetails %}
+		{{ govukDetails({
+			summaryText: "How this is worked out",
+			html: "
+			<p>
+				The amount you have available to spend is calculated on a monthly basis as follows:
+			</p>
+
+			<p>
+				Your levy is 0.5% of your gross annual payroll, less a £15,000 allowance. The balance is then divided by 12 and rounded down to the nearest pound. This gives a monthly levy payment of £" + data['monthly-levy-payment'] | numeral().format('0,0') + " (rounded down).
+			</p>
+
+			<p>
+				" + data['english-percentage'] + "% of your pay bill goes to employees in England, so £" + data['monthly-levy-payment'] | numeral().format('0,0') + " is multiplied by " + data['english-percentage'] + "%. The government tops that up by 10%, which gives you £" + data['monthly-levy-amount'] | numeral().format('0,0') + " (rounded up) to spend each month.
+			</p>"
+		}) }}
+
+		<div class="govuk-inset-text">
+			<h2 class="govuk-heading-m">
+				Example
+			</h2>
+			<ul class="govuk-list">
+				<li>
+					Business Administrator Level: 3 (equivalent to A-level)
+				</li>
+				<li>
+					Monthly cost: £{{9000/12}} for 23 months
+				</li>
+				<li>
+					Final payment: £{{(9000 * 0.2) | numeral().format('0,0')}}
+				</li>
+			</div>
+
+			<a href="/{{version}}/add-apprenticeship" class="govuk-button">
+				Show me the costs of other apprenticeships
+			</a>
+		</div>
+	</div>
+	{% endblock %}

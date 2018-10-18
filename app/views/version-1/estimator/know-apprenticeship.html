@@ -1,0 +1,65 @@
+{% extends "../layout-estimator.html" %}
+
+{% set phaseBanner = "true" %}
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukRadios(
+				{
+					classes: "",
+					idPrefix: "know-apprenticeship",
+					name: "know-apprenticeship",
+					fieldset:
+					{
+						legend:
+						{
+							text: "Do you know which apprenticeship is going to be offered?",
+							isPageHeading: true,
+							classes: "govuk-fieldset__legend--xl"
+						}
+					},
+					hint:
+					{
+						text: "Sign in to your apprenticeship account to use your actual financial data to make your estimate more accurate"
+					},
+					items:[
+					{
+						value: "yes",
+						text: "Yes, I know the apprenticeship",
+						attributes:
+						{
+							required: true
+						}
+					},
+					{
+						value: "no",
+						text: "No, I want to see some suggestions",
+						attributes:
+						{
+							required: true
+						}
+					}]
+				})
+			}}
+
+			<input type="hidden" value="false" name="logged-in">
+			<input type="hidden" value="x" name="annual-payroll">
+
+			{{ govukButton({
+				text: "Continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

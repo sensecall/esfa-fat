@@ -1,0 +1,80 @@
+.app-action-buttons {
+	.app-action-buttons__button {
+		position: relative;
+		text-decoration: none;
+		color: #fff;
+		border-bottom: 4px solid;
+		@include govuk-font($size: 24, $weight: bold);
+
+		display: inline;
+		float: left;
+		margin-bottom: 5%;
+		min-height: 130px;
+		padding: 0.6em .6em 2em .6em !important;
+		width: 28%;
+		min-width: 240px;
+		vertical-align: middle;
+		margin-right: 2%;
+
+		$box-colour: govuk-colour("blue");
+		background: $box-colour;
+		border-bottom-color: darken($box-colour,10%);
+
+		span {
+			font-weight: normal;
+			color: rgba(255,255,255,0.8);
+			display: block;
+		}
+
+		&:nth-of-type(1) {
+			$box-colour: govuk-colour("blue");
+			background: $box-colour;
+			border-bottom-color: darken($box-colour,10%);
+		}
+		&:nth-of-type(2) {
+			$box-colour: govuk-colour("pink");
+			background: $box-colour;
+			border-bottom-color: darken($box-colour,10%);
+		}
+		&:nth-of-type(3) {
+			$box-colour: govuk-colour("brown");
+			background: $box-colour;
+			border-bottom-color: darken($box-colour,10%);
+		}
+		&:nth-of-type(4) {
+			$box-colour: govuk-colour("bright-red");
+			background: $box-colour;
+			border-bottom-color: darken($box-colour,10%);
+		}
+		&:nth-of-type(5) {
+			$box-colour: govuk-colour("light-green");
+			background: $box-colour;
+			border-bottom-color: darken($box-colour,10%);
+		}
+		&:nth-of-type(6) {
+			$box-colour: govuk-colour("purple");
+			background: $box-colour;
+			border-bottom-color: darken($box-colour,10%);
+		}
+
+		&:hover {
+			text-decoration: underline;
+		}
+
+		&:active {
+			position: relative;
+			top: 2px;
+		}
+
+		&:before {
+			content: "";
+			display: block;
+			position: absolute;
+			top: -2px;
+			right: -2px;
+			bottom: -4px;
+			left: -2px;
+			background: transparent;
+		}
+	}
+}

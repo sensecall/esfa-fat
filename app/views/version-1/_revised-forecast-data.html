@@ -1,0 +1,387 @@
+{% set data = [
+ {
+   "Month": "Oct-18",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 3473,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 40626
+ },
+ {
+   "Month": "Nov-18",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 3473,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 42215
+ },
+ {
+   "Month": "Dec-18",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 2973,
+   "CompletionPayments": 1500,
+   "Expired": null,
+   "FutureFunds": 42803
+ },
+ {
+   "Month": "Jan-19",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 3319,
+   "CompletionPayments": 300,
+   "Expired": null,
+   "FutureFunds": 44245
+ },
+ {
+   "Month": "Feb-19",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 3219,
+   "CompletionPayments": 300,
+   "Expired": null,
+   "FutureFunds": 45788
+ },
+ {
+   "Month": "Mar-19",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 3219,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 47630
+ },
+ {
+   "Month": "Apr-19",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 3219,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 49473
+ },
+ {
+   "Month": "May-19",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 3219,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 51315
+ },
+ {
+   "Month": "Jun-19",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 2996,
+   "CompletionPayments": 2600,
+   "Expired": null,
+   "FutureFunds": 50780
+ },
+ {
+   "Month": "Jul-19",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 2035,
+   "CompletionPayments": 1500,
+   "Expired": null,
+   "FutureFunds": 52306
+ },
+ {
+   "Month": "Aug-19",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 1650,
+   "CompletionPayments": 1600,
+   "Expired": null,
+   "FutureFunds": 54117
+ },
+ {
+   "Month": "Sep-19",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 1650,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 57527
+ },
+ {
+   "Month": "Oct-19",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 1650,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 60938
+ },
+ {
+   "Month": "Nov-19",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 1650,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 64349
+ },
+ {
+   "Month": "Dec-19",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 1650,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 67760
+ },
+ {
+   "Month": "Jan-20",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 1258,
+   "CompletionPayments": 1500,
+   "Expired": null,
+   "FutureFunds": 70062
+ },
+ {
+   "Month": "Feb-20",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 1012,
+   "CompletionPayments": 400,
+   "Expired": null,
+   "FutureFunds": 73711
+ },
+ {
+   "Month": "Mar-20",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 1012,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 77760
+ },
+ {
+   "Month": "Apr-20",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": 3000,
+   "Expired": null,
+   "FutureFunds": 79237
+ },
+ {
+   "Month": "May-20",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 83714
+ },
+ {
+   "Month": "Jun-20",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 88192
+ },
+ {
+   "Month": "Jul-20",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 92669
+ },
+ {
+   "Month": "Aug-20",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 97146
+ },
+ {
+   "Month": "Sep-20",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 101624
+ },
+ {
+   "Month": "Oct-20",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": null,
+   "Expired": null,
+   "FutureFunds": 106101
+ },
+ {
+   "Month": "Nov-20",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": null,
+   "Expired": 1812,
+   "FutureFunds": 108766
+ },
+ {
+   "Month": "Dec-20",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": null,
+   "Expired": 4477,
+   "FutureFunds": 108766
+ },
+ {
+   "Month": "Jan-21",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": null,
+   "Expired": 4477,
+   "FutureFunds": 108766
+ },
+ {
+   "Month": "Feb-21",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": null,
+   "Expired": 4477,
+   "FutureFunds": 108766
+ },
+ {
+   "Month": "Mar-21",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": null,
+   "Expired": 4477,
+   "FutureFunds": 108766
+ },
+ {
+   "Month": "Apr-21",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": null,
+   "Expired": 4477,
+   "FutureFunds": 108766
+ },
+ {
+   "Month": "May-21",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": null,
+   "Expired": 4477,
+   "FutureFunds": 108766
+ },
+ {
+   "Month": "Jun-21",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": 584,
+   "CompletionPayments": 5400,
+   "Expired": 4477,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Jul-21",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Aug-21",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Sep-21",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Oct-21",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Nov-21",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Dec-21",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Jan-22",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Feb-22",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Mar-22",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Apr-22",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "May-22",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Jun-22",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Jul-22",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Aug-22",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ },
+ {
+   "Month": "Sep-22",
+   "FundsIn": 5061,
+   "TotalCostOfTraining": null,
+   "CompletionPayments": null,
+   "Expired": 5061,
+   "FutureFunds": 103366
+ }
+]
+	%}

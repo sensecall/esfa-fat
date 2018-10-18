@@ -1,0 +1,37 @@
+{% extends "../layout-estimator.html" %}
+
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			{{ serviceName }}
+		</h1>
+
+		<p>
+			Use this service to estimate how much:
+		</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			<li>
+				apprenticeship levy your organisation will pay
+			</li>
+			<li>
+				your organisation will have to spend on apprenticeships
+			</li>
+			<li>
+				the government will contribute towards the cost of apprenticeship training
+			</li>
+		</ul>
+
+		<p>
+			You can also use this tool to see how many apprenticeships you can fund from your own account or how much of your unused funds you could transfer to another employer.
+		</p>
+
+		<a href="account-check" class="govuk-button govuk-button--start">
+			Start
+		</a>
+	</div>
+</div>
+{% endblock %}

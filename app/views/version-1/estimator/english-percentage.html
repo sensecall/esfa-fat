@@ -1,0 +1,51 @@
+{% if data['loggedIn'] === 'true' %}
+{% extends "layout-account.html" %}
+{% else %}
+{% extends "../layout-estimator.html" %}
+{% endif %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% set serviceName = "Calculate future apprenticeship costs" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Employees living in England
+		</h1>
+
+		<form method="post">
+			{% from "input/macro.njk" import govukInput %}
+
+			{{ govukInput({
+				label:
+				{
+					text: "What percentage of your pay bill goes to employees living in England?"
+				},
+				hint:
+				{
+					text: "This only needs to be an estimate. Enter '100' if you’re unsure"
+				},
+				id: "english-percentage",
+				name: "english-percentage",
+				classes: "govuk-input--width-3",
+				type: "number",
+				attributes:
+				{
+					max: '100',
+					min: '0'
+				}
+			}) }}
+
+			{% from "button/macro.njk" import govukButton %}
+
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-half">
+		<div class="govuk-inset-text govuk-inset-text--info govuk-!-padding-bottom-5">
+			<p class="govuk-body-l govuk-!-margin-bottom-1">
+				Estimated cost of training
+			</p>
+			<p class="govuk-!-font-size-48 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
+				£{{ (totalCost) | numeral().format('0,0') }}
+			</p>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-half">
+		
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-one-half">
+				<div class="govuk-inset-text govuk-!-margin-top-0">
+					{% set coinvestment = totalCost - data['total-levy'] %}
+					<p class="govuk-body-m govuk-!-margin-bottom-1">
+						Annual funds available to you
+					</p>
+					<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0">
+						£{{ data['annual-levy-amount'] | numeral().format('0,0') }}
+					</p>
+				</div>
+			</div>
+
+			<div class="govuk-grid-column-one-half">
+				<div class="govuk-inset-text govuk-!-margin-top-0">
+					<p class="govuk-body-m govuk-!-margin-bottom-1">
+						Your unspent apprenticeship funds
+					</p>
+					<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
+						£{{ (data['annual-levy-amount'] - totalCost) | numeral().format('0,0') }}
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-two-thirds">
+				{{ govukDetails({
+					summaryText: "How these figures are calculated",
+					text: "These estimates are calulated using data from your apprenticeships account, including the future cost of any apprenticeships that are confirmed and started, and any planned apprenticeships that you have added manually.",
+					classes: "govuk-!-margin-top-0  govuk-!-margin-bottom-0"
+				}) }}
+			</div>
+		</div>
+	</div>
+</div>

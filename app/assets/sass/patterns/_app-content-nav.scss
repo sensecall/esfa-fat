@@ -1,0 +1,19 @@
+.app-content-nav {
+	content: "";
+	display: table;
+	clear: both;
+	width: 100%;
+
+	.app-content-nav__next {
+		width: auto;
+		display: block;
+		text-align: right;
+		float: right;
+		@include govuk-font($size: 19, $weight: regular);
+	}
+
+	span {
+		display: block;
+		@include govuk-font($size: 19, $weight: bold);
+	}
+}

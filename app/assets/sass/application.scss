@@ -1,0 +1,136 @@
+// global styles for <a> and <p> tags
+$govuk-global-styles: true;
+
+// Import GOV.UK Frontend
+@import "node_modules/govuk-frontend/all";
+
+// Patterns that aren't in Frontend
+@import "patterns/check-your-answers";
+@import "patterns/task-list";
+@import "patterns/related-items";
+
+// Patterns added by WIN team
+@import "components/arrows";
+@import "patterns/featured-content";
+@import "patterns/step-by-step-nav";
+@import "components/homepage-top";
+@import "patterns/flash-card";
+@import "patterns/inverted-button";
+@import "patterns/action-buttons";
+@import "patterns/app-content-nav";
+@import "components/global-header";
+@import "components/header-user";
+@import "components/apprenticeship-service-header";
+@import "components/floating-menu";
+@import "patterns/apprenticeship-service-misc";
+@import "components/apprenticeship-tabs";
+@import "components/das-data";
+@import "components/c3-chart";
+@import "patterns/alerts";
+@import "components/autocomplete";
+@import "patterns/search-filters";
+
+
+// Components that aren't in Frontend
+@import "components/cookie-banner";
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+.prototype-home {
+	.govuk-header__logo {
+		svg {
+			display: none;
+		}
+	}
+
+	.govuk-header__container {
+		border-bottom: none;
+		padding-bottom: 10px
+	}
+
+	.govuk-header {
+		display: none;
+		border-bottom: none;
+	}
+}
+
+.govuk-table--font-small {
+	@include govuk-font($size: 16);
+}
+
+.govuk-button {
+	&.govuk-button--secondary {
+		$govuk-button--secondary-colour: govuk-colour("grey-3");
+		$govuk-button--secondary-hover-colour: darken($govuk-button--secondary-colour,10%);
+		$govuk-button--secondary-shadow-colour: darken($govuk-button--secondary-colour,20%);
+		$govuk-button--secondary-text-colour: govuk-colour("black");
+
+		color: $govuk-button--secondary-text-colour;
+		background-color: $govuk-button--secondary-colour;
+		-webkit-box-shadow: 0 $button-shadow-size 0 $govuk-button--secondary-shadow-colour;
+		box-shadow: 0 $button-shadow-size 0 $govuk-button--secondary-shadow-colour; // s0
+
+		&:link,
+		&:visited,
+		&:active,
+		&:hover {
+			color: $govuk-button--secondary-text-colour;
+		}
+
+		&:hover,
+		&:focus {
+			background-color: $govuk-button--secondary-hover-colour;
+		}
+	}
+
+	&.govuk-button--red {
+		$govuk-button--red-colour: govuk-colour("red");
+		$govuk-button--red-hover-colour: darken($govuk-button--red-colour,10%);
+		$govuk-button--red-shadow-colour: darken($govuk-button--red-colour,20%);
+		$govuk-button--red-text-colour: govuk-colour("white");
+
+		color: $govuk-button--red-text-colour;
+		background-color: $govuk-button--red-colour;
+		-webkit-box-shadow: 0 $button-shadow-size 0 $govuk-button--red-shadow-colour;
+		box-shadow: 0 $button-shadow-size 0 $govuk-button--red-shadow-colour; // s0
+
+		&:link,
+		&:visited,
+		&:active,
+		&:hover {
+			color: $govuk-button--red-text-colour;
+		}
+
+		&:hover,
+		&:focus {
+			background-color: $govuk-button--red-hover-colour;
+		}
+	}
+}
+
+.govuk-table__row--warning {
+	background: mix(white, govuk-colour("bright-red"), 95%);
+	td:first-of-type {
+		padding-left: 5px;
+		border-left: 4px solid govuk-colour("red");
+	}
+}
+.govuk-table__cell--warning {
+	color: govuk-colour("red");
+	font-weight: bold
+}
+
+.fat-service-header {
+	.govuk-header__container {
+		border-bottom-color: #777
+	}
+	.govuk-header__logo {
+		display:none
+	}
+	.govuk-header__content {
+		padding: 16px 0;
+
+		.govuk-header__link--service-name {
+			font-size: 32px
+		}
+	}
+}

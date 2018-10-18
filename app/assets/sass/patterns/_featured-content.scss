@@ -1,0 +1,34 @@
+article.featured {
+	background: #f0f0f0;
+	margin-bottom: 30px;
+	.featured-wrapper {
+		padding: 30px;
+		display: inline-block;
+	}
+	&.featured--action {
+		background: govuk-colour("blue");
+		
+		p,
+		a,
+		li,
+		.article-title,
+		span {
+			color: #fff
+		}
+		.govuk-caption-l {
+			color: rgba(255,255,255,0.7)
+		}
+
+		.govuk-button {
+			color: govuk-colour("blue");
+			
+			&:link, &:visited, &:hover {
+				color: #005ea5;
+			}
+		}
+
+		a:link, a:visited {
+			color: #fff;
+		}
+	}
+}

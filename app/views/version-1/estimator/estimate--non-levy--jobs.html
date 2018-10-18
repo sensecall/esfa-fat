@@ -1,0 +1,133 @@
+{% extends "../layout-estimator.html" %}
+{% set phaseBanner = true %}
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+
+{% set currentPage = 'finance' %}
+{% set loggedIn = data['logged-in'] === 'true' %}
+{% set levyPayer = data['annual-payroll'] >= '36000000' %}
+
+{% block content %}
+
+{% if levyPayer %}
+{% set apprenticeshipCost = 9000 %}
+{% else %}
+{% set apprenticeshipCost = 900 %}
+{% endif %}
+
+{% set totalCost = 0 %}
+
+{% for i in range(1, 999) %}
+{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+{% set totalCost = (data['apprenticeship_' + i + '-count'] * apprenticeshipCost) + totalCost %}
+{% endif %}
+{% endfor %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		<h1 class="govuk-heading-xl">
+			Cost of apprenticeship training
+		</h1>
+
+		<div class="govuk-inset-text govuk-inset-text--info">
+			<p>
+				There are <a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/SearchResults?Keywords={{data['job-role']}}">{{data['search-results'].length}} apprenticeships</a> matching your search for '<span class="govuk-!-font-weight-bold">{{data['job-role']}}</span>', including:
+			</p>
+
+			<ul class="govuk-list govuk-list--bullet">
+				{% set i = 0 %}
+				{% for result in data['search-results'] %}
+				{% if result.Title.length < 60 %}
+				{% if i < 4 %}
+				<li>{{result.Title}}</li>
+				{% set i = i + 1 %}
+				{% endif %}
+				{% endif %}
+				{% endfor %}
+			</ul>
+			<p>
+				<a href="/{{version}}/fat/search-results">See the full list of results</a>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<p class="govuk-body-l govuk-!-margin-bottom-4">
+			You would pay between
+
+			<span class="govuk-heading-xl govuk-!-margin-top-2 govuk-!-margin-bottom-0">
+				£400 - £2,700
+			</span>
+		</p>
+
+		<p class="govuk-!-margin-bottom-6">
+			You would also have to pay the apprentice at least the current <a href="https://www.gov.uk/national-minimum-wage-rates">minimum wage rate</a> for apprentices, which is £3.70 per hour.
+		</p>
+
+		<p>
+			Government will contribute between
+			<span class="govuk-heading-l govuk-!-margin-top-2 govuk-!-margin-bottom-0">
+				£{{(400 * 9) | numeral().format('0,0')}} - £{{(2700 * 9) | numeral().format('0,0')}} <span class="govuk-!-font-size-19"> towards your training costs</span>
+			</span>
+		</p>
+	</div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+	<div class="govuk-grid-column-two-thirds">
+		<h2 class="govuk-heading-m">
+			Now go to the Find apprenticeship training service
+		</h2>
+		<p>
+			If you want to find out more about the apprenticeships that are suitable for your planned job role, you need to visit the Find apprenticeship training service.
+		</p>
+
+		<p class="govuk-!-margin-bottom-0">
+			<a href="https://manage-apprenticeships.service.gov.uk/" target="_blank" class="govuk-button govuk-!-margin-bottom-2">Register on the apprenticeship service</a>
+		</p>
+
+		<p class="govuk-!-font-size-14">
+			This link will open in a new tab
+		</p>
+	</div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+	<div class="govuk-grid-column-two-thirds">
+		<h2 class="govuk-heading-m">
+			Previous answers
+		</h2>
+
+		<dl class="app-check-your-answers app-check-your-answers--short">
+			<div class="app-check-your-answers__contents">
+				<dt class="app-check-your-answers__question">
+					
+				</dt>
+				<dd class="app-check-your-answers__answer">
+					
+				</dd>
+				<dd class="app-check-your-answers__change">
+					<a href="/{{version}}/estimator">
+						Start again
+					</a>
+				</dd>
+			</div>
+
+			<div class="app-check-your-answers__contents">
+				<dt class="app-check-your-answers__question">
+					Your annual payroll
+				</dt>
+				<dd class="app-check-your-answers__answer">
+					less than £3 million
+				</dd>
+				<dd class="app-check-your-answers__change">
+					<a href="business-details">
+						Change
+					</a>
+				</dd>
+			</div>
+		</dl>
+	</div>
+</div>
+{% endblock %}

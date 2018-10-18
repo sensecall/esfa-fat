@@ -1,0 +1,83 @@
+.flash-card {
+	margin-top: 1.25em;
+	padding: 60px;
+	background: #005ea5;
+	color: #fff;
+
+	.govuk-heading-xl,
+	.govuk-heading-l,
+	.govuk-heading-m {
+		margin-top: 0;
+	}
+
+	*:not(.govuk-button) {
+		color: #fff !important;
+	}
+
+	 
+}
+
+.flash-card .govuk-button:visited { background-color: #fff; }
+.flash-card .govuk-button:hover,
+.flash-card .govuk-button:focus { background-color: #f2f2f2; }
+.flash-card .govuk-button:active {
+	top: 2px;
+	-webkit-box-shadow: 0 0 0 #fff;
+	-moz-box-shadow: 0 0 0 #fff;
+	box-shadow: 0 0 0 #fff;
+}
+.flash-card .govuk-button.disabled,
+.flash-card .govuk-button[disabled="disabled"],
+.flash-card .govuk-button[disabled] {
+	zoom: 1;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+.flash-card .govuk-button.disabled:hover,
+.flash-card .govuk-button[disabled="disabled"]:hover,
+.flash-card .govuk-button[disabled]:hover {
+	cursor: default;
+	background-color: #fff;
+}
+.flash-card .govuk-button.disabled:active,
+.flash-card .govuk-button[disabled="disabled"]:active,
+.flash-card .govuk-button[disabled]:active {
+	top: 0;
+	-webkit-box-shadow: 0 2px 0 #d9d9d9;
+	-moz-box-shadow: 0 2px 0 #d9d9d9;
+	box-shadow: 0 2px 0 #d9d9d9;
+}
+.flash-card .govuk-button:link,
+.flash-card .govuk-button:hover,
+.flash-card .govuk-button:focus,
+.flash-card .govuk-button:visited { color: #0b0c0c; }
+.flash-card .govuk-button:before {
+	content: "";
+	height: 110%;
+	width: 100%;
+	display: block;
+	background: transparent;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.flash-card .govuk-button:active:before {
+	top: -10%;
+	height: 120%;
+}
+.flash-card .govuk-button[rel="external"]:after {
+	display: none;
+	content: none;
+	margin-left: 0;
+	margin-right: 0;
+}
+.flash-card .govuk-button:link,
+.flash-card .govuk-button:hover,
+.flash-card .govuk-button:focus,
+.flash-card .govuk-button:visited {
+	color: #005ea5;
+}
+.flash-card .govuk-button+.inline-options {
+	margin-top: 0.3em;
+	padding-top: 0;
+}

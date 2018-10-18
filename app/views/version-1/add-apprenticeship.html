@@ -1,0 +1,189 @@
+{% if data['logged-in'] === 'true' %}
+{% extends "layout-account.html" %}
+{% set currentPage = 'finance' %}
+{% else %}
+{% extends "./layout-estimator.html" %}
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+{% endif %}
+
+{% block head %}
+{% include "includes/head.html" %}
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.autocomplete-element').each(function() {
+			var selectEl = document.querySelector('#' + $(this).attr('id') )
+			accessibleAutocomplete.enhanceSelectElement({
+				autoselect: false,
+				defaultValue: '',
+				minLength: 2,
+				selectElement: selectEl,
+				placeholder: 'Search for an apprenticeship',
+				showAllValues: true
+			})
+		})
+	})
+</script>
+{% endblock %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% if not apprenticeshipId %}
+{% set apprenticeshipId = "1" %}
+{% else %}
+{% endif %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			{% if data['logged-in'] == 'true' %}
+			Add apprenticeships to your estimate
+			{% else %}
+			Choose an apprenticeship
+			{% endif %}
+		</h1>
+
+		<p class="govuk-!-margin-bottom-8">
+			For a detailed estimate of how much you could spend on future apprenticeships you need to choose one or more apprenticeships from the list below.
+		</p>
+
+		{% for i in range(1, 999) %}
+		{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+		{% set apprenticeshipId = i + 1 %}
+		{% endif %}
+		{% endfor %}
+
+		<form method="post">
+			<input type="hidden" value="{{apprenticeshipId}}" name="apprenticeship-id">
+
+			{{ govukCheckboxes(
+				{
+					idPrefix: "IsTransferFunded",
+					name: "IsTransferFunded",
+					fieldset:
+					{
+						legend:
+						{
+							text: "Will this apprenticeship be funded by your transfer allowance?",
+							isPageHeading: false,
+							classes: "govuk-fieldset__legend--s"
+						}
+					},
+					hint: {
+					text: ""
+				},
+				items: [
+				{
+					value: "true",
+					text: "Use transfer allowance"
+				}
+				]
+			}) }}
+
+			<div class="govuk-form-group">
+				<label class="govuk-label" for="choose-apprenticeship">
+					Choose apprenticeship
+				</label>
+				<div class="autocomplete-wrapper">
+					<select class="autocomplete-element" id="choose-apprenticeship" name="apprenticeship_{{apprenticeshipId}}-name">
+						<option value="">Select one</option>
+						{% import 'includes/data-apprenticeships.html' as apprenticeshipsData %}
+						{% for apprenticeship in apprenticeshipsData.apprenticeships %}
+						<option value="{{apprenticeship.name}}|{{apprenticeship.level}}|{{'true' if apprenticeship.standard else 'false'}}|{{apprenticeship.value}}">{{apprenticeship.name}}, Level: {{apprenticeship.level}}{{" (Standard)" if apprenticeship.standard === true}}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+
+			{% if data['annual-payroll'] >= 36000000 %}
+			{{ govukInput({
+				label:
+				{
+					text: "Number of apprentices"
+				},
+				id: "no-of-app",
+				name: "apprenticeship_" + apprenticeshipId + "-count",
+				classes: "govuk-input--width-4",
+				type: "number",
+				attributes:
+				{
+					min: 0,
+					required: "required"
+				}
+			}) }}
+			{% else %}
+			<input type="hidden" name="{{'apprenticeship_' + apprenticeshipId + '-count'}}" value="1">
+			{% endif %}
+
+			{% if data['logged-in'] == 'true' %}
+			{{ govukInput({
+				label:
+				{
+					text: "Number of months"
+				},
+				hint: 
+				{
+					text: "Apprenticeships must be a minimum of 12 months"
+				},
+				id: "apprenticeship-length",
+				name: "apprenticeshipLength_" + apprenticeshipId,
+				classes: "govuk-input--width-2"
+			}) }}
+			
+			{{ govukDateInput({
+				id: "startDate_" + apprenticeshipId,
+				name: "startDate_" + apprenticeshipId,
+				fieldset:
+				{
+					legend:
+					{
+						text: "Start date",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--s"
+					}
+				},
+				hint:
+				{
+					text: "For example, 09 2018"
+				},
+				items: [
+				{
+					name: "month"
+				},
+				{
+					name: "year"
+				}
+				]
+			}) }}
+
+			{{ govukInput({
+				label:
+				{
+					text: "Total cost"
+				},
+				hint: 
+				{
+					text: "You can change this number but if you go above the funding band maximum value - the difference will be co-invested"
+				},
+				id: "total-funding-cos",
+				name: "total-funding-cos",
+				classes: "govuk-input--width-5"
+			}) }}
+			{% endif %}
+
+			<input type="hidden" value="" name="job-role">
+			<input type="hidden" value="true" name="has-estimated-before">
+			
+			<input type="hidden" value="{{ 2000 if apprenticeshipId == 1 else 1500 }}" name="total-funding-cost_{{apprenticeshipId}}">
+
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

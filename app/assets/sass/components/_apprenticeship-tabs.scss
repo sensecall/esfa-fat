@@ -1,0 +1,54 @@
+.js-enabled {
+	ul.js-tabs {
+		@include govuk-clearfix;
+		list-style: none;
+		margin: 20px 0 0;
+		padding: 0;
+		@include govuk-media-query($from: tablet) {
+			border-bottom: 1px solid $govuk-border-colour;
+			// padding: 0 10px;
+		}
+		li {
+			margin-bottom: -1px;
+			@include govuk-media-query($from: tablet) {
+				float: left;
+				margin-bottom: 0;
+				margin-right: 5px;
+			}
+		}
+		a {
+			display: block;
+			padding: govuk-spacing(2) govuk-spacing(3);
+			position: relative;
+			margin-bottom: -1px;
+			// background: govuk-colour("grey-4");
+			border: 1px solid govuk-colour("white");
+			border-bottom: none;
+			&.selected {
+				border-color: $govuk-border-colour;
+				background: white;
+				@include govuk-media-query($from: tablet) {
+					border-bottom: 1px solid govuk-colour("white");
+				}
+				text-decoration: none;
+				color: govuk-colour("black");
+				// font-weight: bold;
+				&:hover {
+					background: govuk-colour("white")
+				}
+			}
+			&:hover {
+				background: govuk-colour("grey-3")
+			}
+		}
+	}
+}
+
+.panes {
+	// border: 1px solid $govuk-border-colour;
+	border-top: none;
+}
+
+.js-tab-pane {
+	padding: 1em
+}

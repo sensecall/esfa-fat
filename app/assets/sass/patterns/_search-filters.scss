@@ -1,0 +1,105 @@
+.editSearch {
+	@media (max-width: 640px) {
+		margin: 20px 0;
+	}
+	h2 {
+		margin-top: 0;
+	}
+	a[href='#EditSearch'] {
+		text-decoration: none;
+		@media (min-width: 641px) {
+			color: govuk-colour("black");
+			cursor: default;
+		}
+
+		&:after {
+			@media (max-width: 640px) {
+				color: govuk-colour("black");
+				display: inline-block;
+				margin-left: 0.5em;
+				content: "\25Bc";
+			}
+		}
+	}
+	&.folded {
+		a[href='#EditSearch'] {
+			&:after {
+				@media (max-width: 640px) {
+					content: "\25B6";
+				}
+
+			}   
+		}
+		#EditSearch {
+			@media (max-width: 640px) {
+				display: none
+			}
+		}
+	}
+}
+
+.filters-block {
+
+}
+
+.filters {
+	padding: 0;
+	display: block;
+	margin: 0 0 20px 0;
+	border: 1px solid govuk-colour("grey-3");
+	overflow: hidden;
+	
+	.toggler {
+		clear: both;
+		background: govuk-colour("grey-3");
+		box-sizing: border-box;
+		display: block;
+		width: 100%;
+		padding: 5px 30px 5px 10px;
+		margin: 0;
+		top: 0;
+		float: none;
+		position: relative;
+		cursor: default;
+/*
+        &:after {
+            position: absolute;
+            display: block;
+            height: 100%;
+            top: 5px;
+            right: 10px;
+            text-align: center;
+            vertical-align: middle;
+            content: "\02228";
+        }
+        */
+
+    }
+    li {
+    	margin-bottom: .5em;
+    }
+    .toggler + .toggled-content {
+    	padding: 20px;
+    }
+
+    @at-root  {
+    	.js .filters .toggled-content {
+    		//display: none;
+    		@media (min-width: 641px) {
+    			display: block;
+    		}
+    	}
+    	.js .filters.unfolded {
+    		.toggler {
+/*
+                &:after {
+                    content: "\02227";
+                }
+                */
+            }
+            .toggled-content {
+            	display: block;
+            }
+        } 
+    }
+}

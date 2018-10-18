@@ -1,0 +1,126 @@
+.data-wrap {
+	@include govuk-clearfix;
+	// margin: 0 (-$govuk-gutter-half);
+}
+
+.data {
+	width: 100%;
+
+	* {
+		color: #fff;
+	}
+
+	dl {
+		box-sizing: border-box;
+		padding: 15px; 
+		background: govuk-colour("blue");
+		color: white;
+
+		dt {
+			display: table-header-group;
+			@include govuk-font($size: 19, $weight: bold);
+			height: 1.75em;
+		}
+
+		dd,
+		dd.data__data-xl {
+			display: table-footer-group;
+			@include govuk-font($size: 48, $weight: bold);
+
+			&.data__data--l {
+				@include govuk-font($size: 36, $weight: bold);
+
+			}
+		}
+
+		&.current-balance {
+			background: govuk-colour("grey-1")
+		}
+		&.expiring-funds {
+			background: govuk-colour("brown")
+		}
+		&.overdue-completion-payments {
+			background: govuk-colour("grey-1")
+		}
+		&.data--green {
+			background: govuk-colour("green")
+		}
+		&.data--light-green {
+			background: govuk-colour("light-green")
+		}
+		&.data--purple {
+			background: govuk-colour("purple")
+		}
+		&.data--light-purple {
+			background: govuk-colour("light-purple")
+		}
+		&.data--red {
+			background: govuk-colour("red")
+		}
+		&.data--orange {
+			background: govuk-colour("orange")
+		}
+		&.data--turquoise {
+			background: govuk-colour("turquoise")
+		}
+		&.data--red-border {
+			background: govuk-colour("white");
+			box-shadow: inset 0 0 0 4px govuk-colour("red");
+			* {
+				color: govuk-colour("black")
+			}
+		}
+		&.data--white {
+			background: govuk-colour("white");
+			box-shadow: inset 0 0 0 4px govuk-colour("blue");
+			* {
+				color: govuk-colour("black")
+			}
+		}
+		&.data--grey {
+			background: govuk-colour("grey-3");
+			* {
+				color: govuk-colour("black")
+			}
+		}
+	}
+
+	@include govuk-media-query($from: tablet) { 
+		float: left;
+		// width: 50%;
+		box-sizing: border-box;
+		dd.long {
+			font-size: 42px;
+			line-height: 50px;
+		}
+		dd.longer {
+			font-size: 32px;
+			line-height: 50px;
+		}
+	}
+
+	@include govuk-media-query($from: desktop) {
+		// width: 33.33%;
+		dd.long {
+			font-size: 48px;
+			line-height: 50px;
+		}
+		dd.longer {
+			font-size: 42px;
+			line-height: 50px;
+		}
+	}
+}
+
+#page-transactions .data {
+	dl {
+		position: relative;
+		min-height: 120px;
+		padding-bottom: 20px;
+	}
+
+	dt {
+		@include govuk-font($size: 19, $weight: bold, $line-height: 1);
+		height: 2.25em;
+	}
+}

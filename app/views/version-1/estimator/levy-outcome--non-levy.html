@@ -1,0 +1,70 @@
+{% extends "../layout-estimator.html" %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{{ govukPanel({
+			titleText: "Government will pay 90% of your apprenticeship costs",
+			classes: "govuk-!-margin-bottom-6"
+		}) }}
+
+		<!-- <h1 class="govuk-heading-xl">
+			Government will pay 90% of your apprenticeship costs
+		</h1> -->
+
+		<p>
+			You told us your annual paybill is less than £3 million, so you won't have to pay the apprenticeship levy.
+		</p>
+
+		<p>
+			This means that you will only have to pay 10% towards the cost of apprenticeship training and the government will pay the rest.
+		</p>
+
+		<p>
+			Additional incentives may also be available:
+		</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>
+				£{{1000 | numeral().format('0,0')}} for apprentices aged 16-18
+			</li>
+			<li>
+				£{{1000 | numeral().format('0,0')}} for apprentices aged 19-24 with an <abbr title="Education Health and Care plan">EHC</abbr>
+			</li>
+			<li>
+				£{{1000 | numeral().format('0,0')}} for apprentices aged 19-24 leaving care
+			</li>
+		</ul>
+
+		<div class="govuk-inset-text">
+			<h2 class="govuk-heading-m">
+				Example
+			</h2>
+			<ul class="govuk-list">
+				<li>
+					Business Administrator Level: 3 (equivalent to A-level)
+				</li>
+				<li>
+					You pay: £300
+				</li>
+
+				<li>
+					Government pays: £2,700
+				</li>
+			</ul>
+		</div>
+
+		<h2 class="govuk-heading-m govuk-!-margin-top-8">
+			Now find out the costs of your apprenticeship
+		</h2>
+		<a href="/{{version}}/estimator/know-apprenticeship" class="govuk-button">
+			Continue and choose an apprenticeship
+		</a>
+	</div>
+</div>
+{% endblock %}
