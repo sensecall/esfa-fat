@@ -1,4 +1,4 @@
-{% extends "template.njk" %}
+{% extends "layout.html" %}
 
 {% from "back-link/macro.njk"     import govukBackLink %}
 {% from "breadcrumbs/macro.njk"   import govukBreadcrumbs %}
@@ -29,30 +29,28 @@
 <script src="/public/javascripts/sfa.tabs.js"></script>
 {% endblock %}
 
-
 {% block pageTitle %}
 GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
 {% include "includes/cookie-banner.html" %}
-{# Set serviceName in config.js. #}
 {{ govukHeader({
   homepageUrl: "/",
-  serviceName: serviceName,
-  serviceUrl: serviceUrl,
-  classes: "app-apprentice-service-header"
+  serviceName: "Find apprenticeship training",
+  serviceUrl: "/" + version + "/estimator/start",
+  classes: "fat-service-header"
 }) }}
 {% endblock %}
 
 {% block beforeContent %}
-{% if phaseBanner != "false" %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-    {% include 'includes/phase-banner.html' %}
-  </div>
-</div>
-{% endif %}
+{{ govukPhaseBanner({
+  tag:
+  {
+      text: "beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
 {% endblock %}
 
 {% if useAutoStoreData %}
