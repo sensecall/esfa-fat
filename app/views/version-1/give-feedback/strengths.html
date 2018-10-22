@@ -1,0 +1,51 @@
+{% extends "layout-account.html" %}
+
+{% set currentPage = 'apprentices' %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-top-6">
+			Cyberdyne's strengths 
+		</h1>
+
+		<form action="improvements">
+			{% import './_ratings-criteria.html' as criteria %}
+			
+			{{ govukCheckboxes({
+				idPrefix: "strengths",
+				name: "strengths",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "What are Cyberdyne doing well?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				hint: 
+				{
+					text: "Select as many as you like."
+				},
+				items: criteria.items
+			}) }}
+
+			{{ govukButton({
+				text: "Continue"
+			}) }}
+		</form>
+
+		<p>
+			<a href="#">Skip this question</a>
+		</p>
+	</div>
+</div>
+
+{% endblock %}

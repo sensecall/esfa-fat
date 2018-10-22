@@ -1,0 +1,28 @@
+{% extends "layout-account.html" %}
+
+{% set currentPage = 'apprentices' %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">	
+		{{ govukPanel({
+			titleText: "Feedback complete",
+			classes: 'govuk-!-margin-top- govuk-!-margin-bottom-6'
+		}) }}
+
+		<p>
+			Thanks for your feedback. It'll help Cyberdyne to continuously improve its apprenticeship training.
+		</p>
+
+		<p>
+			You rated Cyberdyne's training quality as <b>{{data['quality'] | lower }}</b>
+		</p>
+
+		<p>
+			You can <a href="https://manage-apprenticeships.service.gov.uk/">sign in to your apprenticeship account</a>.
+		</p>
+	</div>
+</div>
+
+{% endblock %}

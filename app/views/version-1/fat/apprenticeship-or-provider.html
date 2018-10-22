@@ -8,33 +8,37 @@
             Find apprenticeship training
         </h1>
 
-        {{ govukRadios({
-            idPrefix: "where-do-you-live",
-            name: "where-do-you-live",
-            fieldset:
-            {
-                legend:
+        <form method="post">
+            {{ govukRadios({
+                idPrefix: "apprenticeship-or-provider",
+                name: "apprenticeship-or-provider",
+                fieldset:
                 {
-                    text: "Search by apprenticeships or named training provider",
-                    isPageHeading: false,
-                    classes: "govuk-fieldset__legend--s"
+                    legend:
+                    {
+                        text: "Search by apprenticeships or named training provider",
+                        isPageHeading: false,
+                        classes: "govuk-fieldset__legend--s"
+                    }
+                },
+                items: [
+                {
+                    value: "apprenticeships",
+                    text: "apprenticeships"
+                },
+                {
+                    value: "training-provider",
+                    text: "the name of a training provider you already know"
                 }
-            },
-            items: [
-            {
-                value: "apprenticeships",
-                text: "apprenticeships"
-            },
-            {
-                value: "training-provider",
-                text: "the name of a training provider you already know"
-            }
-            ]
-        }) }}
+                ]
+            }) }}
 
-        {{ govukButton({
-            text: "Continue"
-        }) }}
+            <input value="" name="search-term" type="hidden">
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
     </div>
 </div>
 

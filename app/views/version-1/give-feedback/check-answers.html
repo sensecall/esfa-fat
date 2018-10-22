@@ -1,0 +1,81 @@
+{% extends "layout-account.html" %}
+
+{% set currentPage = 'apprentices' %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-top-6">
+			Check your answers
+		</h1>
+
+		<dl class="app-check-your-answers app-check-your-answers--long">
+			<div class="app-check-your-answers__contents">
+				<dt class="app-check-your-answers__question">
+					Strengths
+				</dt>
+				<dd class="app-check-your-answers__answer">
+					<ul class="govuk-list">
+						{% for item in data['strengths'] %}
+						<li>{{item}}</li>
+						{% endfor %}
+					</ul>
+				</dd>
+				<dd class="app-check-your-answers__change">
+					<a href="strengths">
+						Change<span class="govuk-visually-hidden"> name</span>
+					</a>
+				</dd>
+			</div>
+
+			<div class="app-check-your-answers__contents">
+				<dt class="app-check-your-answers__question">
+					Things to improve
+				</dt>
+				<dd class="app-check-your-answers__answer">
+					<ul class="govuk-list">
+						{% for item in data['improvements'] %}
+						<li>{{item}}</li>
+						{% endfor %}
+					</ul>
+				</dd>
+				<dd class="app-check-your-answers__change">
+					<a href="improvements">
+						Change<span class="govuk-visually-hidden"> name</span>
+					</a>
+				</dd>
+			</div>
+
+			<div class="app-check-your-answers__contents">
+				<dt class="app-check-your-answers__question">
+					Training quality rating
+				</dt>
+				<dd class="app-check-your-answers__answer">
+					{{data['quality']}}
+				</dd>
+				<dd class="app-check-your-answers__change">
+					<a href="quality">
+						Change<span class="govuk-visually-hidden"> name</span>
+					</a>
+				</dd>
+			</div>
+		</dl>
+
+		<p class="govuk-!-margin-top-8 govuk-!-margin-bottom-6">
+			Your answers will be published anonymously on the Find apprenticeship training service in the next 24 hours.
+		</p>
+
+		{{ govukButton({
+			text: "Submit answers",
+			href: "complete"
+		}) }}
+	</div>
+</div>
+
+{% endblock %}
