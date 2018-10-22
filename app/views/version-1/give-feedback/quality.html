@@ -1,5 +1,6 @@
-{% extends "layout-account.html" %}
+{% extends "layout.html" %}
 
+{% set serviceName = 'Give feedback' %}
 {% set currentPage = 'apprentices' %}
 
 {% block content %}
@@ -31,19 +32,39 @@
 				items: [
 				{
 					value: "Excellent",
-					text: "Excellent"
+					text: "Excellent",
+					checked: true if data['quality'] == "Excellent",
+					attributes:
+					{
+						required: "required"
+					}
 				},
 				{
 					value: "Good",
-					text: "Good"
+					text: "Good",
+					checked: true if data['quality'] == "Good",
+					attributes:
+					{
+						required: "required"
+					}
 				},
 				{
 					value: "Poor",
-					text: "Poor"
+					text: "Poor",
+					checked: true if data['quality'] == "Poor",
+					attributes:
+					{
+						required: "required"
+					}
 				},
 				{
 					value: "Very poor",
-					text: "Very poor"
+					text: "Very poor",
+					checked: true if data['quality'] == "Very poor",
+					attributes:
+					{
+						required: "required"
+					}
 				}
 				]
 			}) }}

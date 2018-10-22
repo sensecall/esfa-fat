@@ -1,5 +1,6 @@
-{% extends "layout-account.html" %}
+{% extends "layout.html" %}
 
+{% set serviceName = 'Give feedback' %}
 {% set currentPage = 'apprentices' %}
 
 {% block content %}
@@ -18,24 +19,28 @@
 		<form action="improvements">
 			{% import './_ratings-criteria.html' as criteria %}
 			
-			{{ govukCheckboxes({
-				idPrefix: "strengths",
-				name: "strengths",
-				fieldset: 
-				{
-					legend: 
-					{
-						text: "What are Cyberdyne doing well?",
-						isPageHeading: false,
-						classes: "govuk-fieldset__legend--m"
-					}
-				},
-				hint: 
-				{
-					text: "Select as many as you like."
-				},
-				items: criteria.items
-			}) }}
+			<div class="govuk-form-group">
+				<fieldset class="govuk-fieldset" aria-describedby="improvements-hint">
+					<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+						What are Cyberdyne doing well?
+					</legend>
+
+					<span id="improvements-hint" class="govuk-hint">
+						Select as many as you like.
+					</span>
+
+					<div class="govuk-checkboxes">
+						{% for item in criteria.items %}
+						<div class="govuk-checkboxes__item">
+							<input class="govuk-checkboxes__input" id="strengths-{{item.value}}" name="strengths" value="{{item.value}}" type="checkbox" {{ checked("strengths",item.value) }}>
+							<label class="govuk-label govuk-checkboxes__label" for="strengths-{{item.value}}">
+								{{item.text}}
+							</label>
+						</div>
+						{% endfor %}
+					</div>
+				</fieldset>
+			</div>
 
 			{{ govukButton({
 				text: "Continue"

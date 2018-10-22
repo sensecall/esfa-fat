@@ -1,6 +1,7 @@
-{% extends "layout-account.html" %}
+{% extends "layout.html" %}
 
 {% set currentPage = 'apprentices' %}
+{% set serviceName = 'Give feedback' %}
 
 {% block content %}
 {{ govukBackLink({
@@ -31,7 +32,7 @@
 				<div class="govuk-checkboxes">
 					{% for item in criteria.items %}
 					<div class="govuk-checkboxes__item">
-						<input class="govuk-checkboxes__input" id="improvements-{{item.value}}" name="improvements" value="{{item.value}}" type="checkbox" {{ 'disabled' if item.value in data['strengths'] }}>
+						<input class="govuk-checkboxes__input" id="improvements-{{item.value}}" name="improvements" value="{{item.value}}" type="checkbox" {{ 'disabled' if item.value in data['strengths'] }} {{ checked("improvements",item.value) }}>
 						<label class="govuk-label govuk-checkboxes__label" for="improvements-{{item.value}}">
 							{{item.text}}
 						</label>

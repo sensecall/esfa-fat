@@ -1,6 +1,7 @@
-{% extends "layout-account.html" %}
+{% extends "layout.html" %}
 
 {% set currentPage = 'apprentices' %}
+{% set serviceName = 'Give feedback' %}
 
 {% block content %}
 {{ govukBackLink({
@@ -21,11 +22,15 @@
 					Strengths
 				</dt>
 				<dd class="app-check-your-answers__answer">
+					{% if not data['strengths'] %}
+					You didn't select any
+					{% else %}
 					<ul class="govuk-list">
 						{% for item in data['strengths'] %}
 						<li>{{item}}</li>
 						{% endfor %}
 					</ul>
+					{% endif %}
 				</dd>
 				<dd class="app-check-your-answers__change">
 					<a href="strengths">
@@ -39,11 +44,15 @@
 					Things to improve
 				</dt>
 				<dd class="app-check-your-answers__answer">
+					{% if not data['improvements'] %}
+					You didn't select any
+					{% else %}
 					<ul class="govuk-list">
 						{% for item in data['improvements'] %}
 						<li>{{item}}</li>
 						{% endfor %}
 					</ul>
+					{% endif %}
 				</dd>
 				<dd class="app-check-your-answers__change">
 					<a href="improvements">
