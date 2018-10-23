@@ -29,13 +29,13 @@ router.get('/give-feedback', (req, res) => {
 
 router.post('/fat/apprenticeship-or-provider', (req, res) => {
 	if (req.session.data['apprenticeship-or-provider'] === 'apprenticeships') {
-		
+		res.redirect(`search-by-keyword`)
 	} else {
 		res.redirect(`search-by-provider`)
 	}
 })
 
-router.post('/fat/search-results', (req, res) => {
+function fatSearch(req,res) {
 	var searchQuery = req.session.data['job-role']
 	var response = []
 
@@ -46,8 +46,16 @@ router.post('/fat/search-results', (req, res) => {
 	},
 	(error, response, body) => {
 		req.session.data['search-results'] = body
-		res.redirect(`/${req.version}/fat/search-results`)
+		res.redirect(`/${req.version}/fat/search-results--keyword`)
 	});
+}
+
+router.post('/fat/search-results--keyword', (req, res) => {
+	fatSearch(req,res);
+})
+
+router.post('/fat/search-by-keyword', (req, res) => {
+	fatSearch(req,res);
 })
 
 router.post('/used-service-before', (req, res) => {

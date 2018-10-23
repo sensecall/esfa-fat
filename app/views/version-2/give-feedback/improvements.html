@@ -31,7 +31,11 @@
 					<div class="govuk-checkboxes__item">
 						<input class="govuk-checkboxes__input" id="improvements-{{item.value}}" name="improvements" value="{{item.value}}" type="checkbox" {{ 'disabled' if item.value in data['strengths'] }} {{ checked("improvements",item.value) }}>
 						<label class="govuk-label govuk-checkboxes__label" for="improvements-{{item.value}}">
+							{% if item.value in data['strengths'] %}
+							<strike>{{item.text}}</strike>
+							{% else %}
 							{{item.text}}
+							{% endif %}
 						</label>
 					</div>
 					{% endfor %}

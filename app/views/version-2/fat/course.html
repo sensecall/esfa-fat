@@ -1,0 +1,123 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row govuk-!-margin-top-8">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			Accounting
+		</h1>
+
+		<p>
+			This information is taken from an apprenticeship framework. It sets out what qualifications the apprentice can achieve.
+		</p>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		{% if data['provider-link'] == 'true' %}
+		<a href="find-training-provider-by-course" class="govuk-button" style="float:right">
+			Find more training providers
+		</a>
+		{% else %}
+		<a href="find-training-provider-by-course" class="govuk-button" style="float:right">
+			Find a training provider
+		</a>
+		{% endif %}
+	</div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-8">
+	<div class="govuk-grid-column-full">
+		{{ govukTable({
+			caption: "Summary of this apprenticeship framework",
+			captionClasses: "govuk-heading-l",
+			firstCellIsHeader: true,
+			rows: [
+			[
+			{
+				text: "Level"
+			},
+			{
+				text: "2 (equivalent to GCSEs at grades A* to C)"
+			}
+			],
+			[
+			{
+				text: "Typical length"
+			},
+			{
+				text: "12 months"
+			}
+			],
+			[
+			{
+				text: "Current funding band"
+			},
+			{
+				html: 'Up to £2,000 per apprentice.<br>
+				<a href="#">More information about funding </a>'
+			}
+			],
+			[
+			{
+				text: "Entry requirements"
+			},
+			{
+				text: "Your chosen training provider can advise you about entry requirements for apprentices."
+			}
+			],
+			[
+			{
+				text: "Suitable roles for apprentices"
+			},
+			{
+				html: '<ul class="govuk-list govuk-list--bullet">
+					<li>Accounts Assistant</li>
+					<li>Accounts Clerk</li>
+					<li>Cashier</li>
+					<li>Credit Control Clerk</li>
+					<li>Finance Assistant</li>
+				</ul>
+				<p><a href="#">Show more</a></p>
+				<p>
+					Your chosen training provider can advise you about the kinds of skills apprentices will learn.
+				</p>'
+			}
+			],
+			[
+			{
+				text: "Qualifications"
+			},
+			{
+				html: '<p>
+					Apprentices will achieve a practical and theory-based (or &lsquo;combined&rsquo;) qualification:
+				</p>
+				<ul class="govuk-list govuk-list--bullet">
+					<li>Certificate in Accounting</li>
+					<li>Diploma in Financial and Management Accounting (RQF)</li>
+					<li>Foundation Certificate in Accounting - Level 2</li>
+				</ul>
+				<p>
+					Your chosen training provider can advise you about the qualifications open to apprentices as they can change depending on individual and other circumstances.
+				</p>'
+			}
+			],
+			[
+			{
+				text: "Professional registration"
+			},
+			{
+				text: "None specified."
+			}
+			]
+			]
+		}) }}
+	</div>
+</div>
+
+{% endblock %}

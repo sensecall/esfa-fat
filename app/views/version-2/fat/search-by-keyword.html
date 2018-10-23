@@ -1,0 +1,37 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-top-6 govuk-!-margin-bottom-8">
+			 Find apprenticeship training
+		</h1>
+
+		<form method="post">
+			{{ govukInput({
+				label:
+				{
+					text: "Search by keywords",
+					classes: "govuk-!-font-weight-bold"
+				},
+				hint:
+				{
+					text: "Can include job title or apprenticeship"
+				},
+				id: "job-role",
+				name: "job-role"
+			}) }}
+
+			{{ govukButton({
+				text: "Search"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

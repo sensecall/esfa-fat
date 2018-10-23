@@ -156,3 +156,14 @@
 		}
 	}
 }
+
+.postcode-search-form {
+    // @extend %contain-floats;
+    background-color: govuk-colour("grey-3");
+    padding: 20px 20px 0;
+    margin-bottom: 20px;
+
+    .govuk-radios__input + .govuk-radios__label::before {
+    	background: #fff;
+    }
+}

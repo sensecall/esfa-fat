@@ -72,7 +72,7 @@
 						<span class="bar" style="width: {{ rating.reviews * (100/7) }}%"></span>
 					</span>
 				</span>
-				<span class="figure">{{ rating.reviews }} <span class="govuk-visually-hidden">out of 7 </span>reviews</span>
+				<span class="figure govuk-!-font-size-16">{{ rating.reviews }} <span class="govuk-visually-hidden">out of 7 </span>reviews</span>
 			</li>
 			{% endfor %}
 		</ul>
@@ -83,14 +83,14 @@
 					Strengths
 				</h4>
 
-				<ul class="govuk-list govuk-list--feedback govuk-list--feedback-positive">
-					<li>Adapting to my needs (5)</li>
-					<li>Improving apprentice skills (3)</li>
-					<li>Working with small numbers of apprentices (3)</li>
-					<li>Getting new apprentices started (2)</li>
-					<li>Reporting on progress of apprentices (2)</li>
-					<li>Initial assessment of apprentices (1)</li>
-					<li>Training facilities (1)</li>
+				<ul class="govuk-list govuk-list--feedback govuk-list--feedback-positive govuk-!-font-size-16">
+					<li>Adapting to my needs</li>
+					<li>Improving apprentice skills</li>
+					<li>Working with small numbers of apprentices</li>
+					<li>Getting new apprentices started</li>
+					<li>Reporting on progress of apprentices</li>
+					<li>Initial assessment of apprentices</li>
+					<li>Training facilities</li>
 				</ul>
 			</div>
 
@@ -99,8 +99,8 @@
 					Things to improve
 				</h4>
 
-				<ul class="govuk-list govuk-list--feedback govuk-list--feedback-negative">
-					<li>Communication with employers (3)</li>
+				<ul class="govuk-list govuk-list--feedback govuk-list--feedback-negative govuk-!-font-size-16">
+					<li>Communication with employers</li>
 				</ul>
 			</div>
 		</div>
@@ -143,7 +143,7 @@
 				format: "numeric"
 			},
 			{
-				html: '<a href="#">Details</a>',
+				html: '<a href="course?provider-link=true&course-link=false">Details</a>',
 				format: "numeric"
 			}
 			]
