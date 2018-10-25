@@ -44,8 +44,29 @@
 		</p>
 
 		<h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-			Overall rating from October 2018 to now
+			Showing all ratings from October 2018 to now
 		</h3>
+
+		{{ govukSelect({
+			id: "sort",
+			name: "sort",
+			classes: "govuk-input--width-10",
+			label:
+			{
+				text: ""
+			},
+			items:[
+			{
+				value: "published",
+				text: "All sectors",
+				selected: true
+			},
+			{
+				value: "",
+				text: "Sector name"
+			}
+			]
+		}) }}
 
 		<ul class="graph-list">
 			{% set ratings = [{

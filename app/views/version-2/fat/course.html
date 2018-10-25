@@ -7,10 +7,12 @@
 	classes: "govuk-!-margin-top-0"
 }) }}
 
+{% set course = data['course-details'] %}
+
 <div class="govuk-grid-row govuk-!-margin-top-8">
 	<div class="govuk-grid-column-two-thirds">
 		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-			Accounting
+			{{ course.Title or "Accounting" }}
 		</h1>
 
 		<p>
@@ -43,7 +45,7 @@
 				text: "Level"
 			},
 			{
-				text: "2 (equivalent to GCSEs at grades A* to C)"
+				text: (course.Level or "2") + " (equivalent to GCSEs at grades A* to C)"
 			}
 			],
 			[
@@ -51,7 +53,7 @@
 				text: "Typical length"
 			},
 			{
-				text: "12 months"
+				text: (course.Duration or "12") + " months"
 			}
 			],
 			[
@@ -59,7 +61,7 @@
 				text: "Current funding band"
 			},
 			{
-				html: 'Up to £2,000 per apprentice.<br>
+				html: 'Up to £' + (course.CurrentFundingBand or course.CurrentFundingCap or 2000) | numeral().format(0,0) + ' per apprentice.<br>
 				<a href="#">More information about funding </a>'
 			}
 			],

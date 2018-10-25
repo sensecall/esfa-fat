@@ -21,7 +21,7 @@
                 <label class="govuk-label govuk-!-font-weight-bold govuk-!-width-three-quarters" for="name">
                     Showing search results for
                 </label>
-                <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-0" id="name" name="job-role" type="text" value="{{data['job-role']}}">
+                <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-0" id="name" name="search-query" type="text" value="{{data['search-query']}}">
                 {{ govukButton({
                     text: "Search"
                 }) }}
@@ -109,7 +109,12 @@
     {% for result in data['search-results'] %}
     <article class="app-search-result framework-result" id="framework-560-3-2">
         <h2 class="result-title">
-            <a attr-ga-result-interval="1-3" href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{ 'Framework/' + result.FrameworkId if result.FrameworkId else 'Standard/' + result.StandardId }}?keyword=fish">{{ result.Title }}</a>
+            {% if result.StandardId %}
+            {% set courseType = 'standard' %}
+            {% else %}
+            {% set courseType = 'framework' %}
+            {% endif %}
+            <a href="course?courseId={{result.StandardId or result.FrameworkId}}&courseType={{courseType}}">{{ result.Title }}</a>
         </h2>
         <ul class="govuk-list">
             <li>
