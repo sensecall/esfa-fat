@@ -92,6 +92,29 @@ router.post('/fat/find-training-provider-by-course', (req, res) => {
 	fatProviderSearch(req,res);
 })
 
+function fatProviderSearch(req,res,query) {
+	var searchQuery = query || req.session.data['search-query']
+	var response = []
+
+	request.get('https://findapprenticeshiptraining-api.sfa.bis.gov.uk/providers/search?keywords=' + searchQuery,
+	{
+		json: true,
+		encoding: undefined
+	},
+	(error, response, body) => {
+		var providerResults = body
+		res.render(`${req.version}/fat/search-results--provider`,{providerResults})
+	});
+}
+
+router.post('/fat/search-results--provider', (req, res) => {
+	fatProviderSearch(req,res)
+})
+
+router.get('/fat/search-results--provider', (req, res) => {
+	fatProviderSearch(req,res,"northampton")
+})
+
 router.post('/used-service-before', (req, res) => {
 	var hasAccount = req.session.data['has-account']
 	if (hasAccount === 'yes') {

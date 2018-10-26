@@ -16,7 +16,8 @@
 			</span>
 		</h1>
 
-		<form action="search-results--provider">
+		<form method="post" action="search-results--provider">
+			<input type="hidden" value="coventry" name="search-query">
 			{{ govukRadios({
 				classes: "govuk-radios--inline",
 				idPrefix: "levy",

@@ -6,16 +6,18 @@
             Search results
         </h1>
         <p>
-            There are <b>148</b> training options for the <b>{{data['course-name']}}</b> apprenticeship.
+            There are <b>{{providerResults.length}}</b> training options for the <b>{{data['course-name']}}</b> apprenticeship.
             <br>
             Results are ordered by distance from '<b>{{data['employer-postcode'] | upper}}</b>'.
         </p>
-
-        <p>
-            Results labelled National are training options run by providers who are willing to offer training across England.
-        </p>
     </div>
 </div>
+
+{% set distances = [0.4,1.2,1.6,2.9,4.2,4.8,8.1,12.3,12.8,12.9] %}
+{% set employerFeedback = [25,7,66,71,32,82,50,87,98,72,7,69,70,76,42,76,47,16,16,10,9,39,82,19,17,84,3,36,46,15,23,61,61,83,75,92,47,77,65,63,55,50,67,43,84,63,2,32,7,92,1,25,99,83,47,66,19,41,21,11,61,38,48,30,48,21,8,85,86,59,2,32,34,78,31,72,50,55,3,26,19,5,94,1,49,84,45,15,54,39,88,79,41,64,78,33,11,85,74,49] %}
+{% set employerFeedbackReviews = [2,4,28,19,16,13,3,15,9,26,30,12,2,10,6,29,26,28,21,1] %}
+{% set achievementRates = [59.2,94.3,78.5,80.6,85.1,94.3,72.1,72.6,63.1,85.9,70.3,56.7,75.0,60.4,58.2,81.9,80.3,86.8,72.2,90.8] %}
+{% set ofstedRating = ["Inadequate","Outstanding","Good","No Ofsted assessment published","No Ofsted assessment published","Outstanding","No Ofsted assessment published","Requires improvement","Inadequate","Good","Inadequate","Requires improvement","No Ofsted assessment published","Inadequate","Outstanding","No Ofsted assessment published","Outstanding"] %}
 
 <div class="govuk-grid-row govuk-!-margin-top-4">
     <div class="govuk-grid-column-one-third">
@@ -23,92 +25,89 @@
             <h2 class="govuk-heading-m">
                 Filter results
             </h2>
-            <div id="EditSearch">
-                <div class="filters-block filter-box">
-                    <form method="get" autocomplete="off">
-                        <fieldset class="filters filters-accordion">
-                            <h2 class="toggler govuk-heading-s">Apprenticeship level</h2>
-                            <div class="toggled-content">
-                                <ul class="govuk-!-margin-top-0 govuk-list">
-                                    <li>
-                                        <input value="2" id="SelectedLevels_2" name="SelectedLevels" type="checkbox" />
-                                        <label for="SelectedLevels_2" class="govuk-body-m">level 2 (2)</label>
-                                    </li>
-                                    <li>
-                                        <input value="3" id="SelectedLevels_3" name="SelectedLevels" type="checkbox" />
-                                        <label for="SelectedLevels_3" class="govuk-body-m">level 3 (3)</label>
-                                    </li>
-                                    <li>
-                                        <input value="4" id="SelectedLevels_4" name="SelectedLevels" type="checkbox" disabled />
-                                        <label for="SelectedLevels_4" class="govuk-body-m disabled">level 4 (0)</label>
-                                    </li>
-                                    <li>
-                                        <input value="5" id="SelectedLevels_5" name="SelectedLevels" type="checkbox" disabled />
-                                        <label for="SelectedLevels_5" class="govuk-body-m disabled">level 5 (0)</label>
-                                    </li>
-                                    <li>
-                                        <input value="6" id="SelectedLevels_6" name="SelectedLevels" type="checkbox" disabled />
-                                        <label for="SelectedLevels_6" class="govuk-body-m disabled">level 6 (0)</label>
-                                    </li>
-                                    <li>
-                                        <input value="7" id="SelectedLevels_7" name="SelectedLevels" type="checkbox" disabled />
-                                        <label for="SelectedLevels_7" class="govuk-body-m disabled">level 7 (0)</label>
-                                    </li>
-                                </ul>
+            <div class="filters-block filter-box">
+                <form method="get" autocomplete="off">
+                    <fieldset class="filters filters-accordion">
+                        <h2 class="toggler govuk-heading-s">Strengths</h2>
+                        {% import '../give-feedback/_ratings-criteria.html' as strengths %}
+                        <div class="toggled-content">
+                            <ul class="govuk-!-margin-top-0 govuk-!-margin-bottom-0 govuk-list">
+                                {% for strength in strengths.items %}
+                                <li>
+                                    {% set inputName = strength.value | replace('Cyberdyne','the employer') | replace(' ','-') | lower %}
+                                    <input value="2" id="{{inputName}}" name="{{inputName}}" type="checkbox">
+                                    <label for="{{inputName}}" class="govuk-body-s">{{strength.text | replace('Cyberdyne','the employer')}}</label>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </fieldset>
 
-                                {{ govukDetails({
-                                  summaryText: "Explain levels",
-                                  html: '<p>Apprenticeships are set at different levels of difficulty from the equivalent of GCSE (level 2) up to postgraduate (level 7)</p>
-                                  <p><a href="https://www.gov.uk/what-different-qualification-levels-mean/overview" target="_blank" rel="external">More about levels</a></p>',
-                                  classes: "govuk-!-margin-bottom-0"
-                              }) }}
-                          </div>
-                      </fieldset>
+                    <fieldset class="filters filters-accordion">
+                        <h2 class="toggler govuk-heading-s">Ofsted rating</h2>
+                        {% set ofstedFilters = ["Outstanding","Good","Inadequate","Requires improvement","No Ofsted assessment published"] %}
+                        <div class="toggled-content">
+                            <ul class="govuk-!-margin-top-0 govuk-!-margin-bottom-0 govuk-list">
+                                {% for rating in ofstedFilters %}
+                                <li>
+                                    {% set inputName = rating | replace(' ','-') | lower %}
+                                    <input value="2" id="{{inputName}}" name="{{inputName}}" type="checkbox">
+                                    <label for="{{inputName}}" class="govuk-body-s">{{rating}}</label>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </fieldset>
 
-                      <input type="submit" class="govuk-button" value="Update results" />
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
-
-  <div id="apprenticeship-results" class="govuk-grid-column-two-thirds">
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-half">
-            &nbsp;
-        </div>
-        <div class="govuk-grid-column-one-half">
-            <form method="GET" id="search-results-order">
-                <div class="govuk-form-group govuk-!-margin-bottom-0">
-                    <label class="govuk-label govuk-!-font-weight-bold" for="sort" style="display: inline-block">
-                        Sort by
-                    </label>
-                    <select class="govuk-select" id="sort" name="sort" style="display: inline-block; width: auto">
-                        <option selected="selected" value="1">Best match</option>
-                        <option value="2">Level (high to low)</option>
-                        <option value="3">Level (low to high)</option>
-                    </select>
-                </div>
-            </form>
+                    <input type="submit" class="govuk-button" value="Update results" />
+                </form>
+            </div>
         </div>
     </div>
 
-    {% for result in data['search-results'] %}
-    <article class="app-search-result framework-result" id="framework-560-3-2">
-        <h2 class="result-title">
-            <a attr-ga-result-interval="1-3" href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{ 'Framework/' + result.FrameworkId if result.FrameworkId else 'Standard/' + result.StandardId }}?keyword=fish">{{ result.Title }}</a>
-        </h2>
-        <ul class="govuk-list">
-            <li>
-                <span class="govuk-!-font-weight-bold">Level:</span> {{ result.Level }} (equivalent to GCSEs at grades A* to C)
-            </li>
-            <li>
-                <span class="govuk-!-font-weight-bold">Typical length:</span> {{ result.Duration }} months
-            </li>
-            <li>
-                <span class="govuk-!-font-weight-bold">Cost to you:</span> £{{ (([9,9,9,9,10,11,11,12,19,23,27] | random) * 100) | numeral().format('0,0') }}
-            </li>
-        </ul>
-    </article>
-    {% endfor %}
-    {% endblock %}
+    <div id="apprenticeship-results" class="govuk-grid-column-two-thirds">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+                &nbsp;
+            </div>
+            <div class="govuk-grid-column-one-half">
+                <form method="GET" id="search-results-order">
+                    <div class="govuk-form-group govuk-!-margin-bottom-0">
+                        <label class="govuk-label govuk-!-font-weight-bold" for="sort" style="display: inline-block">
+                            Sorted by
+                        </label>
+                        <select class="govuk-select" id="sort" name="sort" style="display: inline-block; width: auto">
+                            <option selected="selected" value="1">Distance (closest first)</option>
+                            <option value="2">Ofsted rating (high to low)</option>
+                            <option value="3">Employer feedback (high to low)</option>
+                            <option value="3">Achievement rate (high to low)</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% for result in providerResults %}
+        <article class="app-search-result framework-result" id="framework-560-3-2">
+            <h2 class="result-title govuk-!-margin-bottom-2">
+                <a attr-ga-result-interval="1-3" href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{ 'Framework/' + result.FrameworkId if result.FrameworkId else 'Standard/' + result.StandardId }}?keyword=fish">{{ result.ProviderName }}</a>
+            </h2>
+
+            <p>
+                Distance: {{distances[loop.index]}} miles
+            </p>
+
+            <ul class="govuk-list govuk-!-font-size-16">
+                <li>
+                    Employer feedback: {{employerFeedback[loop.index]}}% positive (based on {{employerFeedbackReviews[loop.index]}} reviews)
+                </li>
+                <li>
+                    Achievement rate: {{achievementRates[loop.index] | int}}%
+                </li>
+                <li>
+                    Ofsted rating: {{ofstedRating[loop.index]}}
+                </li>
+            </ul>
+        </article>
+        {% endfor %}
+        {% endblock %}
