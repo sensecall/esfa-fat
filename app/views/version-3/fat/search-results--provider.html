@@ -2,14 +2,9 @@
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">
-            Search results
+        <h1 class="govuk-heading-xl">
+            Suitable training providers near "{{data['employer-postcode']}}"
         </h1>
-        <p>
-            There are <b>{{providerResults.length}}</b> training options for the <b>{{data['course-name']}}</b> apprenticeship.
-            <br>
-            Results are ordered by distance from '<b>{{data['employer-postcode'] | upper}}</b>'.
-        </p>
     </div>
 </div>
 
@@ -66,15 +61,19 @@
     </div>
 
     <div id="apprenticeship-results" class="govuk-grid-column-two-thirds">
+        <p>
+            There are <b>{{providerResults.length}}</b> training options for the <b>{{data['course-name']}}</b> apprenticeship.
+        </p>
+
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-one-half">
                 &nbsp;
             </div>
-            <div class="govuk-grid-column-one-half">
+            <div class="govuk-grid-column-one-hal">
                 <form method="GET" id="search-results-order">
-                    <div class="govuk-form-group govuk-!-margin-bottom-0">
+                    <div class="govuk-form-group govuk-!-margin-bottom-0" style="float:right">
                         <label class="govuk-label govuk-!-font-weight-bold" for="sort" style="display: inline-block">
-                            Sorted by
+                            Sorted by &nbsp;
                         </label>
                         <select class="govuk-select" id="sort" name="sort" style="display: inline-block; width: auto">
                             <option selected="selected" value="1">Distance (closest first)</option>
@@ -86,6 +85,8 @@
                 </form>
             </div>
         </div>
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
         {% for result in providerResults %}
         <article class="app-search-result framework-result" id="framework-560-3-2">
