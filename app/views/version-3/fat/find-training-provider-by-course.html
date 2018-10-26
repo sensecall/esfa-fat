@@ -1,0 +1,76 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+			Find a training provider
+		</h1>
+
+		<h2 class="govuk-heading-m">
+			<span class="govuk-!-font-weight-regular">For</span> {{data['course-name'] or "Accounting, level 2" }}: 
+		</h2>
+
+		<form action="search-results--provider" class="postcode-form">
+			<div class="postcode-search-form">
+				<h2 class="govuk-heading-m">
+					Enter a postcode
+				</h2>
+
+				{{ govukInput({
+					label:
+					{
+						text: "Enter the full postcode of your apprentice's workplace"
+					},
+					id: "postcode",
+					name: "postcode",
+					classes: "govuk-input--width-10",
+					hint:
+					{
+						text: "For example: 'SW1A 2AA'"
+					}
+				}) }}
+
+				{{ govukRadios({
+					classes: "govuk-radios--inline",
+					idPrefix: "levy-payer",
+					name: "levy-payer",
+					fieldset: 
+					{
+						legend: 
+						{
+							html: 'Is your organisation a <a href="https://www.gov.uk/government/publications/apprenticeship-levy-how-it-will-work/apprenticeship-levy-how-it-will-work#pay-apprenticeship-levy" target="_blank">levy-payer</a> or are you going to receive a transfer of funds from another employer to pay for this apprenticeship?',
+							isPageHeading: false,
+							classes: "govuk-fieldset__legend--s"
+						}
+					},
+					hint: 
+					{
+						text: "We use this information to show you approved training providers that can work with organisations of your size "
+					},
+					items: [
+					{
+						value: "yes",
+						text: "Yes"
+					},
+					{
+						value: "no",
+						text: "No"
+					}
+					]
+				}) }}
+
+				{{ govukButton({
+					text: "Search"
+				}) }}
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

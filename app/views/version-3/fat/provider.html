@@ -1,0 +1,227 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row govuk-!-margin-top-8">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+			PROVIDER NAME
+		</h1>
+
+		<p>
+			<b>UKPRN:</b> 10007859
+		</p>
+
+		<h2 class="govuk-heading-s">
+			About this provider
+		</h2>
+
+		<p>
+			At WCG, we offer a bespoke solution that makes it easy to take on and up-skill apprentices. We handle all administration and training arrangements, as well as mentoring apprentices so you get the best results for your business and your apprentices receive the best start to their career.
+		</p>
+
+		<p>
+			WCG trains over 2000 apprentices every year and offers world-class facilities, expert tuition and dedicated support. We have an excellent track record of high-quality training and work with over 960 employers, from large global organisations to small local businesses.
+		</p>
+
+		<p>
+			With over 70 frameworks plus more being developed all the time, we can help you to develop an apprenticeship programme that meets your training needs and leads to your business growth.
+		</p>
+
+		<hr class="govuk-section-break govuk-section-break--xl">
+
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-0">
+			What employers are saying
+		</h2>
+
+		<p class="govuk-!-font-size-16 govuk-!-margin-top-0">
+			Based on 7 reviews from employers that work with this training provider.
+		</p>
+
+		<h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+			Showing all ratings from October 2018 to now
+		</h3>
+
+		{{ govukSelect({
+			id: "sort",
+			name: "sort",
+			classes: "govuk-input--width-10",
+			label:
+			{
+				text: ""
+			},
+			items:[
+			{
+				value: "published",
+				text: "All sectors",
+				selected: true
+			},
+			{
+				value: "",
+				text: "Sector name"
+			}
+			]
+		}) }}
+
+		<ul class="graph-list">
+			{% set ratings = [{
+				name: "Excellent",
+				reviews: 2
+			},
+			{
+				name: "Good",
+				reviews: 5
+			},
+			{
+				name: "Poor",
+				reviews: 0
+			},
+			{
+				name: "Very poor",
+				reviews: 0
+			}] %}
+			{% for rating in ratings %}
+			<li class="level-{{loop.index}}">
+				<span class="label">{{rating.name}}</span>
+				<span class="chart">
+					<span class="graph">
+						<span class="bar" style="width: {{ rating.reviews * (100/7) }}%"></span>
+					</span>
+				</span>
+				<span class="figure govuk-!-font-size-16">{{ rating.reviews }} <span class="govuk-visually-hidden">out of 7 </span>reviews</span>
+			</li>
+			{% endfor %}
+		</ul>
+
+		<div class="govuk-grid-row govuk-!-margin-top-4">
+			<div class="govuk-grid-column-one-half">
+				<h4 class="govuk-heading-s">
+					Strengths
+				</h4>
+
+				<ul class="govuk-list govuk-list--feedback govuk-list--feedback-positive govuk-!-font-size-16">
+					<li>Adapting to my needs</li>
+					<li>Improving apprentice skills</li>
+					<li>Working with small numbers of apprentices</li>
+					<li>Getting new apprentices started</li>
+					<li>Reporting on progress of apprentices</li>
+					<li>Initial assessment of apprentices</li>
+					<li>Training facilities</li>
+				</ul>
+			</div>
+
+			<div class="govuk-grid-column-one-half">
+				<h4 class="govuk-heading-s">
+					Things to improve
+				</h4>
+
+				<ul class="govuk-list govuk-list--feedback govuk-list--feedback-negative govuk-!-font-size-16">
+					<li>Communication with employers</li>
+				</ul>
+			</div>
+		</div>
+
+		<hr class="govuk-section-break govuk-section-break--xl">
+
+		<h3 class="govuk-heading-m">
+			114 Apprenticeships offered
+		</h3>
+
+		{{ govukTable({
+			caption: "Months and rates",
+			firstCellIsHeader: true,
+			head: [
+			{
+				text: "Apprenticeship"
+			},
+			{
+				text: "Type"
+			},
+			{
+				text: "Level",
+				format: "numeric"
+			},
+			{
+				text: "",
+				format: "numeric"
+			}
+			],
+			rows: [
+			[
+			{
+				text: "Accounting"
+			},
+			{
+				text: "Framework"
+			},
+			{
+				text: "2",
+				format: "numeric"
+			},
+			{
+				html: '<a href="course?provider-link=true&course-link=false">Details</a>',
+				format: "numeric"
+			}
+			]
+			]
+		}) }}
+
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="app-related-items">
+			<h3 class="govuk-heading-m">
+				Contact details
+			</h3>
+
+			<p>
+				<b>Website:</b>
+				<br>
+				<a href="#">WARWICKSHIRE COLLEGE website </a>
+			</p>
+
+			<p>
+				<b>Phone number:</b>
+				<br>
+				01926 318000
+			</p>
+
+			<p>
+				<b>Email:</b>
+				<br>
+				<a href="#">enquiries@warkscol.ac.uk</a>
+			</p>
+
+			<p>
+				<b>Address:</b>
+				<br>
+				Hertford Regional College,<br>
+				The Springs,<br>
+				Turnford,<br>
+				Broxbourne,<br>
+				EN10 6AE 
+			</p>
+			<ul class="govuk-list govuk-!-font-size-16">
+				<li>
+					<a href="#">View on Google Maps</a>
+				</li>
+				<li>
+					<a href="#">View on Open Street Map</a>
+				</li>
+			</ul>
+		</div>
+
+		<h4 class="govuk-heading-s govuk-!-font-size-16 govuk-!-margin-bottom-1 govuk-!-margin-top-8">
+			Content disclaimer
+		</h4>
+		<p class="govuk-!-font-size-14">
+			Education and Skills Funding Agency cannot guarantee the accuracy of course information on this site and makes no representations about the quality of any courses which appear on the site. Education and Skills Funding Agency is not liable for any losses suffered as a result of any party relying on the course information provided.
+		</p>
+	</div>
+
+	{% endblock %}
