@@ -8,9 +8,6 @@
         <p>
             There are <b>{{data['search-results'].length}}</b> apprenticeships matching your search for '<b>{{data['job-role']}}</b>'.
         </p>
-        <p>
-            Results labelled <strong class="govuk-tag">New</strong> are apprenticeship standards developed by employer groups.
-        </p>
     </div>
 </div>
 
@@ -45,27 +42,27 @@
                                 <ul class="govuk-!-margin-top-0 govuk-list">
                                     <li>
                                         <input value="2" id="SelectedLevels_2" name="SelectedLevels" type="checkbox" />
-                                        <label for="SelectedLevels_2" class="govuk-body-m">level 2 (2)</label>
+                                        <label for="SelectedLevels_2" class="govuk-body-m">level 2</label>
                                     </li>
                                     <li>
                                         <input value="3" id="SelectedLevels_3" name="SelectedLevels" type="checkbox" />
-                                        <label for="SelectedLevels_3" class="govuk-body-m">level 3 (3)</label>
+                                        <label for="SelectedLevels_3" class="govuk-body-m">level 3</label>
                                     </li>
                                     <li>
                                         <input value="4" id="SelectedLevels_4" name="SelectedLevels" type="checkbox" disabled />
-                                        <label for="SelectedLevels_4" class="govuk-body-m disabled">level 4 (0)</label>
+                                        <label for="SelectedLevels_4" class="govuk-body-m disabled">level 4</label>
                                     </li>
                                     <li>
                                         <input value="5" id="SelectedLevels_5" name="SelectedLevels" type="checkbox" disabled />
-                                        <label for="SelectedLevels_5" class="govuk-body-m disabled">level 5 (0)</label>
+                                        <label for="SelectedLevels_5" class="govuk-body-m disabled">level 5</label>
                                     </li>
                                     <li>
                                         <input value="6" id="SelectedLevels_6" name="SelectedLevels" type="checkbox" disabled />
-                                        <label for="SelectedLevels_6" class="govuk-body-m disabled">level 6 (0)</label>
+                                        <label for="SelectedLevels_6" class="govuk-body-m disabled">level 6</label>
                                     </li>
                                     <li>
                                         <input value="7" id="SelectedLevels_7" name="SelectedLevels" type="checkbox" disabled />
-                                        <label for="SelectedLevels_7" class="govuk-body-m disabled">level 7 (0)</label>
+                                        <label for="SelectedLevels_7" class="govuk-body-m disabled">level 7</label>
                                     </li>
                                 </ul>
 
@@ -108,7 +105,7 @@
 
     {% for result in data['search-results'] %}
     <article class="app-search-result framework-result" id="framework-560-3-2">
-        <h2 class="result-title">
+        <h2 class="result-title govuk-!-margin-bottom-2">
             {% if result.StandardId %}
             {% set courseType = 'standard' %}
             {% else %}
@@ -118,10 +115,10 @@
         </h2>
         <ul class="govuk-list">
             <li>
-                <span class="govuk-!-font-weight-bold">Level:</span> {{ result.Level }} (equivalent to GCSEs at grades A* to C)
+                <b>Level:</b> {{ result.Level }} (equivalent to GCSEs at grades A* to C)
             </li>
             <li>
-                <span class="govuk-!-font-weight-bold">Typical length:</span> {{ result.Duration }} months
+                <b>Typical length:</b> {{ result.Duration }} months
             </li>
             <!-- <li>
                 <span class="govuk-!-font-weight-bold">Cost to you:</span> £{{ (([9,9,9,9,10,11,11,12,19,23,27] | random) * 100) | numeral().format('0,0') }}

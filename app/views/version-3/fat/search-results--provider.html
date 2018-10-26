@@ -6,9 +6,9 @@
             Search results
         </h1>
         <p>
-            There are <b>148</b> training options for the <b>Adult care worker, level 2</b> apprenticeship.
+            There are <b>148</b> training options for the <b>{{data['course-name']}}</b> apprenticeship.
             <br>
-            Results are ordered by distance from '<b>CV1 2AA</b>'.
+            Results are ordered by distance from '<b>{{data['employer-postcode'] | upper}}</b>'.
         </p>
 
         <p>
@@ -17,23 +17,7 @@
     </div>
 </div>
 
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-        <form class="search-box" method="post">
-            <div class="govuk-form-group">
-                <label class="govuk-label govuk-!-font-weight-bold govuk-!-width-three-quarters" for="name">
-                    Showing search results for
-                </label>
-                <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-0" id="name" name="job-role" type="text" value="{{data['job-role']}}">
-                {{ govukButton({
-                    text: "Search"
-                }) }}
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="govuk-grid-row">
+<div class="govuk-grid-row govuk-!-margin-top-4">
     <div class="govuk-grid-column-one-third">
         <div class="editSearch">
             <h2 class="govuk-heading-m">

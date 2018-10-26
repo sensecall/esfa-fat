@@ -1,0 +1,54 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+			Find a training provider
+			<span class="govuk-caption-l">
+				for {{data['course-name'] or "Accounting, level 2" }}
+			</span>
+		</h1>
+
+		<form action="find-training-provider-by-course--postcode">
+			{{ govukRadios({
+				idPrefix: "where-do-you-live",
+				name: "where-do-you-live",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Do you want to see all providers?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				hint:
+				{
+					text: "Some providers only offer training at their location, while others may be willing to travel and deliver training at your location"
+				},
+				items: [
+				{
+					value: "northern-ireland",
+					text: "Yes, show me all providers"
+				},
+				{
+					value: "england",
+					text: "No, only show the providers that will deliver training at my location"
+				}
+				]
+			}) }}
+
+			{{ govukButton({
+				text: "Save and continue"
+			})}}
+		</form>
+	</div>
+</div>
+{% endblock %}

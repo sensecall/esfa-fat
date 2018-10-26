@@ -21,7 +21,7 @@
 	</div>
 
 	<div class="govuk-grid-column-one-third">
-		<a href="find-training-provider-by-course?course-name={{courseData.Title}}" class="govuk-button" style="float:right">
+		<a href="find-training-provider-by-course--delivery?course-name={{courseData.Title}}" class="govuk-button" style="float:right">
 			{% if data['provider-link'] == 'true' %}
 			Find more training providers
 			{% else %}
@@ -159,8 +159,6 @@
 			]
 			]
 		}) }}
-
-		{{courseData | dump}}
 	</div>
 </div>
 

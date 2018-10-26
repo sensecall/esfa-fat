@@ -1,0 +1,36 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+			Find a training provider
+			<span class="govuk-caption-l">
+				for {{data['course-name'] or "Accounting, level 2" }}
+			</span>
+		</h1>
+
+		<form action="find-training-provider-by-course--levy">
+			{{ govukInput({
+				label:
+				{
+					text: "Your postcode"
+				},
+				classes: "govuk-input--width-10",
+				id: "employer-postcode",
+				name: "employer-postcode"
+			}) }}
+
+			{{ govukButton({
+				text: "Save and continue"
+			})}}
+		</form>
+	</div>
+</div>
+{% endblock %}
