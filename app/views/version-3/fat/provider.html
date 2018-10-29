@@ -9,19 +9,23 @@
 
 <div class="govuk-grid-row govuk-!-margin-top-8">
 	<div class="govuk-grid-column-two-thirds">
-		<h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
 			{{providerInfo.ProviderName}}
 			<span class="govuk-caption-l">
 				UKPRN: {{providerInfo.Ukprn}}
 			</span>
 		</h1>
 
-		<h2 class="govuk-heading-s">
+		<a href="#" class="govuk-button govuk-!-margin-bottom-8">
+			Add to shortlist
+		</a>
+
+		<h2 class="govuk-heading-m">
 			About this provider
 		</h2>
 
 		<p>
-			{{providerInfo.MarketingInfo | striptags(true) | escape | nl2br | replace('*','&bull;') }}
+			{{providerInfo.MarketingInfo | striptags(true) | escape | nl2br | replace('*','&bull;')}}
 		</p>
 
 		<hr class="govuk-section-break govuk-section-break--xl">
