@@ -14,43 +14,54 @@
 		</h1>
 
 		<form action="quality">
-		{% import './_ratings-criteria.html' as criteria %}
+			{% import './_ratings-criteria.html' as criteria %}
 
-		<div class="govuk-form-group">
-			<fieldset class="govuk-fieldset" aria-describedby="improvements-hint">
-				<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-					What could Cyberdyne Inc improve?
-				</legend>
+			<div class="govuk-form-group">
+				<fieldset class="govuk-fieldset" aria-describedby="improvements-hint">
+					<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+						What could Cyberdyne Inc improve?
+					</legend>
 
-				<span id="improvements-hint" class="govuk-hint">
-					Select as many as you like.
-				</span>
+					<span id="improvements-hint" class="govuk-hint">
+						Select as many as you like.
+					</span>
 
-				<div class="govuk-checkboxes">
-					{% for item in criteria.items %}
-					<div class="govuk-checkboxes__item">
-						<input class="govuk-checkboxes__input" id="improvements-{{item.value}}" name="improvements" value="{{item.value}}" type="checkbox" {{ 'disabled' if item.value in data['strengths'] }} {{ checked("improvements",item.value) }}>
-						<label class="govuk-label govuk-checkboxes__label" for="improvements-{{item.value}}">
-							{% if item.value in data['strengths'] %}
-							<strike>{{item.text}}</strike>
-							{% else %}
-							{{item.text}}
-							{% endif %}
-						</label>
+					<div class="govuk-checkboxes">
+						{% for item in criteria.items %}
+						{% set attributes %}
+						{% if data['strengths'].length %}
+						{% if item.value in data['strengths'] %}
+						disabled
+						{% endif %}
+						{% endif %}
+						{% endset %}
+						<div class="govuk-checkboxes__item">
+							<input class="govuk-checkboxes__input" id="improvements-{{item.value}}" name="improvements" value="{{item.value}}" type="checkbox" {{attributes}} {{ checked("improvements",item.value) }}>
+							<label class="govuk-label govuk-checkboxes__label" for="improvements-{{item.value}}">
+								{% if data['strengths'].length %}
+								{% if item.value in data['strengths'] %}
+								<strike>{{item.text}}</strike>
+								{% else %}
+								{{item.text}}
+								{% endif %}
+								{% else %}
+								{{item.text}}
+								{% endif %}
+							</label>
+						</div>
+						{% endfor %}
 					</div>
-					{% endfor %}
-				</div>
-			</fieldset>
-		</div>
+				</fieldset>
+			</div>
 
-		{{ govukButton({
+			{{ govukButton({
 				text: "Continue"
 			}) }}
 		</form>
 
 
 		<p>
-			<a href="#">Skip this question</a>
+			<a href="quality">Skip this question</a>
 		</p>
 	</div>
 </div>
