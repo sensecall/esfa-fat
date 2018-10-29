@@ -18,8 +18,8 @@
 
 		<form action="find-training-provider-by-course--postcode">
 			{{ govukRadios({
-				idPrefix: "where-do-you-live",
-				name: "where-do-you-live",
+				idPrefix: "training-delivery",
+				name: "training-delivery",
 				fieldset: 
 				{
 					legend: 
@@ -35,11 +35,11 @@
 				},
 				items: [
 				{
-					value: "northern-ireland",
+					value: "anywhere",
 					text: "Yes, show me all providers"
 				},
 				{
-					value: "england",
+					value: "employer",
 					text: "No, only show the providers that will deliver training at my location"
 				}
 				]

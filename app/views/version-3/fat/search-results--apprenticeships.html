@@ -33,10 +33,11 @@
             <h2 class="govuk-heading-m">
                 Filter results
             </h2>
+
             <div id="EditSearch">
                 <div class="filters-block filter-box">
                     <form method="get" autocomplete="off">
-                        <fieldset class="filters filters-accordion">
+                        <fieldset class="filters filters-accordion unfolded">
                             <h2 class="toggler govuk-heading-s">Apprenticeship level</h2>
                             <div class="toggled-content">
                                 <ul class="govuk-!-margin-top-0 govuk-list">
@@ -126,4 +127,11 @@
         </ul>
     </article>
     {% endfor %}
-    {% endblock %}
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/toggler.js"></script>
+{% endblock %}

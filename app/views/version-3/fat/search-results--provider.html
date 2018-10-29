@@ -24,37 +24,22 @@
             <h2 class="govuk-heading-m">
                 Filter results
             </h2>
+
             <div class="filters-block filter-box">
                 <form method="get" autocomplete="off">
-                    <fieldset class="filters filters-accordion">
+                    <fieldset class="filters filters-accordion unfolded">
                         <h2 class="toggler govuk-heading-s">Training location</h2>
 
                         <div class="toggled-content">
                             <ul class="govuk-!-margin-top-0 govuk-!-margin-bottom-0 govuk-list">
                                 <li>
-                                    <input value="2" id="{{inputName}}" name="{{inputName}}" type="checkbox">
-                                    <label for="{{inputName}}" class="govuk-body-s">at your location</label>
+                                    <input value="employer" id="training-delivery--employer" name="training-delivery" type="checkbox" {{"checked" if data['training-delivery'] == 'employer' }}>
+                                    <label for="training-delivery--employer" class="govuk-body-s">at your location</label>
                                 </li>
                                 <li>
-                                    <input value="2" id="{{inputName}}" name="{{inputName}}" type="checkbox">
-                                    <label for="{{inputName}}" class="govuk-body-s">at the provider's loction</label>
+                                    <input value="provider" id="training-delivery--provider" name="training-delivery" type="checkbox">
+                                    <label for="training-delivery--provider" class="govuk-body-s">at the provider's loction</label>
                                 </li>
-                            </ul>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="filters filters-accordion">
-                        <h2 class="toggler govuk-heading-s">Strengths</h2>
-                        {% import '../give-feedback/_ratings-criteria.html' as strengths %}
-                        <div class="toggled-content">
-                            <ul class="govuk-!-margin-top-0 govuk-!-margin-bottom-0 govuk-list">
-                                {% for strength in strengths.items %}
-                                <li>
-                                    {% set inputName = strength.value | replace('Cyberdyne','the employer') | replace(' ','-') | lower %}
-                                    <input value="2" id="{{inputName}}" name="{{inputName}}" type="checkbox">
-                                    <label for="{{inputName}}" class="govuk-body-s">{{strength.text | replace('Cyberdyne','the employer') | lower}}</label>
-                                </li>
-                                {% endfor %}
                             </ul>
                         </div>
                     </fieldset>
@@ -69,6 +54,22 @@
                                     {% set inputName = rating | replace(' ','-') | lower %}
                                     <input value="2" id="{{inputName}}" name="{{inputName}}" type="checkbox">
                                     <label for="{{inputName}}" class="govuk-body-s">{{rating}}</label>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="filters filters-accordion">
+                        <h2 class="toggler govuk-heading-s">Strengths</h2>
+                        {% import '../give-feedback/_ratings-criteria.html' as strengths %}
+                        <div class="toggled-content">
+                            <ul class="govuk-!-margin-top-0 govuk-!-margin-bottom-0 govuk-list">
+                                {% for strength in strengths.items %}
+                                <li>
+                                    {% set inputName = strength.value | replace('Cyberdyne','the employer') | replace(' ','-') | lower %}
+                                    <input value="2" id="{{inputName}}" name="{{inputName}}" type="checkbox">
+                                    <label for="{{inputName}}" class="govuk-body-s">{{strength.text | replace('Cyberdyne','the employer') | lower}}</label>
                                 </li>
                                 {% endfor %}
                             </ul>
@@ -137,4 +138,12 @@
             </div>
         </article>
         {% endfor %}
-        {% endblock %}
+
+    </div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/toggler.js"></script>
+{% endblock %}
