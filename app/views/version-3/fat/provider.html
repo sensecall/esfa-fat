@@ -10,11 +10,11 @@
 <div class="govuk-grid-row govuk-!-margin-top-8">
 	<div class="govuk-grid-column-two-thirds">
 		<h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
-			PROVIDER NAME
+			{{providerInfo.ProviderName}}
 		</h1>
 
 		<p>
-			<b>UKPRN:</b> 10007859
+			<b>UKPRN:</b> {{providerInfo.Ukprn}}
 		</p>
 
 		<h2 class="govuk-heading-s">
@@ -22,15 +22,7 @@
 		</h2>
 
 		<p>
-			At WCG, we offer a bespoke solution that makes it easy to take on and up-skill apprentices. We handle all administration and training arrangements, as well as mentoring apprentices so you get the best results for your business and your apprentices receive the best start to their career.
-		</p>
-
-		<p>
-			WCG trains over 2000 apprentices every year and offers world-class facilities, expert tuition and dedicated support. We have an excellent track record of high-quality training and work with over 960 employers, from large global organisations to small local businesses.
-		</p>
-
-		<p>
-			With over 70 frameworks plus more being developed all the time, we can help you to develop an apprenticeship programme that meets your training needs and leads to your business growth.
+			{{providerInfo.MarketingInfo | striptags(true) | escape | nl2br }}
 		</p>
 
 		<hr class="govuk-section-break govuk-section-break--xl">
@@ -39,8 +31,29 @@
 			What employers are saying
 		</h2>
 
+		{% set ratings = [{
+			name: "Excellent",
+			reviews: providerInfo.ProviderFeedback.ExcellentFeedbackCount or 0
+		},
+		{
+			name: "Good",
+			reviews: providerInfo.ProviderFeedback.GoodFeedbackCount or 0
+		},
+		{
+			name: "Poor",
+			reviews: providerInfo.ProviderFeedback.PoorFeedbackCount or 0
+		},
+		{
+			name: "Very poor",
+			reviews: providerInfo.ProviderFeedback.VeryPoorFeedbackCount or 0
+		}] %}
+
 		<p class="govuk-!-font-size-16 govuk-!-margin-top-0">
-			Based on 7 reviews from employers that work with this training provider.
+			{% set totalRatings = 0 %}
+			{% for rating in ratings %}
+			{% set totalRatings = totalRatings + rating.reviews %}
+			{% endfor %}
+			Based on {{totalRatings}} review{{"s" if totalRatings > 1}} from employers that work with this training provider.
 		</p>
 
 		<h3 class="govuk-heading-s govuk-!-margin-bottom-2">
@@ -69,28 +82,12 @@
 		}) }}
 
 		<ul class="graph-list">
-			{% set ratings = [{
-				name: "Excellent",
-				reviews: 2
-			},
-			{
-				name: "Good",
-				reviews: 5
-			},
-			{
-				name: "Poor",
-				reviews: 0
-			},
-			{
-				name: "Very poor",
-				reviews: 0
-			}] %}
 			{% for rating in ratings %}
 			<li class="level-{{loop.index}}">
 				<span class="label">{{rating.name}}</span>
 				<span class="chart">
 					<span class="graph">
-						<span class="bar" style="width: {{ rating.reviews * (100/7) }}%"></span>
+						<span class="bar" style="width: {{ rating.reviews * (100 / (totalRatings or 1)) }}%"></span>
 					</span>
 				</span>
 				<span class="figure govuk-!-font-size-16">{{ rating.reviews }} <span class="govuk-visually-hidden">out of 7 </span>reviews</span>
@@ -105,13 +102,13 @@
 				</h4>
 
 				<ul class="govuk-list">
-					<li>Adapting to my needs</li>
-					<li>Improving apprentice skills</li>
-					<li>Working with small numbers of apprentices</li>
-					<li>Getting new apprentices started</li>
-					<li>Reporting on progress of apprentices</li>
-					<li>Initial assessment of apprentices</li>
-					<li>Training facilities</li>
+					{% if providerInfo.ProviderFeedback.Strengths.length > 0 %}
+					{% for strength in providerInfo.ProviderFeedback.Strengths %}
+					<li>{{strength.Name}}</li>
+					{% endfor %}
+					{% else %}
+					-
+					{% endif %}
 				</ul>
 			</div>
 
@@ -121,7 +118,13 @@
 				</h4>
 
 				<ul class="govuk-list">
-					<li>Communication with employers</li>
+					{% if providerInfo.ProviderFeedback.Weaknesses.length > 0 %}
+					{% for weakness in providerInfo.ProviderFeedback.Weaknesses %}
+					<li>{{weakness.Name}}</li>
+					{% endfor %}
+					{% else %}
+					-
+					{% endif %}
 				</ul>
 			</div>
 		</div>
@@ -167,6 +170,38 @@
 				html: '<a href="course?provider-link=true&course-link=false">Details</a>',
 				format: "numeric"
 			}
+			],
+			[
+			{
+				text: "Accounting"
+			},
+			{
+				text: "Framework"
+			},
+			{
+				text: "2",
+				format: "numeric"
+			},
+			{
+				html: '<a href="course?provider-link=true&course-link=false">Details</a>',
+				format: "numeric"
+			}
+			],
+			[
+			{
+				text: "Accounting"
+			},
+			{
+				text: "Framework"
+			},
+			{
+				text: "2",
+				format: "numeric"
+			},
+			{
+				html: '<a href="course?provider-link=true&course-link=false">Details</a>',
+				format: "numeric"
+			}
 			]
 			]
 		}) }}
@@ -182,36 +217,36 @@
 			<p>
 				<b>Website:</b>
 				<br>
-				<a href="#">WARWICKSHIRE COLLEGE website </a>
+				<a href="{{providerInfo.Website}}">{{providerInfo.ProviderName}} website </a>
 			</p>
 
 			<p>
 				<b>Phone number:</b>
 				<br>
-				01926 318000
+				{{providerInfo.Phone}}
 			</p>
 
 			<p>
 				<b>Email:</b>
 				<br>
-				<a href="#">enquiries@warkscol.ac.uk</a>
+				<a href="#">{{providerInfo.Email}}</a>
 			</p>
 
 			<p>
 				<b>Address:</b>
 				<br>
-				Hertford Regional College,<br>
-				The Springs,<br>
-				Turnford,<br>
-				Broxbourne,<br>
-				EN10 6AE 
+				{{providerInfo.ProviderName}}<br>
+				{{providerInfo.Addresses[0].Street}}<br>
+				{{providerInfo.Addresses[0].Town}}<br>
+				{{providerInfo.Addresses[0].PostCode}}
 			</p>
+
 			<ul class="govuk-list govuk-!-font-size-16">
 				<li>
-					<a href="#">View on Google Maps</a>
+					<a href="https://www.google.com/maps/search/?api=1&query={{providerInfo.ProviderName}} {{providerInfo.Addresses[0].PostCode}}">View on Google Maps</a>
 				</li>
 				<li>
-					<a href="#">View on Open Street Map</a>
+					<a href="https://www.openstreetmap.org/search?query={{providerInfo.ProviderName}} {{providerInfo.Addresses[0].PostCode}}">View on Open Street Map</a>
 				</li>
 			</ul>
 		</div>

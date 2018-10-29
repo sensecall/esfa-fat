@@ -115,6 +115,21 @@ router.get('/fat/search-results--provider', (req, res) => {
 	fatProviderSearch(req,res,"college")
 })
 
+router.get('/fat/provider', (req, res) => {
+	var ukprn = req.session.data['ukprn']
+	var response = []
+
+	request.get('https://findapprenticeshiptraining-api.sfa.bis.gov.uk/providers/' + ukprn,
+	{
+		json: true,
+		encoding: undefined
+	},
+	(error, response, body) => {
+		var providerInfo = body
+		res.render(`${req.version}/fat/provider`,{providerInfo})
+	});
+})
+
 router.post('/used-service-before', (req, res) => {
 	var hasAccount = req.session.data['has-account']
 	if (hasAccount === 'yes') {
