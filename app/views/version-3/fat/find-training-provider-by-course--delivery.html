@@ -24,7 +24,7 @@
 				{
 					legend: 
 					{
-						text: "Do you want to see all providers?",
+						text: "Where will training for this apprenticeship take place?",
 						isPageHeading: false,
 						classes: "govuk-fieldset__legend--m"
 					}
@@ -36,11 +36,18 @@
 				items: [
 				{
 					value: "anywhere",
-					text: "Yes, show me all providers"
+					text: "I don't mind"
+				},
+				{
+					divider: "or"
 				},
 				{
 					value: "employer",
-					text: "No, only show the providers that will deliver training at my location"
+					text: "the training provider should travel to my organisation"
+				},
+				{
+					value: "employer",
+					text: "the apprentice will travel to the training provider"
 				}
 				]
 			}) }}

@@ -11,18 +11,17 @@
 	<div class="govuk-grid-column-two-thirds">
 		<h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
 			{{providerInfo.ProviderName}}
+			<span class="govuk-caption-l">
+				UKPRN: {{providerInfo.Ukprn}}
+			</span>
 		</h1>
-
-		<p>
-			<b>UKPRN:</b> {{providerInfo.Ukprn}}
-		</p>
 
 		<h2 class="govuk-heading-s">
 			About this provider
 		</h2>
 
 		<p>
-			{{providerInfo.MarketingInfo | striptags(true) | escape | nl2br }}
+			{{providerInfo.MarketingInfo | striptags(true) | escape | nl2br | replace('*','&bull;') }}
 		</p>
 
 		<hr class="govuk-section-break govuk-section-break--xl">
@@ -243,10 +242,10 @@
 
 			<ul class="govuk-list govuk-!-font-size-16">
 				<li>
-					<a href="https://www.google.com/maps/search/?api=1&query={{providerInfo.ProviderName}} {{providerInfo.Addresses[0].PostCode}}">View on Google Maps</a>
+					<a href="https://www.google.com/maps/search/?api=1&query={{providerInfo.ProviderName}} {{providerInfo.Addresses[0].PostCode}}" target="_blank">View on Google Maps</a>
 				</li>
 				<li>
-					<a href="https://www.openstreetmap.org/search?query={{providerInfo.ProviderName}} {{providerInfo.Addresses[0].PostCode}}">View on Open Street Map</a>
+					<a href="https://www.openstreetmap.org/search?query={{providerInfo.Addresses[0].Street}},{{providerInfo.Addresses[0].PostCode}}" target="_blank">View on Open Street Map</a>
 				</li>
 			</ul>
 		</div>
