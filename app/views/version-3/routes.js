@@ -93,7 +93,7 @@ router.post('/fat/find-training-provider-by-course', (req, res) => {
 })
 
 function fatProviderSearch(req,res,query) {
-	var searchQuery = query || req.session.data['search-query']
+	var searchQuery = query || 'college'
 	var response = []
 
 	request.get('https://findapprenticeshiptraining-api.sfa.bis.gov.uk/providers/search?keywords=' + searchQuery,
@@ -112,7 +112,7 @@ router.post('/fat/search-results--provider', (req, res) => {
 })
 
 router.get('/fat/search-results--provider', (req, res) => {
-	fatProviderSearch(req,res,"northampton")
+	fatProviderSearch(req,res,"college")
 })
 
 router.post('/used-service-before', (req, res) => {
