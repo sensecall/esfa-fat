@@ -33,11 +33,11 @@
                         <div class="toggled-content">
                             <ul class="govuk-!-margin-top-0 govuk-!-margin-bottom-0 govuk-list">
                                 <li>
-                                    <input value="employer" id="training-delivery--employer" name="training-delivery" type="checkbox" {{"checked" if data['training-delivery'] == 'employer' }}>
+                                    <input value="employer" id="training-delivery--employer" name="training-delivery" type="checkbox" {{"checked" if data['training-delivery'] != 'provider' }}>
                                     <label for="training-delivery--employer" class="govuk-body-s">at your location</label>
                                 </li>
                                 <li>
-                                    <input value="provider" id="training-delivery--provider" name="training-delivery" type="checkbox">
+                                    <input value="provider" id="training-delivery--provider" name="training-delivery" type="checkbox" {{"checked" if data['training-delivery'] != 'employer' }}>
                                     <label for="training-delivery--provider" class="govuk-body-s">at the provider's loction</label>
                                 </li>
                             </ul>
