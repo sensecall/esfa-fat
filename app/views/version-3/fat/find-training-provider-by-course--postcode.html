@@ -16,7 +16,7 @@
 			</span>
 		</h1>
 
-		<form method="post" action="search-results--provider">
+		<form action="search-results--provider">
 			{{ govukInput({
 				label:
 				{
@@ -30,6 +30,8 @@
 				id: "employer-postcode",
 				name: "employer-postcode"
 			}) }}
+
+			<input type="hidden" value="{{data['course-name']}}" name="course-name">
 
 			{{ govukButton({
 				text: "Find training providers"

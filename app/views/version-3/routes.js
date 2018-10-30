@@ -80,16 +80,8 @@ function fatCourseSearch(req,res) {
 	});
 }
 
-router.post('/fat/search-results--apprenticeships', (req, res) => {
+router.post(['/fat/search-results--apprenticeships', '/fat/search-by-keyword'], (req, res) => {
 	fatCourseSearch(req,res);
-})
-
-router.post('/fat/search-by-keyword', (req, res) => {
-	fatCourseSearch(req,res);
-})
-
-router.post('/fat/find-training-provider-by-course', (req, res) => {
-	fatProviderSearch(req,res);
 })
 
 function fatProviderSearch(req,res,query) {
@@ -107,7 +99,7 @@ function fatProviderSearch(req,res,query) {
 	});
 }
 
-router.post('/fat/search-results--provider', (req, res) => {
+router.post(['/fat/search-results--provider', '/fat/find-training-provider-by-course'], (req, res) => {
 	fatProviderSearch(req,res)
 })
 
@@ -116,7 +108,7 @@ router.get('/fat/search-results--provider', (req, res) => {
 })
 
 router.get('/fat/provider', (req, res) => {
-	var ukprn = req.session.data['ukprn']
+	var ukprn = req.session.data['ukprn'] || '10003753'
 	var response = []
 
 	request.get('https://findapprenticeshiptraining-api.sfa.bis.gov.uk/providers/' + ukprn,
@@ -128,6 +120,47 @@ router.get('/fat/provider', (req, res) => {
 		var providerInfo = body
 		res.render(`${req.version}/fat/provider`,{providerInfo})
 	});
+})
+
+router.get('/fat/provider--course', (req, res) => {
+	var getUrl;
+
+	if (req.session.data['courseId'] != ''){
+		getUrl = 'https://findapprenticeshiptraining-api.sfa.bis.gov.uk/' + req.session.data['courseType'] + 's/' + req.session.data['courseId']
+	} else {
+		getUrl = 'https://findapprenticeshiptraining-api.sfa.bis.gov.uk/Standards/94'
+	}
+
+	var response = []
+
+	request.get(getUrl,
+	{
+		json: true,
+		encoding: undefined
+	},
+	(error, response, body) => {
+		if (!error && response.statusCode == 200)
+		{
+			var courseData = body
+
+			function getProvider(){
+				var ukprn = req.session.data['ukprn'] || '10003753'
+				var response = []
+
+				request.get('https://findapprenticeshiptraining-api.sfa.bis.gov.uk/providers/' + ukprn,
+				{
+					json: true,
+					encoding: undefined
+				},
+				(error, response, body) => {
+					var providerInfo = body
+					res.render(`${req.version}/fat/provider--course`,{providerInfo, courseData})
+				})
+			}
+
+			getProvider()
+		}
+	})
 })
 
 router.post('/used-service-before', (req, res) => {

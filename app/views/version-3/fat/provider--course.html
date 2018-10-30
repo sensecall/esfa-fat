@@ -1,0 +1,170 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row govuk-!-margin-top-8">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+			{{providerInfo.ProviderName}}
+		</h1>
+
+		<a href="#" class="govuk-button govuk-!-margin-bottom-6">
+			Add to shortlist
+		</a>
+
+		<!-- <div class="govuk-inset-text govuk-!-margin-top-0 govuk-inset-text--info">
+			The <b>{{data['course-name']}}</b> apprenticeship is available at this training provider
+		</div> -->
+
+		<dl class="data-list--provider data-list--compact">
+			<dt>Apprenticeship: </dt>
+			<dd>{{courseData.Title}}</dd>
+
+			<dt>Level: </dt>
+			<dd>{{courseData.Level}} (equivalent to GCSEs at grades A* to C)</dd>
+
+			<dt class="training-structure">Training options:</dt>
+			<dd id="delivery-modes" class="icon-alerts">
+				<ul>
+					<li class="day-release icon-right">
+						<span class="icon-content">day release</span>
+						<span class="green-tick"></span>
+					</li>
+
+					<li class="block-release-absent icon-right">
+						<span class="icon-content">block release</span>
+						<span class="red-cross"></span>
+					</li>
+
+					<li class="hundred-percent-employer-absent icon-right">
+						<span class="icon-content">at your location</span>
+						<span class="red-cross"></span>
+					</li>
+				</ul>
+
+				{% set panelText %}
+				<p>
+					<b>Day release:</b> for example one day a week at the training provider's location.
+				</p>
+				<p>
+					<b>Block release:</b> for example 3-4 weeks at the training provider's location.
+				</p>
+				<p>
+					<b>At your location:</b> the training provider comes to your workplace.
+				</p>
+				{% endset %}
+
+				{{ govukDetails({
+					summaryText: "Explain training options",
+					html: panelText
+				}) }}
+			</dd>
+
+
+			<dt>Achievement rates: </dt>
+			<dd>
+				<div class="rating">
+					Achievement average:
+					<span class="national-rate">
+						58%
+					</span>
+					<div class="progress-container">
+						<div class="progressbar" style="width: 58%"></div>
+					</div>
+				</div>
+
+				<div class="rating national-achievement-bar">
+					National average:
+					<span class="national-rate">
+						70%
+					</span>
+					<div class="progress-container">
+						<div class="progressbar" style="width: 70%; background: #96c6e2"></div>
+					</div>
+
+				</div>
+
+				{% set panelText %}
+				<p>Percentage of apprentices who successfully achieved a similar apprenticeship with this training provider.</p>
+				<p>Based on the latest data for 40 apprentices.</p>
+				<p class="govuk-body-s">
+					Source: <a href="https://www.gov.uk/government/collections/sfa-national-success-rates-tables" target="_blank" rel="external">Skills Funding Agency apprenticeship achievement rates</a>
+				</p>
+				{% endset %}
+				{{ govukDetails({
+					summaryText: "Explain achievement rate",
+					html: panelText
+				}) }}
+			</dd>
+		</dl>
+
+		{% include './_provider-rating-section.html' %}
+
+		<hr class="govuk-section-break govuk-section-break--xl">
+
+		<h2 class="govuk-heading-m">
+			About this provider
+		</h2>
+
+		<p>
+			{{providerInfo.MarketingInfo | striptags(true) | escape | nl2br | replace('*','&bull;') | replace('\\','') }}
+		</p>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="app-related-items">
+			<h3 class="govuk-heading-m">
+				Contact details
+			</h3>
+
+			<p>
+				<b>Website:</b>
+				<br>
+				<a href="{{providerInfo.Website}}">{{providerInfo.ProviderName}} website </a>
+			</p>
+
+			<p>
+				<b>Phone number:</b>
+				<br>
+				{{providerInfo.Phone}}
+			</p>
+
+			<p>
+				<b>Email:</b>
+				<br>
+				<a href="#">{{providerInfo.Email}}</a>
+			</p>
+
+			<p>
+				<b>Address:</b>
+				<br>
+				{{providerInfo.ProviderName}}<br>
+				{{providerInfo.Addresses[0].Street}}<br>
+				{{providerInfo.Addresses[0].Town}}<br>
+				{{providerInfo.Addresses[0].PostCode}}
+			</p>
+
+			<ul class="govuk-list govuk-!-font-size-16">
+				<li>
+					<a href="https://www.google.com/maps/search/?api=1&query={{providerInfo.ProviderName}} {{providerInfo.Addresses[0].PostCode}}" target="_blank">View on Google Maps</a>
+				</li>
+				<li>
+					<a href="https://www.openstreetmap.org/search?query={{providerInfo.Addresses[0].Street}},{{providerInfo.Addresses[0].PostCode}}" target="_blank">View on Open Street Map</a>
+				</li>
+			</ul>
+		</div>
+
+		<h4 class="govuk-heading-s govuk-!-font-size-16 govuk-!-margin-bottom-1 govuk-!-margin-top-8">
+			Content disclaimer
+		</h4>
+		<p class="govuk-!-font-size-14">
+			Education and Skills Funding Agency cannot guarantee the accuracy of course information on this site and makes no representations about the quality of any courses which appear on the site. Education and Skills Funding Agency is not liable for any losses suffered as a result of any party relying on the course information provided.
+		</p>
+	</div>
+
+	{% endblock %}
