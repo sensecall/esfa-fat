@@ -123,17 +123,17 @@ router.get('/fat/provider', (req, res) => {
 })
 
 router.get('/fat/provider--course', (req, res) => {
-	var getUrl;
+	var courseUrl;
 
 	if (req.session.data['courseId'] != ''){
-		getUrl = 'https://findapprenticeshiptraining-api.sfa.bis.gov.uk/' + req.session.data['courseType'] + 's/' + req.session.data['courseId']
+		courseUrl = 'https://findapprenticeshiptraining-api.sfa.bis.gov.uk/' + req.session.data['courseType'] + 's/' + req.session.data['courseId']
 	} else {
-		getUrl = 'https://findapprenticeshiptraining-api.sfa.bis.gov.uk/Standards/94'
+		courseUrl = 'https://findapprenticeshiptraining-api.sfa.bis.gov.uk/Standards/94'
 	}
 
 	var response = []
 
-	request.get(getUrl,
+	request.get(courseUrl,
 	{
 		json: true,
 		encoding: undefined
@@ -142,23 +142,18 @@ router.get('/fat/provider--course', (req, res) => {
 		if (!error && response.statusCode == 200)
 		{
 			var courseData = body
+			var ukprn = req.session.data['ukprn'] || '10003753'
+			var response = []
 
-			function getProvider(){
-				var ukprn = req.session.data['ukprn'] || '10003753'
-				var response = []
-
-				request.get('https://findapprenticeshiptraining-api.sfa.bis.gov.uk/providers/' + ukprn,
-				{
-					json: true,
-					encoding: undefined
-				},
-				(error, response, body) => {
-					var providerInfo = body
-					res.render(`${req.version}/fat/provider--course`,{providerInfo, courseData})
-				})
-			}
-
-			getProvider()
+			request.get('https://findapprenticeshiptraining-api.sfa.bis.gov.uk/providers/' + ukprn,
+			{
+				json: true,
+				encoding: undefined
+			},
+			(error, response, body) => {
+				var providerInfo = body
+				res.render(`${req.version}/fat/provider--course`,{providerInfo, courseData})
+			})
 		}
 	})
 })

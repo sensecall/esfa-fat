@@ -1,101 +1,93 @@
 <h2 class="govuk-heading-m govuk-!-margin-bottom-0">
-			What employers are saying
-		</h2>
+	What employers are saying
+</h2>
 
-		{% set ratings = [{
-			name: "Excellent",
-			reviews: providerInfo.ProviderFeedback.ExcellentFeedbackCount or 0
-		},
-		{
-			name: "Good",
-			reviews: providerInfo.ProviderFeedback.GoodFeedbackCount or 0
-		},
-		{
-			name: "Poor",
-			reviews: providerInfo.ProviderFeedback.PoorFeedbackCount or 0
-		},
-		{
-			name: "Very poor",
-			reviews: providerInfo.ProviderFeedback.VeryPoorFeedbackCount or 0
-		}] %}
+{% set ratings = [{
+	name: "Excellent",
+	reviews: providerInfo.ProviderFeedback.ExcellentFeedbackCount or 0
+},
+{
+	name: "Good",
+	reviews: providerInfo.ProviderFeedback.GoodFeedbackCount or 0
+},
+{
+	name: "Poor",
+	reviews: providerInfo.ProviderFeedback.PoorFeedbackCount or 0
+},
+{
+	name: "Very poor",
+	reviews: providerInfo.ProviderFeedback.VeryPoorFeedbackCount or 0
+}] %}
 
-		<p class="govuk-!-font-size-16 govuk-!-margin-top-0">
-			{% set totalRatings = 0 %}
-			{% for rating in ratings %}
-			{% set totalRatings = totalRatings + rating.reviews %}
+<p class="govuk-!-font-size-16 govuk-!-margin-top-0">
+	{% set totalRatings = 0 %}
+	{% for rating in ratings %}
+	{% set totalRatings = totalRatings + rating.reviews %}
+	{% endfor %}
+	Based on {{totalRatings}} review{{"s" if totalRatings > 1}} from employers that work with this training provider.
+</p>
+
+<h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+	Showing all ratings from October 2018 to now
+</h3>
+
+{% import './_course-routes-data.html' as courseRoutes %}
+
+{{ govukSelect({
+	id: "sort",
+	name: "sort",
+	classes: "govuk-input--width-10",
+	label:
+	{
+		text: ""
+	},
+	items: courseRoutes.items
+}) }}
+
+<ul class="graph-list">
+	{% for rating in ratings %}
+	<li class="level-{{loop.index}}">
+		<span class="label">{{rating.name}}</span>
+		<span class="chart">
+			<span class="graph">
+				<span class="bar" style="width: {{ rating.reviews * (100 / (totalRatings or 1)) }}%"></span>
+			</span>
+		</span>
+		<span class="figure govuk-!-font-size-16">{{ rating.reviews }} <span class="govuk-visually-hidden">out of 7 </span>reviews</span>
+	</li>
+	{% endfor %}
+</ul>
+
+<div class="govuk-grid-row govuk-!-margin-top-4">
+	<div class="govuk-grid-column-one-half">
+		<h4 class="govuk-heading-s">
+			Strengths
+		</h4>
+
+		<ul class="govuk-list">
+			{% if providerInfo.ProviderFeedback.Strengths.length > 0 %}
+			{% for strength in providerInfo.ProviderFeedback.Strengths %}
+			<li>{{strength.Name}}</li>
 			{% endfor %}
-			Based on {{totalRatings}} review{{"s" if totalRatings > 1}} from employers that work with this training provider.
-		</p>
-
-		<h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-			Showing all ratings from October 2018 to now
-		</h3>
-
-		{{ govukSelect({
-			id: "sort",
-			name: "sort",
-			classes: "govuk-input--width-10",
-			label:
-			{
-				text: ""
-			},
-			items:[
-			{
-				value: "published",
-				text: "All sectors",
-				selected: true
-			},
-			{
-				value: "",
-				text: "Sector name"
-			}
-			]
-		}) }}
-
-		<ul class="graph-list">
-			{% for rating in ratings %}
-			<li class="level-{{loop.index}}">
-				<span class="label">{{rating.name}}</span>
-				<span class="chart">
-					<span class="graph">
-						<span class="bar" style="width: {{ rating.reviews * (100 / (totalRatings or 1)) }}%"></span>
-					</span>
-				</span>
-				<span class="figure govuk-!-font-size-16">{{ rating.reviews }} <span class="govuk-visually-hidden">out of 7 </span>reviews</span>
-			</li>
-			{% endfor %}
+			{% else %}
+			-
+			{% endif %}
 		</ul>
+	</div>
 
-		<div class="govuk-grid-row govuk-!-margin-top-4">
-			<div class="govuk-grid-column-one-half">
-				<h4 class="govuk-heading-s">
-					Strengths
-				</h4>
+	<div class="govuk-grid-column-one-half">
+		<h4 class="govuk-heading-s">
+			Things to improve
+		</h4>
 
-				<ul class="govuk-list">
-					{% if providerInfo.ProviderFeedback.Strengths.length > 0 %}
-					{% for strength in providerInfo.ProviderFeedback.Strengths %}
-					<li>{{strength.Name}}</li>
-					{% endfor %}
-					{% else %}
-					-
-					{% endif %}
-				</ul>
-			</div>
-
-			<div class="govuk-grid-column-one-half">
-				<h4 class="govuk-heading-s">
-					Things to improve
-				</h4>
-
-				<ul class="govuk-list">
-					{% if providerInfo.ProviderFeedback.Weaknesses.length > 0 %}
-					{% for weakness in providerInfo.ProviderFeedback.Weaknesses %}
-					<li>{{weakness.Name}}</li>
-					{% endfor %}
-					{% else %}
-					-
-					{% endif %}
-				</ul>
-			</div>
-		</div>
+		<ul class="govuk-list">
+			{% if providerInfo.ProviderFeedback.Weaknesses.length > 0 %}
+			{% for weakness in providerInfo.ProviderFeedback.Weaknesses %}
+			<li>{{weakness.Name}}</li>
+			{% endfor %}
+			{% else %}
+			-
+			{% endif %}
+		</ul>
+	</div>
+</div>

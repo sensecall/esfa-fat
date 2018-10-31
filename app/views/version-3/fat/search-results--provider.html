@@ -38,7 +38,7 @@
                                 </li>
                                 <li>
                                     <input value="provider" id="training-delivery--provider" name="training-delivery" type="checkbox" {{"checked" if data['training-delivery'] != 'employer' }}>
-                                    <label for="training-delivery--provider" class="govuk-body-s">at the provider's loction</label>
+                                    <label for="training-delivery--provider" class="govuk-body-s">at the provider's location</label>
                                 </li>
                             </ul>
                         </div>
@@ -92,8 +92,7 @@
                         </label>
                         <select class="govuk-select" id="sort" name="sort" style="display: inline-block; width: auto">
                             <option selected="selected" value="1">Distance (closest first)</option>
-                            <option value="2">Ofsted rating (high to low)</option>
-                            <option value="3">Employer feedback (high to low)</option>
+                            <option value="2">Employer feedback (high to low)</option>
                             <option value="3">Achievement rate (high to low)</option>
                         </select>
                     </div>
@@ -110,19 +109,21 @@
 
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds">
-                    <p>
-                        Distance: {{distances[loop.index]}} miles
-                    </p>
-
                     <ul class="govuk-list govuk-!-font-size-16">
-                        <li>
-                            Employer feedback: {{employerFeedback[loop.index]}}% positive (based on {{employerFeedbackReviews[loop.index]}} reviews)
+                        <li class="govuk-!-font-size-1">
+                            Distance: {{distances[loop.index]}} miles
+                        </li>
+                        <li class="govuk-!-margin-bottom-3">
+                            Telephone: {{result.Phone}}
                         </li>
                         <li>
-                            Achievement rate: {{achievementRates[loop.index] | int}}%
+                            Employer feedback: <!-- <span class="govuk-tag govuk-!-font-weight-regular" style="border-radius:4px;letter-spacing: 0"> -->{{employerFeedback[loop.index]}}%<!-- </span> --> positive <span style="color: #777">(based on {{employerFeedbackReviews[loop.index]}} reviews)</span>
                         </li>
-                        <li>
+                        <li class="govuk-!-margin-bottom-3">
                             Ofsted rating: {{ofstedRating[loop.index]}}
+                        </li>
+                        <li class="govuk-!-margin-bottom-3">
+                            Achievement rate: {{achievementRates[loop.index] | int}}%
                         </li>
                     </ul>
                 </div>
