@@ -9,12 +9,9 @@
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
-		<h1 class="govuk-heading-xl govuk-!-margin-top-6 govuk-!-margin-bottom-6">
-			Find a training provider
-			<span class="govuk-caption-xl">
-				for {{data['course-name'] or "Accounting, level 2" }}
-			</span>
-		</h1>
+		<span class="govuk-caption-xl govuk-!-margin-top-4">
+			{{data['course-name'] or "Accounting, level 2" }}
+		</span>
 
 		<form action="find-training-provider-by-course--postcode">
 			{{ govukRadios({
@@ -24,9 +21,9 @@
 				{
 					legend: 
 					{
-						text: "Where should training for this apprenticeship take place?",
-						isPageHeading: false,
-						classes: "govuk-fieldset__legend--m"
+						text: "Where do you want the training to happen?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
 					}
 				},
 				hint:
@@ -35,21 +32,23 @@
 				},
 				items: [
 				{
-					value: "anywhere",
-					text: "I don't mind"
-				},
-				{
-					divider: "or"
-				},
-				{
 					value: "employer",
 					text: "the training provider should travel to my organisation"
 				},
 				{
 					value: "provider",
 					text: "the apprentice will travel to the training provider"
+				},
+				{
+					value: "anywhere",
+					text: "I don't mind"
 				}
 				]
+			}) }}
+
+			{% from "inset-text/macro.njk" import govukInsetText %}
+			{{ govukInsetText({
+				text: "You can change this later"
 			}) }}
 
 			{{ govukButton({

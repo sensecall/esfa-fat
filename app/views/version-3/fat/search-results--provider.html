@@ -3,11 +3,13 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-xl govuk-!-margin-top-8">
-            Suitable training providers near "{{data['employer-postcode']}}"
+            Training providers for <b>{{data['course-name']}}</b>
         </h1>
 
         <div class="govuk-inset-text">
-            There are <b>{{providerResults.length}}</b> training options for the <b>{{data['course-name']}}</b> apprenticeship.
+            There are <b>{{providerResults.length}}</b> training providers that offer the <b>{{data['course-name']}}</b> apprenticeship to employers in "<b>{{data['employer-postcode']}}</b>" (<a href="find-training-provider-by-course--postcode">change postcode</a>)
+            <!-- <br>
+            You can <a href="#">view all 43 training providers</a> that offer this course. -->
         </div>
     </div>
 </div>
@@ -16,7 +18,7 @@
 {% set employerFeedback = [25,7,66,71,32,82,50,87,98,72,7,69,70,76,42,76,47,16,16,10,9,39,82,19,17,84,3,36,46,15,23,61,61,83,75,92,47,77,65,63,55,50,67,43,84,63,2,32,7,92,1,25,99,83,47,66,19,41,21,11,61,38,48,30,48,21,8,85,86,59,2,32,34,78,31,72,50,55,3,26,19,5,94,1,49,84,45,15,54,39,88,79,41,64,78,33,11,85,74,49] %}
 {% set employerFeedbackReviews = [2,4,28,19,16,13,3,15,9,26,30,12,2,10,6,29,26,28,21,1] %}
 {% set achievementRates = [59.2,94.3,78.5,80.6,85.1,94.3,72.1,72.6,63.1,85.9,70.3,56.7,75.0,60.4,58.2,81.9,80.3,86.8,72.2,90.8] %}
-{% set ofstedRating = ["Inadequate","Outstanding","Good","No Ofsted assessment published","No Ofsted assessment published","Outstanding","No Ofsted assessment published","Requires improvement","Inadequate","Good","Inadequate","Requires improvement","No Ofsted assessment published","Inadequate","Outstanding","No Ofsted assessment published","Outstanding"] %}
+{% set ofstedRating = ["Good","Outstanding","Good","No Ofsted assessment published","No Ofsted assessment published","Outstanding","No Ofsted assessment published","Requires improvement","Good","Good","Good","Requires improvement","No Ofsted assessment published","Good","Outstanding","No Ofsted assessment published","Outstanding"] %}
 
 <div class="govuk-grid-row govuk-!-margin-top-4">
     <div class="govuk-grid-column-one-third">
@@ -46,7 +48,7 @@
 
                     <fieldset class="filters filters-accordion">
                         <h2 class="toggler govuk-heading-s">Ofsted rating</h2>
-                        {% set ofstedFilters = ["Outstanding","Good","Inadequate","Requires improvement","No Ofsted assessment published"] %}
+                        {% set ofstedFilters = ["Outstanding","Good","Requires improvement"] %}
                         <div class="toggled-content">
                             <ul class="govuk-!-margin-top-0 govuk-!-margin-bottom-0 govuk-list">
                                 {% for rating in ofstedFilters %}
@@ -57,6 +59,10 @@
                                 </li>
                                 {% endfor %}
                             </ul>
+
+                            <p class="govuk-!-font-size-14 govuk-!-margin-bottom-0 govuk-!-margin-top-4" style="color: #777">
+                                Training providers with "No Ofsted assessment published" will be displayed for all filters.
+                            </p>
                         </div>
                     </fieldset>
 
@@ -110,8 +116,8 @@
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds">
                     <ul class="govuk-list govuk-!-font-size-16">
-                        <li class="govuk-!-font-size-1">
-                            Distance: {{distances[loop.index]}} miles
+                        <li class="govuk-!-font-size-19">
+                            <b>Distance: {{distances[loop.index]}} miles</b>
                         </li>
                         <li class="govuk-!-margin-bottom-3">
                             Telephone: {{result.Phone}}
@@ -123,18 +129,18 @@
                             Ofsted rating: {{ofstedRating[loop.index]}}
                         </li>
                         <li class="govuk-!-margin-bottom-3">
-                            Achievement rate: {{achievementRates[loop.index] | int}}%
+                            Achievement rate: {{achievementRates[loop.index] | int}}% <span style="color: #777">(national average {{((achievementRates[8] * 0.83) + 10) | int}}%)</span>
                         </li>
                     </ul>
                 </div>
 
-                <div class="govuk-grid-column-one-third">
+                <!-- <div class="govuk-grid-column-one-third">
                     <div class="govuk-!-margin-top-9" style="text-align:right">
                         <a href="#" class="govuk-button govuk-!-font-size-16">
                             Add to shortlist
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </article>
         {% endfor %}

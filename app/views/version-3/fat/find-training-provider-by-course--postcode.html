@@ -9,14 +9,20 @@
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
-		<h1 class="govuk-heading-xl govuk-!-margin-top-6 govuk-!-margin-bottom-6">
-			Find a training provider
-			<span class="govuk-caption-xl">
-				for {{data['course-name'] or "Accounting, level 2" }}
-			</span>
-		</h1>
+		<span class="govuk-caption-xl govuk-!-margin-top-4">
+			{{data['course-name'] or "Accounting, level 2" }}
+		</span>
 
 		<form action="search-results--provider">
+			{% call govukFieldset({
+				legend:
+				{
+					text: "Enter your postcode",
+					classes: "govuk-fieldset__legend--xl",
+					isPageHeading: true
+				}
+			}) %}
+
 			{{ govukInput({
 				label:
 				{
@@ -30,6 +36,8 @@
 				id: "employer-postcode",
 				name: "employer-postcode"
 			}) }}
+
+			{% endcall %}
 
 			<input type="hidden" value="{{data['course-name']}}" name="course-name">
 
