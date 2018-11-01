@@ -1,0 +1,56 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+			Find a training provider
+			<span class="govuk-caption-xl">
+				for {{data['course-name'] or "Accounting, level 2" }}
+			</span>
+		</h1>
+
+		<form method="post" action="search-results--provider">
+			<input type="hidden" value="coventry" name="search-query">
+			{{ govukRadios({
+				classes: "govuk-radios--inline",
+				idPrefix: "levy",
+				name: "levy",
+				fieldset:
+				{
+					legend:
+					{
+						html: 'Is your organisation a <a href="https://www.gov.uk/government/publications/apprenticeship-levy-how-it-will-work/apprenticeship-levy-how-it-will-work#pay-apprenticeship-levy">levy-payer</a> or are you going to receive a transfer of funds from another employer to pay for this apprenticeship?',
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				hint:
+				{
+					text: " We use this information to show you approved training providers that can work with organisations of your size"
+				},
+				items: [
+				{
+					value: "yes",
+					text: "Yes"
+				},
+				{
+					value: "no",
+					text: "No"
+				}
+				]
+			}) }}
+
+			{{ govukButton({
+				text: "Find training providers"
+			})}}
+		</form>
+	</div>
+</div>
+{% endblock %}
