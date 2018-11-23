@@ -1,0 +1,71 @@
+{% extends "./layout--give-feedback.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-top-6">
+			Things for {{data['provider-name'] or "COVENTRY CITY COUNCIL"}} to improve 
+		</h1>
+
+		<form action="{{data['returnTo'] or 'quality'}}">
+			<input value="" name="returnTo" type="hidden">
+			{% import './_ratings-criteria.html' as criteria %}
+
+			<div class="govuk-form-group">
+				<fieldset class="govuk-fieldset checkbox-limit" data-max-answers="3" aria-describedby="improvements-hint">
+					<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+						Does {{data['provider-name'] or "COVENTRY CITY COUNCIL"}} need to improve any of these?
+					</legend>
+
+					<span id="improvements-hint" class="govuk-hint">
+						Select as many as you like.
+					</span>
+
+					<div class="govuk-checkboxes">
+						{% for item in criteria.items %}
+						{% if data['strengths'].length %}
+						{% if item.value not in data['strengths'] %}
+						<div class="govuk-checkboxes__item">
+							<input class="govuk-checkboxes__input" id="improvements-{{item.value|replace(' ','-')}}" name="improvements" value="{{item.value}}" type="checkbox" {{attributes}} {{ checked("improvements",item.value) }}>
+							<label class="govuk-label govuk-checkboxes__label" for="improvements-{{item.value|replace(' ','-')}}">
+								{{item.value}}
+							</label>
+						</div>
+						{% endif %}
+						{% else %}
+						<div class="govuk-checkboxes__item">
+							<input class="govuk-checkboxes__input" id="improvements-{{item.value|replace(' ','-')}}" name="improvements" value="{{item.value}}" type="checkbox" {{attributes}} {{ checked("improvements",item.value) }}>
+							<label class="govuk-label govuk-checkboxes__label" for="improvements-{{item.value|replace(' ','-')}}">
+								{{item.value}}
+							</label>
+						</div>
+						{% endif %}
+						{% endfor %}
+					</div>
+				</fieldset>
+			</div>
+
+			{{ govukButton({
+				text: "Continue"
+			}) }}
+		</form>
+
+
+		<p>
+			<a href="quality">Skip this question</a>
+		</p>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/feedback-checkboxes.js"></script>
+{% endblock %}

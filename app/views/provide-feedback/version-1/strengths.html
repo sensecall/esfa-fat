@@ -1,0 +1,58 @@
+{% extends "./layout--give-feedback.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-top-6">
+			{{data['provider-name'] or "COVENTRY CITY COUNCIL"}}'s strengths 
+		</h1>
+
+		<form action="{{data['returnTo'] or 'improvements'}}">
+			<input value="" name="returnTo" type="hidden">
+			{% import './_ratings-criteria.html' as criteria %}
+			
+			<div class="govuk-form-group">
+				<fieldset class="govuk-fieldset checkbox-limit" data-max-answers="3" aria-describedby="strengths-hint">
+					<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+						What are {{data['provider-name'] or "COVENTRY CITY COUNCIL"}} doing very well?
+					</legend>
+
+					<span id="strengths-hint" class="govuk-hint">
+						It's optional. You can choose up to 3.
+					</span>
+
+					<div class="govuk-checkboxes">
+						{% for item in criteria.items %}
+						<div class="govuk-checkboxes__item">
+							<input class="govuk-checkboxes__input" id="strengths-{{item.value|replace(' ','-')}}" name="strengths" value="{{item.value}}" type="checkbox" {{ checked("strengths",item.value) }}>
+							<label class="govuk-label govuk-checkboxes__label" for="strengths-{{item.value|replace(' ','-')}}">
+								{{item.value}}
+							</label>
+						</div>
+						{% endfor %}
+					</div>
+				</fieldset>
+			</div>
+
+			{{ govukButton({
+				text: "Continue",
+				classes: "govuk-!-display-inline-block"
+			}) }}
+
+			<a href="improvements" class="govuk-!-font-size-19 govuk-!-display-inline-block govuk-!-margin-top-1 govuk-!-margin-left-4">Skip this question</a>
+		</form>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/feedback-checkboxes.js"></script>
+{% endblock %}

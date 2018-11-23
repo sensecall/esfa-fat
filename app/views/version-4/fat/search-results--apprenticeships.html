@@ -1,18 +1,12 @@
 {% extends "./layout--fat.html" %}
 {% block content %}
-{{ govukBackLink({
-    text: "Back",
-    href: "javascript:history.back()",
-    classes: "govuk-!-margin-top-0"
-}) }}
-
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">
             Search results
         </h1>
         <p>
-            There are <b>{{data['search-results'].length}}</b> apprenticeships matching your search for '<b>{{data['search-query']}}</b>'.
+            There are <b>{{data['search-results'].length}}</b> apprenticeships matching your search for '<b>{{data['job-role']}}</b>'.
         </p>
     </div>
 </div>

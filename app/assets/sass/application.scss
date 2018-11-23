@@ -9,6 +9,9 @@ $govuk-global-styles: true;
 @import "patterns/task-list";
 @import "patterns/related-items";
 
+// Misc patterns
+@import 'patterns/display';
+
 // Patterns added by WIN team
 @import "components/arrows";
 @import "patterns/featured-content";

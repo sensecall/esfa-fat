@@ -1,0 +1,73 @@
+{% extends "./layout--give-feedback.html" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">	
+		{%- set html %}
+		You rated Cyberdyne's training quality as <b>{{data['quality'] or "Excellent"}}</b>
+		{% endset %}
+
+		{{ govukPanel({
+			titleText: "Feedback complete",
+			html: html,
+			classes: 'govuk-!-margin-top- govuk-!-margin-bottom-6'
+		}) }}
+
+		<p>
+			Thanks for your feedback. It'll help <a href="../fat/provider">Cyberdyne</a> to continuously improve its apprenticeship training.
+		</p>
+
+		<hr class="govuk-section-break govuk-section-break--xl">
+
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-0">
+			What employers are saying about Cyberdyne
+		</h2>
+
+		<p class="govuk-!-font-size-16 govuk-!-margin-top-0">
+			Based on 8 reviews from employers that work with this training provider.
+		</p>
+
+		<h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+			Overall rating from October 2018 to now
+		</h3>
+
+		<ul class="graph-list">
+			{% set ratings = [{
+				name: "Excellent",
+				reviews: 3 if data['quality'] == "Excellent" else 2
+			},
+			{
+				name: "Good",
+				reviews: 6 if data['quality'] == "Good" else 5
+			},
+			{
+				name: "Poor",
+				reviews: 1 if data['quality'] == "Poor" else 0
+			},
+			{
+				name: "Very poor",
+				reviews: 1 if data['quality'] == "Very poor" else 0
+			}] %}
+			{% for rating in ratings %}
+			<li class="level-{{loop.index}}">
+				<span class="label">{{rating.name}}</span>
+				<span class="chart">
+					<span class="graph">
+						<span class="bar" style="width: {{ rating.reviews * (100/7) }}%"></span>
+					</span>
+				</span>
+				<span class="figure">{{ rating.reviews }} <span class="govuk-visually-hidden">out of 7 </span>reviews</span>
+			</li>
+			{% endfor %}
+		</ul>
+
+		<hr class="govuk-section-break govuk-section-break--xl">
+
+		<p>
+			You can <a href="https://manage-apprenticeships.service.gov.uk/">sign in to your apprenticeship account</a>.
+		</p>
+	</div>
+</div>
+
+{% endblock %}

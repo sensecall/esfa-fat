@@ -13,7 +13,7 @@
 			Find a training provider by name
 		</h1>
 
-		<form>
+		<form method="post">
 			{{ govukInput({
 				label:
 				{
@@ -34,16 +34,18 @@
 		<hr class="govuk-section-break govuk-section-break--m">
 
 		<p>
-			<b>4 results found</b>
+			<b>{{providerResults.length}} results found</b>
 		</p>
 
+		{% for result in providerResults %}
 		<ul class="govuk-list">
 			<li>
-				<a href="provider">
-					Result
+				<a href="provider?ukprn={{result.Ukprn}}">
+					{{result.ProviderName}}
 				</a>
 			</li>
 		</ul>
+		{% endfor %}
 		{% endif %}
 	</div>
 </div>

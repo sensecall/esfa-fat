@@ -9,16 +9,16 @@
 
 <div class="govuk-grid-row govuk-!-margin-top-8">
 	<div class="govuk-grid-column-two-thirds">
-		<h1 class="govuk-heading-xl">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
 			{{providerInfo.ProviderName}}
 			<span class="govuk-caption-l">
 				UKPRN: {{providerInfo.Ukprn}}
 			</span>
 		</h1>
 
-		<!-- <a href="#" class="govuk-button govuk-!-margin-bottom-8">
+		<a href="#" class="govuk-button govuk-!-margin-bottom-8">
 			Add to shortlist
-		</a> -->
+		</a>
 
 		<h2 class="govuk-heading-m">
 			About this provider
@@ -34,29 +34,81 @@
 
 		<hr class="govuk-section-break govuk-section-break--xl">
 
-		<table class="govuk-table">
-			<caption class="govuk-table__caption">114 Apprenticeships offered</caption>
+		<h3 class="govuk-heading-m">
+			114 Apprenticeships offered
+		</h3>
 
-			<thead class="govuk-table__head">
-				<tr class="govuk-table__row">
-					<th class="govuk-table__header" scope="col">Apprenticeship</th>
-					<th class="govuk-table__header" scope="col">Type</th>
-					<th class="govuk-table__header govuk-table__header--numeric" scope="col">Level</th>
-					<th class="govuk-table__header govuk-table__header--numeric" scope="col"></th>
-				</tr>
-			</thead>
+		{{ govukTable({
+			caption: "Months and rates",
+			firstCellIsHeader: true,
+			head: [
+			{
+				text: "Apprenticeship"
+			},
+			{
+				text: "Type"
+			},
+			{
+				text: "Level",
+				format: "numeric"
+			},
+			{
+				text: "",
+				format: "numeric"
+			}
+			],
+			rows: [
+			[
+			{
+				text: "Accounting"
+			},
+			{
+				text: "Framework"
+			},
+			{
+				text: "2",
+				format: "numeric"
+			},
+			{
+				html: '<a href="course?provider-link=true&course-link=false">Details</a>',
+				format: "numeric"
+			}
+			],
+			[
+			{
+				text: "Accounting"
+			},
+			{
+				text: "Framework"
+			},
+			{
+				text: "2",
+				format: "numeric"
+			},
+			{
+				html: '<a href="course?provider-link=true&course-link=false">Details</a>',
+				format: "numeric"
+			}
+			],
+			[
+			{
+				text: "Accounting"
+			},
+			{
+				text: "Framework"
+			},
+			{
+				text: "2",
+				format: "numeric"
+			},
+			{
+				html: '<a href="course?provider-link=true&course-link=false">Details</a>',
+				format: "numeric"
+			}
+			]
+			]
+		}) }}
 
-			<tbody class="govuk-table__body">
-				{% for course in providerCourses.ApprenticeshipTrainingItems %}
-				<tr class="govuk-table__row">
-					<th class="govuk-table__header" scope="row">{{course.Name}}</th>
-					<td class="govuk-table__cell ">{{course.Type}}</td>
-					<td class="govuk-table__cell govuk-table__cell--numeric">{{course.Level}}</td>
-					<td class="govuk-table__cell govuk-table__cell--numeric"><a href="course?courseId={{course.Identifier}}&courseType={{course.Type}}">Details</a></td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
 	</div>
 
 	<div class="govuk-grid-column-one-third">
@@ -86,10 +138,10 @@
 			<p>
 				<b>Address:</b>
 				<br>
-				<span class="govuk-!-display-block">{{providerInfo.ProviderName}}</span>
-				<span class="govuk-!-display-block">{{providerInfo.Addresses[0].Street}}</span>
-				<span class="govuk-!-display-block">{{providerInfo.Addresses[0].Town}}</span>
-				<span class="govuk-!-display-block">{{providerInfo.Addresses[0].PostCode}}</span>
+				{{providerInfo.ProviderName}}<br>
+				{{providerInfo.Addresses[0].Street}}<br>
+				{{providerInfo.Addresses[0].Town}}<br>
+				{{providerInfo.Addresses[0].PostCode}}
 			</p>
 
 			<ul class="govuk-list govuk-!-font-size-16">

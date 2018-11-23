@@ -1,0 +1,113 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row govuk-!-margin-top-8">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			{{providerInfo.ProviderName}}
+			<span class="govuk-caption-l">
+				UKPRN: {{providerInfo.Ukprn}}
+			</span>
+		</h1>
+
+		<!-- <a href="#" class="govuk-button govuk-!-margin-bottom-8">
+			Add to shortlist
+		</a> -->
+
+		<h2 class="govuk-heading-m">
+			About this provider {{data['ukprn']}} {{error|dump}}
+		</h2>
+
+		<p>
+			{{providerInfo.MarketingInfo | striptags(true) | escape | nl2br | replace('*','&bull;')}}
+		</p>
+
+		<hr class="govuk-section-break govuk-section-break--xl">
+
+		{% include './_provider-rating-section.html' %}
+
+		<hr class="govuk-section-break govuk-section-break--xl">
+
+		<table class="govuk-table">
+			<caption class="govuk-table__caption">114 Apprenticeships offered</caption>
+
+			<thead class="govuk-table__head">
+				<tr class="govuk-table__row">
+					<th class="govuk-table__header" scope="col">Apprenticeship</th>
+					<th class="govuk-table__header" scope="col">Type</th>
+					<th class="govuk-table__header govuk-table__header--numeric" scope="col">Level</th>
+					<th class="govuk-table__header govuk-table__header--numeric" scope="col"></th>
+				</tr>
+			</thead>
+
+			<tbody class="govuk-table__body">
+				{% for course in providerCourses.ApprenticeshipTrainingItems %}
+				<tr class="govuk-table__row">
+					<th class="govuk-table__header" scope="row">{{course.Name}}</th>
+					<td class="govuk-table__cell ">{{course.Type}}</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric">{{course.Level}}</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric"><a href="course?courseId={{course.Identifier}}&courseType={{course.Type}}">Details</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="app-related-items">
+			<h3 class="govuk-heading-m">
+				Contact details
+			</h3>
+
+			<p>
+				<b>Website:</b>
+				<br>
+				<a href="{{providerInfo.Website}}">{{providerInfo.ProviderName}} website </a>
+			</p>
+
+			<p>
+				<b>Phone number:</b>
+				<br>
+				{{providerInfo.Phone}}
+			</p>
+
+			<p>
+				<b>Email:</b>
+				<br>
+				<a href="#">{{providerInfo.Email}}</a>
+			</p>
+
+			<p>
+				<b>Address:</b>
+				<br>
+				<span class="govuk-!-display-block">{{providerInfo.ProviderName}}</span>
+				<span class="govuk-!-display-block">{{providerInfo.Addresses[0].Street}}</span>
+				<span class="govuk-!-display-block">{{providerInfo.Addresses[0].Town}}</span>
+				<span class="govuk-!-display-block">{{providerInfo.Addresses[0].PostCode}}</span>
+			</p>
+
+			<ul class="govuk-list govuk-!-font-size-16">
+				<li>
+					<a href="https://www.google.com/maps/search/?api=1&query={{providerInfo.ProviderName}} {{providerInfo.Addresses[0].PostCode}}" target="_blank">View on Google Maps</a>
+				</li>
+				<li>
+					<a href="https://www.openstreetmap.org/search?query={{providerInfo.Addresses[0].Street}},{{providerInfo.Addresses[0].PostCode}}" target="_blank">View on Open Street Map</a>
+				</li>
+			</ul>
+		</div>
+
+		<h4 class="govuk-heading-s govuk-!-font-size-16 govuk-!-margin-bottom-1 govuk-!-margin-top-8">
+			Content disclaimer
+		</h4>
+		<p class="govuk-!-font-size-14">
+			Education and Skills Funding Agency cannot guarantee the accuracy of course information on this site and makes no representations about the quality of any courses which appear on the site. Education and Skills Funding Agency is not liable for any losses suffered as a result of any party relying on the course information provided.
+		</p>
+	</div>
+
+	{% endblock %}

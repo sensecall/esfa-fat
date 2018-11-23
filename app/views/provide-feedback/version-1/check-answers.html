@@ -1,0 +1,87 @@
+{% extends "./layout--give-feedback.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-top-6">
+			Check your answers
+		</h1>
+
+		<dl class="app-check-your-answers app-check-your-answers--long">
+			<div class="app-check-your-answers__contents">
+				<dt class="app-check-your-answers__question">
+					{{data['provider-name'] or "COVENTRY CITY COUNCIL"}}'s strengths
+				</dt>
+				<dd class="app-check-your-answers__answer">
+					{% if not data['strengths'] %}
+					You didn't select any
+					{% else %}
+					<ul class="govuk-list">
+						{% for item in data['strengths'] %}
+						<li>{{item}}</li>
+						{% endfor %}
+					</ul>
+					{% endif %}
+				</dd>
+				<dd class="app-check-your-answers__change">
+					<a href="strengths?returnTo=check-answers">
+						Change<span class="govuk-visually-hidden"> name</span>
+					</a>
+				</dd>
+			</div>
+
+			<div class="app-check-your-answers__contents">
+				<dt class="app-check-your-answers__question">
+					Areas to improve
+				</dt>
+				<dd class="app-check-your-answers__answer">
+					{% if not data['improvements'] %}
+					You didn't select any
+					{% else %}
+					<ul class="govuk-list">
+						{% for item in data['improvements'] %}
+						<li>{{item}}</li>
+						{% endfor %}
+					</ul>
+					{% endif %}
+				</dd>
+				<dd class="app-check-your-answers__change">
+					<a href="improvements?returnTo=check-answers">
+						Change<span class="govuk-visually-hidden"> name</span>
+					</a>
+				</dd>
+			</div>
+
+			<div class="app-check-your-answers__contents">
+				<dt class="app-check-your-answers__question">
+					 Overall rating
+				</dt>
+				<dd class="app-check-your-answers__answer">
+					{{data['quality']}}
+				</dd>
+				<dd class="app-check-your-answers__change">
+					<a href="quality?returnTo=check-answers">
+						Change<span class="govuk-visually-hidden"> name</span>
+					</a>
+				</dd>
+			</div>
+		</dl>
+
+		<p>
+			Your answers will be published anonymously on the <b>Find apprenticeship training service</b> in the near future.
+		</p>
+
+		{{ govukButton({
+			text: "Submit answers",
+			href: "complete"
+		}) }}
+	</div>
+</div>
+
+{% endblock %}

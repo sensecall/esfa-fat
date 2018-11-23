@@ -27,48 +27,31 @@ router.get('/give-feedback', (req, res) => {
 	res.redirect(`/${req.version}/give-feedback/start`)
 })
 
-router.post('/fat/apprenticeship-or-provider', (req, res) => {
-	if (req.session.data['apprenticeship-or-provider'] === 'apprenticeships') {
-		fatCourseSearch(req,res)
-	} else {
-		res.redirect('provider')
-	}
-})
-
-router.get('/fat/apprenticeship-or-provider', (req, res) => {
+router.post('/fat/search-by-provider', (req, res) => {
+	var searchQuery = req.session.data['search-term'] || 'college'
 	var response = []
 
-	if ('providersList' in req.session.data){
-		res.render(`${req.version}/fat/apprenticeship-or-provider`)
-	} else {
-		request.get('https://findapprenticeshiptraining-api.sfa.bis.gov.uk/providers',
-		{
-			timeout: 10000,
-			json: true,
-			encoding: undefined
-		},
-		(error, response, body) => {
-			if (!error && response.statusCode == 200)
-			{
-				console.log(response)
-				req.session.data['providersList'] = body
-				res.render(`${req.version}/fat/apprenticeship-or-provider`)
-			} else {
-				console.log(error)
-			}
-		});
-	}
+	request.get('https://findapprenticeshiptraining-api.sfa.bis.gov.uk/providers/search?keywords=' + searchQuery,
+	{
+		json: true,
+		encoding: undefined
+	},
+	(error, response, body) => {
+		var providerResults = body
+		res.render(`${req.version}/fat/search-by-provider`,{providerResults})
+	});
 })
 
 router.get('/fat/course', (req, res) => {
 	var getUrl;
-	var response = []
 
 	if (req.session.data['courseId'] != ''){
 		getUrl = 'https://findapprenticeshiptraining-api.sfa.bis.gov.uk/' + req.session.data['courseType'] + 's/' + req.session.data['courseId']
 	} else {
 		getUrl = 'https://findapprenticeshiptraining-api.sfa.bis.gov.uk/Standards/94'
 	}
+
+	var response = []
 
 	request.get(getUrl,
 	{
@@ -85,6 +68,7 @@ router.get('/fat/course', (req, res) => {
 				res.render(`${req.version}/fat/course--framework`,{courseData})
 			}
 		}
+
 	});
 })
 
@@ -103,7 +87,7 @@ function fatCourseSearch(req,res) {
 	});
 }
 
-router.post(['/fat/search-results--apprenticeships', '/fat/search-by-keyword'], (req, res) => {
+router.post(['/fat/search-results--apprenticeships', '/fat/apprenticeship-or-provider'], (req, res) => {
 	fatCourseSearch(req,res);
 })
 
@@ -140,20 +124,8 @@ router.get('/fat/provider', (req, res) => {
 		encoding: undefined
 	},
 	(error, response, body) => {
-		if (!error && response.statusCode == 200) {
-			var providerInfo = body
-			var response = []
-
-			request.get('https://findapprenticeshiptraining-api.sfa.bis.gov.uk/providers/' + ukprn + '/active-apprenticeship-training',
-			{
-				json: true,
-				encoding: undefined
-			},
-			(error, response, body) => {
-				var providerCourses = body
-				res.render(`${req.version}/fat/provider`,{providerInfo, providerCourses})
-			});
-		}
+		var providerInfo = body
+		res.render(`${req.version}/fat/provider`,{providerInfo})
 	});
 })
 

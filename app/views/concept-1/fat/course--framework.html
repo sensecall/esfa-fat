@@ -1,0 +1,165 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+{% set course = data['course-details'] %}
+
+<div class="govuk-grid-row govuk-!-margin-top-8">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			{{ courseData.Title or "Accounting" }}
+		</h1>
+
+		<p>
+			This information is taken from an apprenticeship framework. It sets out what qualifications the apprentice can achieve.
+		</p>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<a href="find-training-provider-by-course--delivery?course-name={{courseData.Title}}" class="govuk-button" style="float:right">
+			{% if data['provider-link'] == 'true' %}
+			Find more training providers
+			{% else %}
+			Find a training provider
+			{% endif %}
+		</a>
+	</div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-8">
+	<div class="govuk-grid-column-full">
+		{% set jobRoles %}
+		<ul class="govuk-list govuk-list--bullet">
+			{% if courseData.JobRoleItems %}
+			{% for role in courseData.JobRoleItems %}
+			<li>{{role.Title}}</li>
+			{% endfor %}
+			{% else %}
+			<li>Accounts Assistant</li>
+			<li>Accounts Clerk</li>
+			<li>Cashier</li>
+			<li>Credit Control Clerk</li>
+			<li>Finance Assistant</li>
+			{% endif %}
+		</ul>
+
+		<p>
+			Your chosen training provider can advise you about the kinds of skills apprentices will learn.
+		</p>
+		{% endset %}
+
+		{% set qualifications %}
+		{% if courseData.CombinedQualification != ''  %}
+		<p>
+			Apprentices will achieve a practical and theory-based (or 'combined') qualification:
+		</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			{% for qualification in courseData.CombinedQualification %}
+			<li>{{qualification}}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+
+		{% if courseData.CompetencyQualification != '' %}
+		<p>
+			Apprentices will achieve a practical and theory-based (or &lsquo;combined&rsquo;) qualification:
+		</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			{% for qualification in courseData.CompetencyQualification %}
+			<li>{{qualification}}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+
+		{% if courseData.KnowledgeQualification != ''  %}
+		<p>
+			Apprentices will also achieve a theory-based (or 'knowledge') qualification:
+		</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			{% for qualification in courseData.KnowledgeQualification %}
+			<li>{{qualification}}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+
+		<p>
+			Your chosen training provider can advise you about the qualifications open to apprentices as they can change depending on individual and other circumstances.
+		</p>
+		{% endset %}
+
+		{{ govukTable({
+			caption: "Summary of this apprenticeship framework",
+			captionClasses: "govuk-heading-l",
+			firstCellIsHeader: true,
+			rows: [
+			[
+			{
+				text: "Level"
+			},
+			{
+				text: (courseData.Level or "2") + " (equivalent to GCSEs at grades A* to C)"
+			}
+			],
+			[
+			{
+				text: "Typical length"
+			},
+			{
+				text: (courseData.Duration or "12") + " months"
+			}
+			],
+			[
+			{
+				text: "Current funding band"
+			},
+			{
+				html: 'Up to £' + (courseData.CurrentFundingBand or courseData.CurrentFundingCap or 2000) | numeral().format(0,0) + ' per apprentice.<br>
+				<a href="#">More information about funding </a>'
+			}
+			],
+			[
+			{
+				text: "Entry requirements"
+			},
+			{
+				text: courseData.EntryRequirements or "Your chosen training provider can advise you about entry requirements for apprentices."
+			}
+			],
+			[
+			{
+				text: "Suitable roles for apprentices"
+			},
+			{
+				html: jobRoles
+			}
+			],
+			[
+			{
+				text: "Qualifications"
+			},
+			{
+				html: qualifications
+			}
+			],
+			[
+			{
+				text: "Professional registration"
+			},
+			{
+				text: "None specified."
+			}
+			]
+			]
+		}) }}
+	</div>
+</div>
+
+{% endblock %}

@@ -3,103 +3,32 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-	<div class="govuk-grid-column-two-thirds">
-		<h1 class="govuk-heading-xl govuk-!-margin-top-6 govuk-!-margin-bottom-8">
-			Find apprenticeship training
-		</h1>
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl govuk-!-margin-top-6 govuk-!-margin-bottom-8">
+            Find apprenticeship training
+        </h1>
 
-		<form method="post">
-			{% set providerHtml %}
-			<div class="govuk-form-group">
-				<label class="govuk-label" for="provider-search">
-					Provider name
-				</label>
-				<div class="autocomplete-wrapper">
-					<select class="autocomplete-element" id="provider-search" name="ukprn">
-						<option value="">Select one</option>
-						{% for provider in data['providersList'] %}
-						<option value="{{provider.Ukprn}}">{{provider.ProviderName}}</option>
-						{% endfor %}
-					</select>
-				</div>
-			</div>			
-			{% endset %}
+        <form method="post">
+            {{ govukInput({
+                label:
+                {
+                    text: "Apprenticeship name or job role"
+                },
+                id: "search-query",
+                name: "search-query"
+            }) }}   
 
-			{% set apprenticeshipHtml %}
-			{{ govukInput({
-				label:
-				{
-					text: "Search by keywords",
-					classes: "govuk-!-font-weight-bold"
-				},
-				hint:
-				{
-					text: "Can include job title or apprenticeship"
-				},
-				id: "search-query",
-				name: "search-query"
-			}) }}	
-			{% endset -%}
+            {{ govukButton({
+                text: "Search apprenticeship training"
+            }) }}
+        </form>
 
-			{{ govukRadios({
-				idPrefix: "apprenticeship-or-provider",
-				name: "apprenticeship-or-provider",
-				fieldset:
-				{
-					legend:
-					{
-						text: "Search by apprenticeships or named training provider",
-						isPageHeading: false,
-						classes: "govuk-fieldset__legend--s"
-					}
-				},
-				items: [
-				{
-					value: "apprenticeships",
-					text: "apprenticeships",
-					conditional:
-					{
-						html: apprenticeshipHtml
-					}
-				},
-				{
-					value: "training-provider",
-					text: "the name of a training provider you already know",
-					conditional:
-					{
-						html: providerHtml
-					}
-				}
-				]
-			}) }}
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-			<input value="" name="search-term" type="hidden">
-
-			{{ govukButton({
-				text: "Continue"
-			}) }}
-		</form>
-	</div>
+        <p>
+            You can also <a href="search-by-provider">search for a training provider</a>
+        </p>
+    </div>
 </div>
 
-{% endblock %}
-
-{% block pageScripts %}
-<script src="/public/javascripts/jquery-1.11.3.js"></script>
-<script src="/public/javascripts/accessible-autocomplete.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$('.autocomplete-element').each(function() {
-			var selectEl = document.querySelector('#' + $(this).attr('id') )
-			accessibleAutocomplete.enhanceSelectElement({
-				autoselect: false,
-				defaultValue: '',
-				minLength: 2,
-				selectElement: selectEl,
-				placeholder: 'Search for an apprenticeship',
-				showAllValues: false
-			})
-		})
-	})
-</script>
 {% endblock %}

@@ -35,6 +35,21 @@ router.post('/fat/apprenticeship-or-provider', (req, res) => {
 	}
 })
 
+router.post('/fat/search-by-provider', (req, res) => {
+	var searchQuery = req.session.data['search-term'] || 'college'
+	var response = []
+
+	request.get('https://findapprenticeshiptraining-api.sfa.bis.gov.uk/providers/search?keywords=' + searchQuery,
+	{
+		json: true,
+		encoding: undefined
+	},
+	(error, response, body) => {
+		var providerResults = body
+		res.render(`${req.version}/fat/search-by-provider`,{providerResults})
+	});
+})
+
 router.get('/fat/course', (req, res) => {
 	var getUrl;
 

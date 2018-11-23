@@ -7,7 +7,7 @@
 	classes: "govuk-!-margin-top-0"
 }) }}
 <div class="govuk-inset-text govuk-!-margin-top-4 govuk-inset-text--success">
-	The <b>{{data['course-name']}}</b> apprenticeship is available at this training provider (<a href="course">view {{data['courseType']}}</a>)
+	The <b>{{data['course-name']}}</b> apprenticeship is available at this training provider. You can <a href="course">read more about this {{data['courseType']}}</a>
 			<!-- <br>
 			<span class="govuk-!-margin-top-1 govuk-!-display-block">
 				<a href="#">Read more about this {{data['courseType'] | capitalize}}</a>
@@ -17,9 +17,6 @@
 			<div class="govuk-grid-column-two-thirds">
 				<h1 class="govuk-heading-xl">
 					{{providerInfo.ProviderName}}
-					<span class="govuk-caption-l">
-						UKPRN: {{providerInfo.Ukprn}}
-					</span>
 				</h1>
 
 				<!-- <div class="govuk-inset-text">
@@ -33,10 +30,6 @@
 				<p>
 					{{providerInfo.MarketingInfo | striptags(true) | escape | nl2br | replace('*','&bull;') | replace('\\','') }}
 				</p>
-
-				<hr class="govuk-section-break govuk-section-break--xl">
-
-				{% include './_provider-rating-section.html' %}
 
 				<hr class="govuk-section-break govuk-section-break--xl">
 
@@ -79,6 +72,10 @@
 					}) }}
 				</div>
 
+				<hr class="govuk-section-break govuk-section-break--xl">
+
+				{% include './_provider-rating-section.html' %}
+
 				<!--<a href="#" class="govuk-button govuk-!-margin-bottom-6">Add to shortlist</a>-->
 			</div>
 
@@ -109,10 +106,10 @@
 					<p>
 						<b>Address:</b>
 						<br>
-						<span class="govuk-!-display-block">{{providerInfo.ProviderName}}</span>
-						<span class="govuk-!-display-block">{{providerInfo.Addresses[0].Street}}</span>
-						<span class="govuk-!-display-block">{{providerInfo.Addresses[0].Town}}</span>
-						<span class="govuk-!-display-block">{{providerInfo.Addresses[0].PostCode}}</span>
+						{{providerInfo.ProviderName}}<br>
+						{{providerInfo.Addresses[0].Street}}<br>
+						{{providerInfo.Addresses[0].Town}}<br>
+						{{providerInfo.Addresses[0].PostCode}}
 					</p>
 
 					<ul class="govuk-list govuk-!-font-size-16">

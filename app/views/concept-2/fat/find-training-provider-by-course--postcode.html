@@ -1,0 +1,50 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<span class="govuk-caption-xl govuk-!-margin-top-4">
+			{{data['course-name'] or "Accounting, level 2" }}
+		</span>
+
+		<form action="search-results--provider">
+			{% call govukFieldset({
+				legend:
+				{
+					text: "Enter your postcode",
+					classes: "govuk-fieldset__legend--xl",
+					isPageHeading: true
+				}
+			}) %}
+
+			{{ govukInput({
+				label:
+				{
+					text: "Your postcode"
+				},
+				hint:
+				{
+					text: "We'll use this to sort your search results so that the closest provider to your location is shown first"
+				},
+				classes: "govuk-input--width-10",
+				id: "employer-postcode",
+				name: "employer-postcode"
+			}) }}
+
+			{% endcall %}
+
+			<input type="hidden" value="{{data['course-name']}}" name="course-name">
+
+			{{ govukButton({
+				text: "Find training providers"
+			})}}
+		</form>
+	</div>
+</div>
+{% endblock %}

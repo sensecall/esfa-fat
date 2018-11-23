@@ -1,0 +1,37 @@
+{% extends "./layout--give-feedback.html" %}
+
+{% set currentPage = 'apprentices' %}
+{% set serviceName = 'Give feedback' %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl govuk-!-margin-top-6 govuk-!-margin-bottom-4">
+            Give feedback on {{data['provider-name'] or "COVENTRY CITY COUNCIL"}}
+        </h1>
+        <p class="govuk-body-l">
+            Give feedback to let other employers know how {{data['provider-name'] or "COVENTRY CITY COUNCIL"}} is doing. It'll also help {{data['provider-name'] or "COVENTRY CITY COUNCIL"}} improve its apprenticeship training.
+        </p>
+
+        <p>
+            It's just 3 questions.
+        </p>
+
+        <p>
+            We publish your feedback but we don’t publish it with your name or the name of your organisation.
+        </p>
+
+        <p>
+            We would only disclose your name and the name of your organisation with your feedback if we were legally required to do so.
+        </p>
+
+        <p>
+            <a href="strengths" class="govuk-button govuk-button--start">
+                Start now
+            </a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}

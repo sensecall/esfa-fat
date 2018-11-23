@@ -1,0 +1,60 @@
+{% extends "./layout--fat.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<span class="govuk-caption-xl govuk-!-margin-top-4">
+			{{data['course-name'] or "Accounting, level 2" }}
+		</span>
+
+		<form action="find-training-provider-by-course--postcode">
+			{{ govukRadios({
+				idPrefix: "training-delivery",
+				name: "training-delivery",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Where do you want the training to happen?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint:
+				{
+					text: "Some providers only offer training at their location, while others may be willing to travel and deliver training at your location"
+				},
+				items: [
+				{
+					value: "employer",
+					text: "the training provider should travel to my organisation"
+				},
+				{
+					value: "provider",
+					text: "the apprentice will travel to the training provider"
+				},
+				{
+					value: "anywhere",
+					text: "I don't mind"
+				}
+				]
+			}) }}
+
+			{% from "inset-text/macro.njk" import govukInsetText %}
+			{{ govukInsetText({
+				text: "You can change this later"
+			}) }}
+
+			{{ govukButton({
+				text: "Save and continue"
+			})}}
+		</form>
+	</div>
+</div>
+{% endblock %}

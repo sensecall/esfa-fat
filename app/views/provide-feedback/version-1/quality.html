@@ -1,0 +1,84 @@
+{% extends "./layout--give-feedback.html" %}
+
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-top-6">
+			Training quality rating
+		</h1>
+
+		<form action="check-answers">
+			{% set legendText %}
+			How would you rate {{data['provider-name'] or 'COVENTRY CITY COUNCIL'}}’s training and service overall?
+			{% endset %}
+
+			{{ govukRadios({
+				idPrefix: "quality",
+				name: "quality",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: legendText,
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				items: [
+				{
+					value: "Excellent",
+					text: "Excellent",
+					checked: true if data['quality'] == "Excellent",
+					attributes:
+					{
+						required: "required"
+					}
+				},
+				{
+					value: "Good",
+					text: "Good",
+					checked: true if data['quality'] == "Good",
+					attributes:
+					{
+						required: "required"
+					}
+				},
+				{
+					value: "Poor",
+					text: "Poor",
+					checked: true if data['quality'] == "Poor",
+					attributes:
+					{
+						required: "required"
+					}
+				},
+				{
+					value: "Very poor",
+					text: "Very poor",
+					checked: true if data['quality'] == "Very poor",
+					attributes:
+					{
+						required: "required"
+					}
+				}
+				]
+			}) }}
+
+			{{ govukButton({
+				text: "Continue"
+			}) }}
+		</form>
+
+		<p>
+			<a href="#">Skip this question</a>
+		</p>
+	</div>
+</div>
+
+{% endblock %}

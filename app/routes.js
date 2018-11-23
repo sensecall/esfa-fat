@@ -11,6 +11,7 @@ router.use('/', (req, res, next) => {
   req.version = req.originalUrl.split('/')[1] // this is added by DC project
   req.feature = req.originalUrl.split('/')[1]
   req.sprint = req.originalUrl.split('/')[2]
+  req.featureVersion = req.originalUrl.split('/')[2]
   res.locals.version = req.version // this is added by DC project
   res.locals.feature = req.feature
   res.locals.sprint = req.sprint
@@ -30,6 +31,16 @@ router.use(/\/concept-([0-9]+)/, (req, res, next) => {
 // Branching
 router.use(/\/campaign\/version-([0-9]+)/, (req, res, next) => {
   require(`./views/campaign/version-${req.params[0]}/routes`)(req, res, next);
+})
+
+// EPAO feedback
+router.use(/\/epao-feedback\/version-([0-9]+)/, (req, res, next) => {
+  require(`./views/epao-feedback/version-${req.params[0]}/routes`)(req, res, next);
+})
+
+// EPAO feedback
+router.use(/\/provide-feedback\/version-([0-9]+)/, (req, res, next) => {
+  require(`./views/epao-feedback/version-${req.params[0]}/routes`)(req, res, next);
 })
 
 module.exports = router

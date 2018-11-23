@@ -41,7 +41,26 @@
 	{
 		text: ""
 	},
-	items: courseRoutes.items
+	items: courseRoutes.items,
+	formGroup:
+	{
+		classes: "govuk-!-display-inline"
+	}
+}) }}
+
+{{ govukSelect({
+	id: "sort",
+	name: "sort",
+	classes: "govuk-input--width-10",
+	label:
+	{
+		text: ""
+	},
+	items: courseRoutes.items,
+	formGroup:
+	{
+		classes: "govuk-!-display-inline"
+	}
 }) }}
 
 <ul class="graph-list">
