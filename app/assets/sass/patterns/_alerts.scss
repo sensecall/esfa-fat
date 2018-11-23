@@ -20,3 +20,16 @@
   	color: govuk-colour("white")
   }
 }
+
+.govuk-inset-text--neutral {
+  border-color: govuk-colour("grey-2");
+  background-color: mix(white, govuk-colour("grey-1"), 90%);
+}
+
+.govuk-inset-text--blue {
+  border-color: govuk-colour("light-blue");
+  background-color: govuk-colour("blue");
+  * {
+    color: #fff !important;
+  }
+}

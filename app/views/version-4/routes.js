@@ -102,7 +102,7 @@ function fatProviderSearch(req,res,query) {
 	},
 	(error, response, body) => {
 		var providerResults = body
-		res.render(`${req.version}/fat/search-results--provider`,{providerResults})
+		res.render(`${req.version}/fat/search-results--provider--v3`,{providerResults})
 	});
 }
 

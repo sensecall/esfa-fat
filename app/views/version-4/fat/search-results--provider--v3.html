@@ -1,0 +1,142 @@
+{% extends "./layout--fat.html" %}
+{% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		<h1 class="govuk-heading-xl govuk-!-margin-top-8 govuk-!-margin-bottom-0">
+			Search results
+		</h1>
+
+		<p class="govuk-!-margin-bottom-1">
+			There are <b>{{providerResults.length}}</b> training options for the <b>{{data['course-name']}}</b> apprenticeship.
+		</p>
+		<p class="govuk-!-margin-bottom-">
+			Results are ordered by distance from '<b>{{data['postcode']}}</b>'.
+		</p>
+		<p>
+			Results labelled <span style="background:#777;border-radius:4px;font-size: 16px;font-weight: bold;padding:1px 5px;color:#fff">National</span> are training options run by providers who are willing to offer training across England.
+		</p>
+	</div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-4">
+	<div class="govuk-grid-column-one-third govuk-!-margin-top-4">
+		<div class="editSearch">
+			<h2 class="govuk-heading-m">
+				Filter results
+			</h2>
+
+			<div class="filters-block filter-box">
+				<form method="get" autocomplete="off">
+					<fieldset class="filters filters-accordion unfolded">
+						<h2 class="toggler govuk-heading-s">Training options</h2>
+
+						<div class="toggled-content">
+							<ul class="govuk-!-margin-top-0 govuk-!-margin-bottom-0 govuk-list">
+								<li>
+									<input value="employer" id="training-delivery--employer" name="training-delivery" type="checkbox" {{"checked" if data['training-delivery'] != 'provider' }}>
+									<label for="training-delivery--employer" class="govuk-body-s">day release</label>
+								</li>
+								<li>
+									<input value="provider" id="training-delivery--provider" name="training-delivery" type="checkbox" {{"checked" if data['training-delivery'] != 'employer' }}>
+									<label for="training-delivery--provider" class="govuk-body-s">block release</label>
+								</li>
+								<li>
+									<input value="provider" id="training-delivery--provider" name="training-delivery" type="checkbox" {{"checked" if data['training-delivery'] != 'employer' }}>
+									<label for="training-delivery--provider" class="govuk-body-s">at your location</label>
+								</li>
+							</ul>
+						</div>
+					</fieldset>
+
+					<fieldset class="filters filters-accordion unfolded">
+						<h2 class="toggler govuk-heading-s">National training providers</h2>
+
+						<div class="toggled-content">
+							<ul class="govuk-!-margin-top-0 govuk-!-margin-bottom-0 govuk-list">
+								<li>
+									<input value="employer" id="training-delivery--employer" name="training-delivery" type="checkbox" {{"checked" if data['training-delivery'] != 'provider' }}>
+									<label for="training-delivery--employer" class="govuk-body-s">national providers</label>
+								</li>
+							</ul>
+						</div>
+					</fieldset>
+
+					<input type="submit" class="govuk-button" value="Update results" />
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="apprenticeship-results" class="govuk-grid-column-two-thirds">
+		{% set distances = [0.4,1.2,1.6,2.9,4.2,4.8,8.1,12.3,12.8,12.9,15,17,17.3,18.2,19.4,24.1,25,29,32.1,32.2,32.3] %}
+		{% set employerFeedback = [25,7,66,71,32,82,50,87,98,72,7,69,70,76,42,76,47,16,16,10,9,39,82,19,17,84,3,36,46,15,23,61,61,83,75,92,47,77,65,63,55,50,67,43,84,63,2,32,7,92,1,25,99,83,47,66,19,41,21,11,61,38,48,30,48,21,8,85,86,59,2,32,34,78,31,72,50,55,3,26,19,5,94,1,49,84,45,15,54,39,88,79,41,64,78,33,11,85,74,49] %}
+		{% set employerFeedbackReviews = [2,4,28,19,16,13,3,15,9,26,30,12,2,10,6,29,26,28,21,1,23] %}
+		{% set achievementRates = [59.2,94.3,78.5,80.6,85.1,94.3,72.1,72.6,63.1,85.9,70.3,56.7,75.0,60.4,58.2,81.9,80.3,86.8,72.2,90.8,58.2] %}
+
+		{% for result in providerResults %}
+		<article class="app-search-result framework-result">
+			<h2 class="result-title govuk-!-margin-bottom-2">
+				<a href="#{{[1,2,4,13,13,1,35,1] | random}}{{[1,2,4,13,13,1,35,9] | random}}">{{ result.ProviderName }}</a>
+			</h2>
+
+			<p class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-body-s" style="color: #666">
+				{{result.Addresses[0].Street + ", " if result.Addresses[0].Street else ""}}
+				{{result.Addresses[0].Town + ", " if result.Addresses[0].Town else ""}}
+				{{result.Addresses[0].PostCode + "" if result.Addresses[0].PostCode else ""}}
+
+				&ndash; <b>{{distances[loop.index]}} miles away</b>
+			</p>
+
+			<p class="govuk-!-margin-bottom-2 govuk-body-s">
+				<span class="govuk-!-display-inline-block">Training options:</span>
+
+				<span class="govuk-!-display-inline-block govuk-!-margin-right-2">
+					day release <img src="https://findapprenticeshiptraining.sfa.bis.gov.uk/Content/dist/css/images/green-tick.png" width="16px" style="vertical-align: middle;">
+				</span>
+				<span class="govuk-!-display-inline-block govuk-!-margin-right-2">
+					block release <img src="https://findapprenticeshiptraining.sfa.bis.gov.uk/Content/dist/css/images/green-tick.png" width="16px" style="vertical-align: middle;">
+				</span>
+				<span class="govuk-!-display-inline-block">
+					at your location <img src="https://findapprenticeshiptraining.sfa.bis.gov.uk/Content/dist/css/images/red-cross.png" width="16px" style="vertical-align: middle;">
+				</span>
+			</p>
+
+			{% set feedbackScore = (((employerFeedback[loop.index] / (100 / employerFeedbackReviews[loop.index] )) | round(0,"ceil")) / employerFeedbackReviews[loop.index] * 100) | round(0,"ceil") %}
+
+			<p class="govuk-!-margin-top-3 govuk-!-margin-bottom-3 govuk-inset-text govuk-inset-text--neutral">
+				Employer feedback: <b>{{feedbackScore}}% positive</b>
+
+				<span class="govuk-!-font-size-16 govuk-!-margin-bottom-0" style="color: #666">
+					(based on {{employerFeedbackReviews[loop.index]}} reviews)
+				</span>
+			</p>
+
+			<p class="govuk-!-margin-bottom-4" style="color:#666">
+				<span class="govuk-!-display-inline-block govuk-!-margin-right-4 govuk-!-margin-bottom-1 govuk-!-font-size-16">
+					Employer satisfaction: {{87 if (achievementRates[loop.index] * 1.12) > 100 else (achievementRates[loop.index] * 1.12) | int}}%
+				</span>
+
+				<span class="govuk-!-display-inline-block govuk-!-margin-right-4 govuk-!-margin-bottom-1 govuk-!-font-size-16">
+					Learner satisfaction: {{87 if (achievementRates[loop.index] * 1.05) > 100 else (achievementRates[loop.index] * 1.05) | int}}%
+				</span>
+
+				<span class="govuk-!-display-inline-block govuk-!-margin-right-4 govuk-!-margin-bottom-0 govuk-!-font-size-16">
+					Achievement rate: {{achievementRates[loop.index] | int}}%
+				</span>
+			</p>
+		</article>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/toggler.js"></script>
+{% endblock %}

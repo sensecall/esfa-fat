@@ -85,63 +85,51 @@
 				<a href="#{{[1,2,4,13,13,1,35,1] | random}}{{[1,2,4,13,13,1,35,9] | random}}">{{ result.ProviderName }}</a>
 			</h2>
 
-			<div class="govuk-inset-text govuk-!-margin-top-2 govuk-!-margin-bottom-1" style="border-width:3px; padding:8px">
+			<p class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-body-s" style="color: #666">
 				{{result.Addresses[0].Street + ", " if result.Addresses[0].Street else ""}}
 				{{result.Addresses[0].Town + ", " if result.Addresses[0].Town else ""}}
 				{{result.Addresses[0].PostCode + "" if result.Addresses[0].PostCode else ""}}
-			</div>
 
-			<p class="govuk-!-margin-bottom-0">
-				<b>Distance:</b> {{distances[loop.index]}} miles
+				&ndash; <b>{{distances[loop.index]}} miles away</b>
 			</p>
 
-			<p class="govuk-!-margin-bottom-2">
-				<b class="govuk-!-display-inline-block">Training options:</b>
+			<p class="govuk-!-margin-bottom-2 govuk-body-s">
+				<span class="govuk-!-display-inline-block">Training options:</span>
 
 				<span class="govuk-!-display-inline-block govuk-!-margin-right-2">
-					day release <span style="color:green;font-size:24px">&#10004;</span>
+					day release <img src="https://findapprenticeshiptraining.sfa.bis.gov.uk/Content/dist/css/images/green-tick.png" width="16px" style="vertical-align: middle;">
 				</span>
 				<span class="govuk-!-display-inline-block govuk-!-margin-right-2">
-					block release <span style="color:green;font-size:24px">&#10004;</span>
+					block release <img src="https://findapprenticeshiptraining.sfa.bis.gov.uk/Content/dist/css/images/green-tick.png" width="16px" style="vertical-align: middle;">
 				</span>
 				<span class="govuk-!-display-inline-block">
-					at your location <span style="color:red;font-size:24px">&#10008;</span>
+					at your location <img src="https://findapprenticeshiptraining.sfa.bis.gov.uk/Content/dist/css/images/red-cross.png" width="16px" style="vertical-align: middle;">
 				</span>
 			</p>
 
-			<div style="background:#eee;padding:15px" class="govuk-!-margin-bottom-4">
-				<div class="govuk-grid-row">
-					{% set feedbackScore = (((employerFeedback[loop.index] / (100 / employerFeedbackReviews[loop.index] )) | round(0,"ceil")) / employerFeedbackReviews[loop.index] * 100) | round(0,"ceil") %}
+			{% set feedbackScore = (((employerFeedback[loop.index] / (100 / employerFeedbackReviews[loop.index] )) | round(0,"ceil")) / employerFeedbackReviews[loop.index] * 100) | round(0,"ceil") %}
 
-					<div class="govuk-grid-column-one-half">
-						<p class="govuk-!-margin-bottom-0">
-							Employer feedback<span class="govuk-visually-hidden">:</span>
-						</p>
+			<p class="govuk-!-margin-top-3 govuk-!-margin-bottom-3">
+				Employer feedback: <b>{{feedbackScore}}% positive</b>
 
-						<p class="govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-margin-bottom-0">
-							{{feedbackScore}}% positive
-						</p>
+				<span class="govuk-!-font-size-16 govuk-!-margin-bottom-0" style="color: #666">
+					(based on {{employerFeedbackReviews[loop.index]}} reviews)
+				</span>
+			</p>
 
-						<p class="govuk-!-font-size-16 govuk-!-margin-bottom-0" style="color: #777">
-							(based on {{employerFeedbackReviews[loop.index]}} reviews)
-						</p>
-					</div>
+			<p class="govuk-!-margin-bottom-4" style="color:#666">
+				<span class="govuk-!-display-inline-block govuk-!-margin-right-4 govuk-!-margin-bottom-1 govuk-!-font-size-16">
+					Employer satisfaction: {{87 if (achievementRates[loop.index] * 1.12) > 100 else (achievementRates[loop.index] * 1.12) | int}}%
+				</span>
 
-					<div class="govuk-grid-column-one-half">
-						<p class="govuk-!-margin-bottom-1 govuk-!-font-size-16" style="color: #333">
-							Employer satisfaction: {{87 if (achievementRates[loop.index] * 1.12) > 100 else (achievementRates[loop.index] * 1.12) | int}}%
-						</p>
+				<span class="govuk-!-display-inline-block govuk-!-margin-right-4 govuk-!-margin-bottom-1 govuk-!-font-size-16">
+					Learner satisfaction: {{87 if (achievementRates[loop.index] * 1.05) > 100 else (achievementRates[loop.index] * 1.05) | int}}%
+				</span>
 
-						<p class="govuk-!-margin-bottom-1 govuk-!-font-size-16" style="color: #333">
-							Learner satisfaction: {{87 if (achievementRates[loop.index] * 1.05) > 100 else (achievementRates[loop.index] * 1.05) | int}}%
-						</p>
-
-						<p class="govuk-!-margin-bottom-0 govuk-!-font-size-16" style="color: #333">
-							Achievement rate: {{achievementRates[loop.index] | int}}%
-						</p>
-					</div>
-				</div>
-			</div>
+				<span class="govuk-!-display-inline-block govuk-!-margin-right-4 govuk-!-margin-bottom-0 govuk-!-font-size-16">
+					Achievement rate: {{achievementRates[loop.index] | int}}%
+				</span>
+			</p>
 		</article>
 		{% endfor %}
 	</div>
