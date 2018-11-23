@@ -1,8 +1,14 @@
 {% extends "./layout--fat.html" %}
 {% block content %}
+{{ govukBackLink({
+	text: "Back",
+	href: "javascript:history.back()",
+	classes: "govuk-!-margin-top-0"
+}) }}
+
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
-		<h1 class="govuk-heading-xl govuk-!-margin-top-8">
+		<h1 class="govuk-heading-xl govuk-!-margin-top-8 govuk-!-margin-bottom-0">
 			Search results
 		</h1>
 
@@ -68,56 +74,76 @@
 	</div>
 
 	<div id="apprenticeship-results" class="govuk-grid-column-two-thirds">
-		<!-- {{providerResults|dump}} -->
-
 		{% set distances = [0.4,1.2,1.6,2.9,4.2,4.8,8.1,12.3,12.8,12.9,15,17,17.3,18.2,19.4,24.1,25,29,32.1,32.2,32.3] %}
 		{% set employerFeedback = [25,7,66,71,32,82,50,87,98,72,7,69,70,76,42,76,47,16,16,10,9,39,82,19,17,84,3,36,46,15,23,61,61,83,75,92,47,77,65,63,55,50,67,43,84,63,2,32,7,92,1,25,99,83,47,66,19,41,21,11,61,38,48,30,48,21,8,85,86,59,2,32,34,78,31,72,50,55,3,26,19,5,94,1,49,84,45,15,54,39,88,79,41,64,78,33,11,85,74,49] %}
 		{% set employerFeedbackReviews = [2,4,28,19,16,13,3,15,9,26,30,12,2,10,6,29,26,28,21,1,23] %}
 		{% set achievementRates = [59.2,94.3,78.5,80.6,85.1,94.3,72.1,72.6,63.1,85.9,70.3,56.7,75.0,60.4,58.2,81.9,80.3,86.8,72.2,90.8,58.2] %}
 
 		{% for result in providerResults %}
-		<article class="app-search-result framework-result" id="framework-560-3-2">
+		<article class="app-search-result framework-result">
 			<h2 class="result-title govuk-!-margin-bottom-2">
-				<a attr-ga-result-interval="1-3" href="provider--course?ukprn={{result.Ukprn}}&distance={{distance}}">{{ result.ProviderName }}</a>
+				<a href="#{{[1,2,4,13,13,1,35,1] | random}}{{[1,2,4,13,13,1,35,9] | random}}">{{ result.ProviderName }}</a>
 			</h2>
 
-			<ul class="govuk-list">
-				<li>
-					<b>Distance:</b> {{distances[loop.index]}} miles
-				</li>
+			<div class="govuk-inset-text govuk-!-margin-top-2 govuk-!-margin-bottom-1" style="border-width:3px; padding:8px">
+				{{result.Addresses[0].Street + ", " if result.Addresses[0].Street else ""}}
+				{{result.Addresses[0].Town + ", " if result.Addresses[0].Town else ""}}
+				{{result.Addresses[0].PostCode + "" if result.Addresses[0].PostCode else ""}}
+			</div>
 
-				<li>
-					<div class="govuk-inset-text govuk-!-margin-top-0 govuk-!-margin-bottom-0" style="border-width:3px; padding:8px">
-						{{result.Addresses[0].Street + ", " if result.Addresses[0].Street else ""}}
-						{{result.Addresses[0].Town + ", " if result.Addresses[0].Town else ""}}
-						{{result.Addresses[0].PostCode + "" if result.Addresses[0].PostCode else ""}}
+			<p class="govuk-!-margin-bottom-0">
+				<b>Distance:</b> {{distances[loop.index]}} miles
+			</p>
+
+			<p class="govuk-!-margin-bottom-2">
+				<b class="govuk-!-display-inline-block">Training options:</b>
+
+				<span class="govuk-!-display-inline-block govuk-!-margin-right-2">
+					day release <span style="color:green;font-size:24px">&#10004;</span>
+				</span>
+				<span class="govuk-!-display-inline-block govuk-!-margin-right-2">
+					block release <span style="color:green;font-size:24px">&#10004;</span>
+				</span>
+				<span class="govuk-!-display-inline-block">
+					at your location <span style="color:red;font-size:24px">&#10008;</span>
+				</span>
+			</p>
+
+			<div style="background:#eee;padding:15px" class="govuk-!-margin-bottom-4">
+				<div class="govuk-grid-row">
+					{% set feedbackScore = (((employerFeedback[loop.index] / (100 / employerFeedbackReviews[loop.index] )) | round(0,"ceil")) / employerFeedbackReviews[loop.index] * 100) | round(0,"ceil") %}
+
+					<div class="govuk-grid-column-one-half">
+						<p class="govuk-!-margin-bottom-0">
+							Employer feedback<span class="govuk-visually-hidden">:</span>
+						</p>
+
+						<p class="govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+							{{feedbackScore}}% positive
+						</p>
+
+						<p class="govuk-!-font-size-16 govuk-!-margin-bottom-0" style="color: #777">
+							(based on {{employerFeedbackReviews[loop.index]}} reviews)
+						</p>
 					</div>
-				</li>
 
-				<li>
-					<b>Training options:</b>
-					<span class="govuk-!-display-inline-block govuk-!-margin-right-2">day release <span style="color:green;font-size:24px">&#10004;</span></span>
-					<span class="govuk-!-display-inline-block govuk-!-margin-right-2">block release <span style="color:green;font-size:24px">&#10004;</span></span>
-					<span class="govuk-!-display-inline-block">at your location <span style="color:red;font-size:24px">&#10008;</span></span>
-				</li>
+					<div class="govuk-grid-column-one-half">
+						<p class="govuk-!-margin-bottom-1 govuk-!-font-size-16" style="color: #333">
+							Employer satisfaction: {{87 if (achievementRates[loop.index] * 1.12) > 100 else (achievementRates[loop.index] * 1.12) | int}}%
+						</p>
 
-				<li class="govuk-!-margin-bottom-3 govuk-!-margin-top-3">
-					<b> Employer feedback:</b> {{(((employerFeedback[loop.index] / (100 / employerFeedbackReviews[loop.index] )) | round(0,"ceil")) / employerFeedbackReviews[loop.index] * 100) | round(0,"ceil") }}% positive <span style="color: #777">(based on {{employerFeedbackReviews[loop.index]}} reviews)</span>
-				</li>
+						<p class="govuk-!-margin-bottom-1 govuk-!-font-size-16" style="color: #333">
+							Learner satisfaction: {{87 if (achievementRates[loop.index] * 1.05) > 100 else (achievementRates[loop.index] * 1.05) | int}}%
+						</p>
 
-				<li class="govuk-!-margin-bottom-0">
-					<b>Employer satisfaction:</b> {{87 if (achievementRates[loop.index] * 1.12) > 100 else (achievementRates[loop.index] * 1.12) | int}}%
-				</li>
-				<li class="govuk-!-margin-bottom-0">
-					<b>Learner satisfaction:</b> {{87 if (achievementRates[loop.index] * 1.05) > 100 else (achievementRates[loop.index] * 1.05) | int}}%
-				</li>
-				<li class="govuk-!-margin-bottom-0">
-					<b>Achievement rate:</b> {{achievementRates[loop.index] | int}}%
-				</li>
-			</ul>
+						<p class="govuk-!-margin-bottom-0 govuk-!-font-size-16" style="color: #333">
+							Achievement rate: {{achievementRates[loop.index] | int}}%
+						</p>
+					</div>
+				</div>
+			</div>
 		</article>
 		{% endfor %}
-
 	</div>
 </div>
 {% endblock %}
