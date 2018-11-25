@@ -93,23 +93,9 @@
 				&ndash; <b>{{distances[loop.index]}} miles away</b>
 			</p>
 
-			<p class="govuk-!-margin-bottom-2 govuk-body-s">
-				<span class="govuk-!-display-inline-block">Training options:</span>
-
-				<span class="govuk-!-display-inline-block govuk-!-margin-right-2">
-					day release <img src="https://findapprenticeshiptraining.sfa.bis.gov.uk/Content/dist/css/images/green-tick.png" width="16px" style="vertical-align: middle;">
-				</span>
-				<span class="govuk-!-display-inline-block govuk-!-margin-right-2">
-					block release <img src="https://findapprenticeshiptraining.sfa.bis.gov.uk/Content/dist/css/images/green-tick.png" width="16px" style="vertical-align: middle;">
-				</span>
-				<span class="govuk-!-display-inline-block">
-					at your location <img src="https://findapprenticeshiptraining.sfa.bis.gov.uk/Content/dist/css/images/red-cross.png" width="16px" style="vertical-align: middle;">
-				</span>
-			</p>
-
 			{% set feedbackScore = (((employerFeedback[loop.index] / (100 / employerFeedbackReviews[loop.index] )) | round(0,"ceil")) / employerFeedbackReviews[loop.index] * 100) | round(0,"ceil") %}
 
-			<p class="govuk-!-margin-top-3 govuk-!-margin-bottom-3 govuk-inset-text govuk-inset-text--neutral">
+			<p class="govuk-!-margin-top-3 govuk-!-margin-bottom-2 govuk-inset-text govuk-inset-text--neutral">
 				Employer feedback: <b>{{feedbackScore}}% positive</b>
 
 				<span class="govuk-!-font-size-16 govuk-!-margin-bottom-0" style="color: #666">
@@ -117,7 +103,7 @@
 				</span>
 			</p>
 
-			<p class="govuk-!-margin-bottom-4" style="color:#666">
+			<p class="govuk-!-margin-bottom-2" style="color:#666">
 				<span class="govuk-!-display-inline-block govuk-!-margin-right-4 govuk-!-margin-bottom-1 govuk-!-font-size-16">
 					Employer satisfaction: {{87 if (achievementRates[loop.index] * 1.12) > 100 else (achievementRates[loop.index] * 1.12) | int}}%
 				</span>
@@ -128,6 +114,20 @@
 
 				<span class="govuk-!-display-inline-block govuk-!-margin-right-4 govuk-!-margin-bottom-0 govuk-!-font-size-16">
 					Achievement rate: {{achievementRates[loop.index] | int}}%
+				</span>
+			</p>
+
+			<p class="govuk-!-margin-bottom-4 govuk-body-s">
+				<span class="govuk-!-display-inline-block">Training options:</span>
+
+				<span class="govuk-!-display-inline-block govuk-!-margin-right-2">
+					day release <img src="https://findapprenticeshiptraining.sfa.bis.gov.uk/Content/dist/css/images/green-tick.png" width="16px" style="vertical-align: middle;">
+				</span>
+				<span class="govuk-!-display-inline-block govuk-!-margin-right-2">
+					block release <img src="https://findapprenticeshiptraining.sfa.bis.gov.uk/Content/dist/css/images/green-tick.png" width="16px" style="vertical-align: middle;">
+				</span>
+				<span class="govuk-!-display-inline-block">
+					at your location <img src="https://findapprenticeshiptraining.sfa.bis.gov.uk/Content/dist/css/images/red-cross.png" width="16px" style="vertical-align: middle;">
 				</span>
 			</p>
 		</article>
