@@ -95,6 +95,11 @@
 
 			{% set feedbackScore = (((employerFeedback[loop.index] / (100 / employerFeedbackReviews[loop.index] )) | round(0,"ceil")) / employerFeedbackReviews[loop.index] * 100) | round(0,"ceil") %}
 
+			{% if loop.index == 2 or loop.index == 4 or loop.index == 5  %}
+			<p class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-inset-text govuk-inset-text--neutral">
+				Employer feedback: none yet
+			</p>
+			{% else %}
 			<p class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-inset-text govuk-inset-text--neutral">
 				Employer feedback: <b>{{feedbackScore}}% positive</b>
 
@@ -102,6 +107,7 @@
 					(based on {{employerFeedbackReviews[loop.index]}} reviews)
 				</span>
 			</p>
+			{% endif %}
 
 			<p class="govuk-!-margin-bottom-2" style="color:#666">
 				<span class="govuk-!-display-inline-block govuk-!-margin-right-4 govuk-!-margin-bottom-1 govuk-!-font-size-16">
