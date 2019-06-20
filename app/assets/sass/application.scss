@@ -35,6 +35,7 @@ $govuk-global-styles: true;
 @import "patterns/fat-patterns";
 @import "components/toggler";
 @import "patterns/data-list";
+// @import "accessible-autocomplete";
 
 // Components that aren't in Frontend
 @import "components/cookie-banner";
