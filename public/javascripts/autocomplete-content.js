@@ -1,13 +1,17 @@
-import accessibleAutocomplete from 'accessible-autocomplete'
+// import accessibleAutocomplete from 'accessible-autocomplete'
+//
+// const countries = [
+//   'France',
+//   'Germany',
+//   'United Kingdom'
+// ]
+//
+// accessibleAutocomplete({
+//   element: document.querySelector('#my-autocomplete-container'),
+//   id: 'my-autocomplete', // To match it to the existing <label>.
+//   source: countries
+// })
 
-const countries = [
-  'France',
-  'Germany',
-  'United Kingdom'
-]
-
-accessibleAutocomplete({
-  element: document.querySelector('#my-autocomplete-container'),
-  id: 'my-autocomplete', // To match it to the existing <label>.
-  source: countries
+accessibleAutocomplete.enhanceSelectElement({
+     selectElement: document.querySelector('#apprenticeship-picker')
 })

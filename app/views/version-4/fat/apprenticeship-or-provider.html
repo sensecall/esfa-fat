@@ -8,21 +8,2700 @@
                Find apprenticeship training
           </h1>
 
-          <form method="post">
-               <div class="govuk-form-group">
-                    <label for="my-autocomplete">Apprenticeship name or job role</label>
-                    <div id="my-autocomplete-container"></div>
-               </div>
-               {{ govukInput({
-                    label:
-                    {
+          <form method="post" id="fat-search">
+               {{ govukSelect({
+                    id: "apprenticeship-picker",
+                    name: "apprenticeship-picker",
+                    displayMenu: "overlay",
+                    label: {
                          text: "Apprenticeship name or job role"
                     },
                     hint: {
                          text: "Start typing the apprenticeship name"
                     },
-                    id: "search-query",
-                    name: "search-query"
+                    items: [
+                         {
+                              value: "",
+                              text: "",
+                              selected: true
+                         },
+                         {
+                              value: "Abattoir worker",
+                              text: "Abattoir worker"
+                         },
+                         {
+                              value: "Able seafarer (deck)",
+                              text: "Able seafarer (deck)"
+                         },
+                         {
+                              value: "Academic professional",
+                              text: "Academic professional"
+                         },
+                         {
+                              value: "Accessibility and Digital Inclusion",
+                              text: "Accessibility and Digital Inclusion"
+                         },
+                         {
+                              value: "Accident Repair Technician",
+                              text: "Accident Repair Technician"
+                         },
+                         {
+                              value: "Accountancy / Taxation Professional",
+                              text: "Accountancy / Taxation Professional"
+                         },
+                         {
+                              value: "Accounts / finance assistant",
+                              text: "Accounts / finance assistant"
+                         },
+                         {
+                              value: "Acoustics Technician",
+                              text: "Acoustics Technician"
+                         },
+                         {
+                              value: "Actuarial technician",
+                              text: "Actuarial technician"
+                         },
+                         {
+                              value: "Actuary",
+                              text: "Actuary"
+                         },
+                         {
+                              value: "Adult care worker",
+                              text: "Adult care worker"
+                         },
+                         {
+                              value: "Advanced and creative hair professional",
+                              text: "Advanced and creative hair professional"
+                         },
+                         {
+                              value: "Advanced Baker",
+                              text: "Advanced Baker"
+                         },
+                         {
+                              value: "Advanced Beauty Professional",
+                              text: "Advanced Beauty Professional"
+                         },
+                         {
+                              value: "Advanced butcher",
+                              text: "Advanced butcher"
+                         },
+                         {
+                              value: "Advanced Carpentry and Joinery",
+                              text: "Advanced Carpentry and Joinery"
+                         },
+                         {
+                              value: "Advanced clinical practitioner (degree)",
+                              text: "Advanced clinical practitioner (degree)"
+                         },
+                         {
+                              value: "Advanced Coach (Sport and Physical Activity)",
+                              text: "Advanced Coach (Sport and Physical Activity)"
+                         },
+                         {
+                              value: "Advanced credit controller / debt collection specialist",
+                              text: "Advanced credit controller / debt collection specialist"
+                         },
+                         {
+                              value: "Advanced dairy technologist",
+                              text: "Advanced dairy technologist"
+                         },
+                         {
+                              value: "Advanced forensic collision investigator",
+                              text: "Advanced forensic collision investigator"
+                         },
+                         {
+                              value: "Advanced forensic practitioner (custody or sexual offence)",
+                              text: "Advanced forensic practitioner (custody or sexual offence)"
+                         },
+                         {
+                              value: "Advanced furniture CNC technician",
+                              text: "Advanced furniture CNC technician"
+                         },
+                         {
+                              value: "Advanced Golf Greenkeeper",
+                              text: "Advanced Golf Greenkeeper"
+                         },
+                         {
+                              value: "Advanced upholsterer",
+                              text: "Advanced upholsterer"
+                         },
+                         {
+                              value: "Advertising and media executive",
+                              text: "Advertising and media executive"
+                         },
+                         {
+                              value: "Advertising Creative",
+                              text: "Advertising Creative"
+                         },
+                         {
+                              value: "Aerospace engineer (degree)",
+                              text: "Aerospace engineer (degree)"
+                         },
+                         {
+                              value: "Aerospace Manufacturing Engineer",
+                              text: "Aerospace Manufacturing Engineer"
+                         },
+                         {
+                              value: "Aerospace software development engineer (degree)",
+                              text: "Aerospace software development engineer (degree)"
+                         },
+                         {
+                              value: "Air Traffic Controller",
+                              text: "Air Traffic Controller"
+                         },
+                         {
+                              value: "Aircraft maintenance certifying engineer",
+                              text: "Aircraft maintenance certifying engineer"
+                         },
+                         {
+                              value: "Airside operator",
+                              text: "Airside operator"
+                         },
+                         {
+                              value: "Airworthiness Maintenance Engineer",
+                              text: "Airworthiness Maintenance Engineer"
+                         },
+                         {
+                              value: "Ambulance support worker (emergency, urgent and non-urgent)",
+                              text: "Ambulance support worker (emergency, urgent and non-urgent)"
+                         },
+                         {
+                              value: "Animal care and welfare assistant",
+                              text: "Animal care and welfare assistant"
+                         },
+                         {
+                              value: "Animal Feed & Grain Trade Process Operator (Level 2)",
+                              text: "Animal Feed & Grain Trade Process Operator (Level 2)"
+                         },
+                         {
+                              value: "Animal Technologist",
+                              text: "Animal Technologist"
+                         },
+                         {
+                              value: "Animal trainer",
+                              text: "Animal trainer"
+                         },
+                         {
+                              value: "Arborist",
+                              text: "Arborist"
+                         },
+                         {
+                              value: "Archaeological specialist",
+                              text: "Archaeological specialist"
+                         },
+                         {
+                              value: "Archaeological Technician",
+                              text: "Archaeological Technician"
+                         },
+                         {
+                              value: "Architect (degree)",
+                              text: "Architect (degree)"
+                         },
+                         {
+                              value: "Architectural assistant (degree)",
+                              text: "Architectural assistant (degree)"
+                         },
+                         {
+                              value: "Arts therapist (degree)",
+                              text: "Arts therapist (degree)"
+                         },
+                         {
+                              value: "Asbestos Analyst/Surveyor",
+                              text: "Asbestos Analyst/Surveyor"
+                         },
+                         {
+                              value: "Asbestos Removal Operative",
+                              text: "Asbestos Removal Operative"
+                         },
+                         {
+                              value: "Assessor/coach",
+                              text: "Assessor/coach"
+                         },
+                         {
+                              value: "Assistant accountant",
+                              text: "Assistant accountant"
+                         },
+                         {
+                              value: "Assistant buyer / assistant merchandiser",
+                              text: "Assistant buyer / assistant merchandiser"
+                         },
+                         {
+                              value: "Assistant historic environment adviser",
+                              text: "Assistant historic environment adviser"
+                         },
+                         {
+                              value: "Assistant technical director (visual effects)",
+                              text: "Assistant technical director (visual effects)"
+                         },
+                         {
+                              value: "Associate ambulance practitioner",
+                              text: "Associate ambulance practitioner"
+                         },
+                         {
+                              value: "Associate continuing healthcare practitioner",
+                              text: "Associate continuing healthcare practitioner"
+                         },
+                         {
+                              value: "Associate project manager",
+                              text: "Associate project manager"
+                         },
+                         {
+                              value: "Autocare technician",
+                              text: "Autocare technician"
+                         },
+                         {
+                              value: "Automation & Controls Engineering Technician",
+                              text: "Automation & Controls Engineering Technician"
+                         },
+                         {
+                              value: "Automotive glazing technician",
+                              text: "Automotive glazing technician"
+                         },
+                         {
+                              value: "Aviation ground operative",
+                              text: "Aviation ground operative"
+                         },
+                         {
+                              value: "Aviation ground specialist",
+                              text: "Aviation ground specialist"
+                         },
+                         {
+                              value: "Aviation maintenance mechanic (military)",
+                              text: "Aviation maintenance mechanic (military)"
+                         },
+                         {
+                              value: "Aviation operations manager",
+                              text: "Aviation operations manager"
+                         },
+                         {
+                              value: "Baker",
+                              text: "Baker"
+                         },
+                         {
+                              value: "Beauty and make up consultant",
+                              text: "Beauty and make up consultant"
+                         },
+                         {
+                              value: "Beauty Professional",
+                              text: "Beauty Professional"
+                         },
+                         {
+                              value: "Beauty therapist",
+                              text: "Beauty therapist"
+                         },
+                         {
+                              value: "BEMS (Building Energy Management Systems) Controls Engineer",
+                              text: "BEMS (Building Energy Management Systems) Controls Engineer"
+                         },
+                         {
+                              value: "Bespoke furniture maker",
+                              text: "Bespoke furniture maker"
+                         },
+                         {
+                              value: "Bespoke Saddler",
+                              text: "Bespoke Saddler"
+                         },
+                         {
+                              value: "Bespoke tailor and cutter",
+                              text: "Bespoke tailor and cutter"
+                         },
+                         {
+                              value: "Bicycle mechanic",
+                              text: "Bicycle mechanic"
+                         },
+                         {
+                              value: "Bid and proposal co-ordinator",
+                              text: "Bid and proposal co-ordinator"
+                         },
+                         {
+                              value: "Bioinformatics scientist",
+                              text: "Bioinformatics scientist"
+                         },
+                         {
+                              value: "Blacksmith",
+                              text: "Blacksmith"
+                         },
+                         {
+                              value: "Boatbuilder",
+                              text: "Boatbuilder"
+                         },
+                         {
+                              value: "Boatmaster Tidal Inland Waterways",
+                              text: "Boatmaster Tidal Inland Waterways"
+                         },
+                         {
+                              value: "Bookbinder",
+                              text: "Bookbinder"
+                         },
+                         {
+                              value: "Brewer",
+                              text: "Brewer"
+                         },
+                         {
+                              value: "Bricklayer",
+                              text: "Bricklayer"
+                         },
+                         {
+                              value: "Broadcast and communications principal technologist (degree)",
+                              text: "Broadcast and communications principal technologist (degree)"
+                         },
+                         {
+                              value: "Broadcast and communications technical operator",
+                              text: "Broadcast and communications technical operator"
+                         },
+                         {
+                              value: "Broadcast and Communications Technician",
+                              text: "Broadcast and Communications Technician"
+                         },
+                         {
+                              value: "Broadcast and media systems engineer (degree)",
+                              text: "Broadcast and media systems engineer (degree)"
+                         },
+                         {
+                              value: "Broadcast production assistant",
+                              text: "Broadcast production assistant"
+                         },
+                         {
+                              value: "Building control surveyor (degree)",
+                              text: "Building control surveyor (degree)"
+                         },
+                         {
+                              value: "Building services design engineer (degree)",
+                              text: "Building services design engineer (degree)"
+                         },
+                         {
+                              value: "Building Services Design Technician",
+                              text: "Building Services Design Technician"
+                         },
+                         {
+                              value: "Building Services Engineering Craftsperson",
+                              text: "Building Services Engineering Craftsperson"
+                         },
+                         {
+                              value: "Building Services Engineering Ductwork Craftsperson",
+                              text: "Building Services Engineering Ductwork Craftsperson"
+                         },
+                         {
+                              value: "Building Services Engineering Ductwork Installer",
+                              text: "Building Services Engineering Ductwork Installer"
+                         },
+                         {
+                              value: "Building Services Engineering Installer",
+                              text: "Building Services Engineering Installer"
+                         },
+                         {
+                              value: "Building services engineering service and maintenance engineer",
+                              text: "Building services engineering service and maintenance engineer"
+                         },
+                         {
+                              value: "Building services engineering site management (degree)",
+                              text: "Building services engineering site management (degree)"
+                         },
+                         {
+                              value: "Building services engineering technician",
+                              text: "Building services engineering technician"
+                         },
+                         {
+                              value: "Building Services Engineering Ventilation Hygiene Technician",
+                              text: "Building Services Engineering Ventilation Hygiene Technician"
+                         },
+                         {
+                              value: "Bus and coach engineering technician",
+                              text: "Bus and coach engineering technician"
+                         },
+                         {
+                              value: "Business Administrator",
+                              text: "Business Administrator"
+                         },
+                         {
+                              value: "Business Fire Safety Advisor",
+                              text: "Business Fire Safety Advisor"
+                         },
+                         {
+                              value: "Business to business sales professional (degree)",
+                              text: "Business to business sales professional (degree)"
+                         },
+                         {
+                              value: "Butcher",
+                              text: "Butcher"
+                         },
+                         {
+                              value: "Buying and merchandising assistant",
+                              text: "Buying and merchandising assistant"
+                         },
+                         {
+                              value: "Cabin Crew",
+                              text: "Cabin Crew"
+                         },
+                         {
+                              value: "Career Development Professional",
+                              text: "Career Development Professional"
+                         },
+                         {
+                              value: "Carpentry and Joinery",
+                              text: "Carpentry and Joinery"
+                         },
+                         {
+                              value: "Castings, Foundry & Patternmaking Operative",
+                              text: "Castings, Foundry & Patternmaking Operative"
+                         },
+                         {
+                              value: "Chartered legal executive",
+                              text: "Chartered legal executive"
+                         },
+                         {
+                              value: "Chartered manager",
+                              text: "Chartered manager"
+                         },
+                         {
+                              value: "Chartered surveyor (degree)",
+                              text: "Chartered surveyor (degree)"
+                         },
+                         {
+                              value: "Chartered town planner (degree)",
+                              text: "Chartered town planner (degree)"
+                         },
+                         {
+                              value: "Chef De Partie",
+                              text: "Chef De Partie"
+                         },
+                         {
+                              value: "Children, Young People & Families Manager",
+                              text: "Children, Young People & Families Manager"
+                         },
+                         {
+                              value: "Children, Young People & Families Practitioner",
+                              text: "Children, Young People & Families Practitioner"
+                         },
+                         {
+                              value: "Civil engineer (degree)",
+                              text: "Civil engineer (degree)"
+                         },
+                         {
+                              value: "Civil engineering site management (degree)",
+                              text: "Civil engineering site management (degree)"
+                         },
+                         {
+                              value: "Civil engineering technician",
+                              text: "Civil engineering technician"
+                         },
+                         {
+                              value: "Clinical Academic Professional (Degree)",
+                              text: "Clinical Academic Professional (Degree)"
+                         },
+                         {
+                              value: "Clinical associate psychologist (degree)",
+                              text: "Clinical associate psychologist (degree)"
+                         },
+                         {
+                              value: "Clinical Coder",
+                              text: "Clinical Coder"
+                         },
+                         {
+                              value: "Clinical Dental Technician",
+                              text: "Clinical Dental Technician"
+                         },
+                         {
+                              value: "Clinical pharmacology scientist",
+                              text: "Clinical pharmacology scientist"
+                         },
+                         {
+                              value: "Clinical trials specialist (degree)",
+                              text: "Clinical trials specialist (degree)"
+                         },
+                         {
+                              value: "Clock maker",
+                              text: "Clock maker"
+                         },
+                         {
+                              value: "Coaching professional",
+                              text: "Coaching professional"
+                         },
+                         {
+                              value: "Commercial catering equipment technician",
+                              text: "Commercial catering equipment technician"
+                         },
+                         {
+                              value: "Commercial Procurement and Supply (formerly Public sector commercial professional)",
+                              text: "Commercial Procurement and Supply (formerly Public sector commercial professional)"
+                         },
+                         {
+                              value: "Commercial Thermal Insulation Operative",
+                              text: "Commercial Thermal Insulation Operative"
+                         },
+                         {
+                              value: "Commis chef",
+                              text: "Commis chef"
+                         },
+                         {
+                              value: "Community Activator Coach",
+                              text: "Community Activator Coach"
+                         },
+                         {
+                              value: "Community Energy Specialist",
+                              text: "Community Energy Specialist"
+                         },
+                         {
+                              value: "Community Safety Advisor",
+                              text: "Community Safety Advisor"
+                         },
+                         {
+                              value: "Community Sport and Health Officer",
+                              text: "Community Sport and Health Officer"
+                         },
+                         {
+                              value: "Compliance / risk officer",
+                              text: "Compliance / risk officer"
+                         },
+                         {
+                              value: "Composites Technician",
+                              text: "Composites Technician"
+                         },
+                         {
+                              value: "Compressed air and vacuum systems electro mechanic",
+                              text: "Compressed air and vacuum systems electro mechanic"
+                         },
+                         {
+                              value: "Construction Assembly Technician",
+                              text: "Construction Assembly Technician"
+                         },
+                         {
+                              value: "Construction Design and Build Technician",
+                              text: "Construction Design and Build Technician"
+                         },
+                         {
+                              value: "Construction design management (degree)",
+                              text: "Construction design management (degree)"
+                         },
+                         {
+                              value: "Construction Equipment Maintenance Technician",
+                              text: "Construction Equipment Maintenance Technician"
+                         },
+                         {
+                              value: "Construction plant operative",
+                              text: "Construction plant operative"
+                         },
+                         {
+                              value: "Construction quantity surveyor (degree)",
+                              text: "Construction quantity surveyor (degree)"
+                         },
+                         {
+                              value: "Construction Site Engineering Technician",
+                              text: "Construction Site Engineering Technician"
+                         },
+                         {
+                              value: "Construction Site Management",
+                              text: "Construction Site Management"
+                         },
+                         {
+                              value: "Construction Site Supervisor",
+                              text: "Construction Site Supervisor"
+                         },
+                         {
+                              value: "Construction surveying technician",
+                              text: "Construction surveying technician"
+                         },
+                         {
+                              value: "Control / technical support engineer (degree)",
+                              text: "Control / technical support engineer (degree)"
+                         },
+                         {
+                              value: "Conveyancing technician",
+                              text: "Conveyancing technician"
+                         },
+                         {
+                              value: "Corporate Investigator",
+                              text: "Corporate Investigator"
+                         },
+                         {
+                              value: "Costume performance technician",
+                              text: "Costume performance technician"
+                         },
+                         {
+                              value: "Counter fraud investigator",
+                              text: "Counter fraud investigator"
+                         },
+                         {
+                              value: "Countryside worker",
+                              text: "Countryside worker"
+                         },
+                         {
+                              value: "Creative digital design professional",
+                              text: "Creative digital design professional"
+                         },
+                         {
+                              value: "Creative industries production manager (degree)",
+                              text: "Creative industries production manager (degree)"
+                         },
+                         {
+                              value: "Creative Venue Technician",
+                              text: "Creative Venue Technician"
+                         },
+                         {
+                              value: "Credit controller / collector",
+                              text: "Credit controller / collector"
+                         },
+                         {
+                              value: "Critical Care Practitioner (Adult)",
+                              text: "Critical Care Practitioner (Adult)"
+                         },
+                         {
+                              value: "Crop technician",
+                              text: "Crop technician"
+                         },
+                         {
+                              value: "Cultural Heritage Conservation Technician",
+                              text: "Cultural Heritage Conservation Technician"
+                         },
+                         {
+                              value: "Cultural heritage conservator",
+                              text: "Cultural heritage conservator"
+                         },
+                         {
+                              value: "Cultural learning and participation officer",
+                              text: "Cultural learning and participation officer"
+                         },
+                         {
+                              value: "Curator (creative and cultural heritage)",
+                              text: "Curator (creative and cultural heritage)"
+                         },
+                         {
+                              value: "Curtain wall installer",
+                              text: "Curtain wall installer"
+                         },
+                         {
+                              value: "Custody & Detention Officer",
+                              text: "Custody & Detention Officer"
+                         },
+                         {
+                              value: "Customer service practitioner",
+                              text: "Customer service practitioner"
+                         },
+                         {
+                              value: "Customer service specialist",
+                              text: "Customer service specialist"
+                         },
+                         {
+                              value: "Cyber intrusion analyst",
+                              text: "Cyber intrusion analyst"
+                         },
+                         {
+                              value: "Cyber security technical professional (degree)",
+                              text: "Cyber security technical professional (degree)"
+                         },
+                         {
+                              value: "Cyber security technician",
+                              text: "Cyber security technician"
+                         },
+                         {
+                              value: "Cyber security technologist",
+                              text: "Cyber security technologist"
+                         },
+                         {
+                              value: "Damage Management Practitioner",
+                              text: "Damage Management Practitioner"
+                         },
+                         {
+                              value: "Damp Control and Timber Preservation Operative",
+                              text: "Damp Control and Timber Preservation Operative"
+                         },
+                         {
+                              value: "Data analyst",
+                              text: "Data analyst"
+                         },
+                         {
+                              value: "Data scientist (degree)",
+                              text: "Data scientist (degree)"
+                         },
+                         {
+                              value: "Data technician",
+                              text: "Data technician"
+                         },
+                         {
+                              value: "Debt adviser",
+                              text: "Debt adviser"
+                         },
+                         {
+                              value: "Demolition operative",
+                              text: "Demolition operative"
+                         },
+                         {
+                              value: "Dental laboratory assistant",
+                              text: "Dental laboratory assistant"
+                         },
+                         {
+                              value: "Dental nurse",
+                              text: "Dental nurse"
+                         },
+                         {
+                              value: "Dental practice manager",
+                              text: "Dental practice manager"
+                         },
+                         {
+                              value: "Dental technician",
+                              text: "Dental technician"
+                         },
+                         {
+                              value: "Device repair technician",
+                              text: "Device repair technician"
+                         },
+                         {
+                              value: "DevOps engineer",
+                              text: "DevOps engineer"
+                         },
+                         {
+                              value: "Diagnostic radiographer (integrated degree)",
+                              text: "Diagnostic radiographer (integrated degree)"
+                         },
+                         {
+                              value: "Dietitian (degree)",
+                              text: "Dietitian (degree)"
+                         },
+                         {
+                              value: "Digital and technology solution specialist (degree)",
+                              text: "Digital and technology solution specialist (degree)"
+                         },
+                         {
+                              value: "Digital and technology solutions professional (degree)",
+                              text: "Digital and technology solutions professional (degree)"
+                         },
+                         {
+                              value: "Digital community manager",
+                              text: "Digital community manager"
+                         },
+                         {
+                              value: "Digital Engineering Technician",
+                              text: "Digital Engineering Technician"
+                         },
+                         {
+                              value: "Digital marketer",
+                              text: "Digital marketer"
+                         },
+                         {
+                              value: "Digital marketer integrated degree",
+                              text: "Digital marketer integrated degree"
+                         },
+                         {
+                              value: "Digital support technician",
+                              text: "Digital support technician"
+                         },
+                         {
+                              value: "Digital user experience (UX) professional (degree)",
+                              text: "Digital user experience (UX) professional (degree)"
+                         },
+                         {
+                              value: "Dispensing Optician",
+                              text: "Dispensing Optician"
+                         },
+                         {
+                              value: "District nurse",
+                              text: "District nurse"
+                         },
+                         {
+                              value: "Dog grooming stylist",
+                              text: "Dog grooming stylist"
+                         },
+                         {
+                              value: "Domestic violence worker",
+                              text: "Domestic violence worker"
+                         },
+                         {
+                              value: "Drinks dispense technician",
+                              text: "Drinks dispense technician"
+                         },
+                         {
+                              value: "Dual fuel smart meter installer",
+                              text: "Dual fuel smart meter installer"
+                         },
+                         {
+                              value: "Early intervention worker",
+                              text: "Early intervention worker"
+                         },
+                         {
+                              value: "Early Years Educator",
+                              text: "Early Years Educator"
+                         },
+                         {
+                              value: "Early years lead practitioner (degree)",
+                              text: "Early years lead practitioner (degree)"
+                         },
+                         {
+                              value: "Early Years Senior Practitioner",
+                              text: "Early Years Senior Practitioner"
+                         },
+                         {
+                              value: "Ecologist (degree)",
+                              text: "Ecologist (degree)"
+                         },
+                         {
+                              value: "Educational leadership apprenticeship",
+                              text: "Educational leadership apprenticeship"
+                         },
+                         {
+                              value: "Electrical / electronic technical support engineer (degree)",
+                              text: "Electrical / electronic technical support engineer (degree)"
+                         },
+                         {
+                              value: "Electrical Power Networks Engineer",
+                              text: "Electrical Power Networks Engineer"
+                         },
+                         {
+                              value: "Electrical power protection and plant commissioning engineer",
+                              text: "Electrical power protection and plant commissioning engineer"
+                         },
+                         {
+                              value: "Electrical, electronic product service and installation engineer",
+                              text: "Electrical, electronic product service and installation engineer"
+                         },
+                         {
+                              value: "Electro-Mechanical Design and Development Engineer (degree)",
+                              text: "Electro-Mechanical Design and Development Engineer (degree)"
+                         },
+                         {
+                              value: "Electronic systems principal engineer",
+                              text: "Electronic systems principal engineer"
+                         },
+                         {
+                              value: "Embedded electronic systems design and development engineer (degree)",
+                              text: "Embedded electronic systems design and development engineer (degree)"
+                         },
+                         {
+                              value: "Emergency Service Contact Handling",
+                              text: "Emergency Service Contact Handling"
+                         },
+                         {
+                              value: "Employability practitioner",
+                              text: "Employability practitioner"
+                         },
+                         {
+                              value: "Engineering construction erector/rigger",
+                              text: "Engineering construction erector/rigger"
+                         },
+                         {
+                              value: "Engineering construction pipefitter",
+                              text: "Engineering construction pipefitter"
+                         },
+                         {
+                              value: "Engineering design and draughtsperson",
+                              text: "Engineering design and draughtsperson"
+                         },
+                         {
+                              value: "Engineering fitter",
+                              text: "Engineering fitter"
+                         },
+                         {
+                              value: "Engineering Geology (Masters degree)",
+                              text: "Engineering Geology (Masters degree)"
+                         },
+                         {
+                              value: "Engineering Geology degree apprenticeship",
+                              text: "Engineering Geology degree apprenticeship"
+                         },
+                         {
+                              value: "Engineering operative",
+                              text: "Engineering operative"
+                         },
+                         {
+                              value: "Engineering Process Industries Professional",
+                              text: "Engineering Process Industries Professional"
+                         },
+                         {
+                              value: "Engineering surveyor",
+                              text: "Engineering surveyor"
+                         },
+                         {
+                              value: "Engineering Technician",
+                              text: "Engineering Technician"
+                         },
+                         {
+                              value: "Environmental health practitioner",
+                              text: "Environmental health practitioner"
+                         },
+                         {
+                              value: "Environmental manager (degree)",
+                              text: "Environmental manager (degree)"
+                         },
+                         {
+                              value: "Environmental practitioner",
+                              text: "Environmental practitioner"
+                         },
+                         {
+                              value: "Equine Athlete",
+                              text: "Equine Athlete"
+                         },
+                         {
+                              value: "Equine groom",
+                              text: "Equine groom"
+                         },
+                         {
+                              value: "Event Assistant",
+                              text: "Event Assistant"
+                         },
+                         {
+                              value: "Express delivery manager (degree)",
+                              text: "Express delivery manager (degree)"
+                         },
+                         {
+                              value: "Express delivery operative",
+                              text: "Express delivery operative"
+                         },
+                         {
+                              value: "Express delivery sortation hub operative",
+                              text: "Express delivery sortation hub operative"
+                         },
+                         {
+                              value: "Facilities Management Supervisor",
+                              text: "Facilities Management Supervisor"
+                         },
+                         {
+                              value: "Facilities Manager",
+                              text: "Facilities Manager"
+                         },
+                         {
+                              value: "Facilities Services Operative",
+                              text: "Facilities Services Operative"
+                         },
+                         {
+                              value: "Fall Protection Technician",
+                              text: "Fall Protection Technician"
+                         },
+                         {
+                              value: "Farrier",
+                              text: "Farrier"
+                         },
+                         {
+                              value: "Fashion and textiles pattern cutter",
+                              text: "Fashion and textiles pattern cutter"
+                         },
+                         {
+                              value: "Fashion and textiles product technologist",
+                              text: "Fashion and textiles product technologist"
+                         },
+                         {
+                              value: "Fashion studio assistant",
+                              text: "Fashion studio assistant"
+                         },
+                         {
+                              value: "Fencing installer",
+                              text: "Fencing installer"
+                         },
+                         {
+                              value: "Fenestration fabricator",
+                              text: "Fenestration fabricator"
+                         },
+                         {
+                              value: "Fenestration installer",
+                              text: "Fenestration installer"
+                         },
+                         {
+                              value: "Financial Adviser",
+                              text: "Financial Adviser"
+                         },
+                         {
+                              value: "Financial services administrator",
+                              text: "Financial services administrator"
+                         },
+                         {
+                              value: "Financial services customer adviser",
+                              text: "Financial services customer adviser"
+                         },
+                         {
+                              value: "Financial Services Professional",
+                              text: "Financial Services Professional"
+                         },
+                         {
+                              value: "Fire emergency and security systems technician",
+                              text: "Fire emergency and security systems technician"
+                         },
+                         {
+                              value: "Fire engineer",
+                              text: "Fire engineer"
+                         },
+                         {
+                              value: "Fire safety inspector",
+                              text: "Fire safety inspector"
+                         },
+                         {
+                              value: "First officer pilot",
+                              text: "First officer pilot"
+                         },
+                         {
+                              value: "Fishmonger",
+                              text: "Fishmonger"
+                         },
+                         {
+                              value: "Fitted furniture design technician",
+                              text: "Fitted furniture design technician"
+                         },
+                         {
+                              value: "Floorlayer",
+                              text: "Floorlayer"
+                         },
+                         {
+                              value: "Floristry",
+                              text: "Floristry"
+                         },
+                         {
+                              value: "Food and drink advanced engineer (degree)",
+                              text: "Food and drink advanced engineer (degree)"
+                         },
+                         {
+                              value: "Food and drink advanced process operator",
+                              text: "Food and drink advanced process operator"
+                         },
+                         {
+                              value: "Food and Drink Engineer",
+                              text: "Food and Drink Engineer"
+                         },
+                         {
+                              value: "Food and drink maintenance engineer",
+                              text: "Food and drink maintenance engineer"
+                         },
+                         {
+                              value: "Food and drink process operator",
+                              text: "Food and drink process operator"
+                         },
+                         {
+                              value: "Food industry technical professional (degree)",
+                              text: "Food industry technical professional (degree)"
+                         },
+                         {
+                              value: "Food technologist",
+                              text: "Food technologist"
+                         },
+                         {
+                              value: "Footwear manufacturer",
+                              text: "Footwear manufacturer"
+                         },
+                         {
+                              value: "Forensic Collision Investigator",
+                              text: "Forensic Collision Investigator"
+                         },
+                         {
+                              value: "Forest Operative",
+                              text: "Forest Operative"
+                         },
+                         {
+                              value: "Formworker",
+                              text: "Formworker"
+                         },
+                         {
+                              value: "Funeral director",
+                              text: "Funeral director"
+                         },
+                         {
+                              value: "Funeral team member",
+                              text: "Funeral team member"
+                         },
+                         {
+                              value: "Furniture manufacturer",
+                              text: "Furniture manufacturer"
+                         },
+                         {
+                              value: "Furniture Quality Technician and Production Leader",
+                              text: "Furniture Quality Technician and Production Leader"
+                         },
+                         {
+                              value: "Garment maker",
+                              text: "Garment maker"
+                         },
+                         {
+                              value: "Gas engineering operative",
+                              text: "Gas engineering operative"
+                         },
+                         {
+                              value: "Gas network craftsperson",
+                              text: "Gas network craftsperson"
+                         },
+                         {
+                              value: "Gas network team leader",
+                              text: "Gas network team leader"
+                         },
+                         {
+                              value: "General welder (arc processes)",
+                              text: "General welder (arc processes)"
+                         },
+                         {
+                              value: "Geospatial mapping and science specialist (degree)",
+                              text: "Geospatial mapping and science specialist (degree)"
+                         },
+                         {
+                              value: "Geospatial Survey Technician",
+                              text: "Geospatial Survey Technician"
+                         },
+                         {
+                              value: "Glass Manufacturing Operator",
+                              text: "Glass Manufacturing Operator"
+                         },
+                         {
+                              value: "Glass processor",
+                              text: "Glass processor"
+                         },
+                         {
+                              value: "Glazier",
+                              text: "Glazier"
+                         },
+                         {
+                              value: "Golf Course Manager",
+                              text: "Golf Course Manager"
+                         },
+                         {
+                              value: "Golf greenkeeper",
+                              text: "Golf greenkeeper"
+                         },
+                         {
+                              value: "Groundworker",
+                              text: "Groundworker"
+                         },
+                         {
+                              value: "Gunsmith",
+                              text: "Gunsmith"
+                         },
+                         {
+                              value: "Hair professional",
+                              text: "Hair professional"
+                         },
+                         {
+                              value: "Hand engraver",
+                              text: "Hand engraver"
+                         },
+                         {
+                              value: "Harbour Master",
+                              text: "Harbour Master"
+                         },
+                         {
+                              value: "HE Assistant Technician",
+                              text: "HE Assistant Technician"
+                         },
+                         {
+                              value: "Head barista",
+                              text: "Head barista"
+                         },
+                         {
+                              value: "Health & Care Intelligence Specialist",
+                              text: "Health & Care Intelligence Specialist"
+                         },
+                         {
+                              value: "Health Play Specialist",
+                              text: "Health Play Specialist"
+                         },
+                         {
+                              value: "Healthcare assistant practitioner",
+                              text: "Healthcare assistant practitioner"
+                         },
+                         {
+                              value: "Healthcare science assistant",
+                              text: "Healthcare science assistant"
+                         },
+                         {
+                              value: "Healthcare science associate",
+                              text: "Healthcare science associate"
+                         },
+                         {
+                              value: "Healthcare science practitioner (degree)",
+                              text: "Healthcare science practitioner (degree)"
+                         },
+                         {
+                              value: "Healthcare support worker",
+                              text: "Healthcare support worker"
+                         },
+                         {
+                              value: "Hearing Aid Dispenser",
+                              text: "Hearing Aid Dispenser"
+                         },
+                         {
+                              value: "Heavy vehicle service and maintenance technician",
+                              text: "Heavy vehicle service and maintenance technician"
+                         },
+                         {
+                              value: "Heritage Carpenter and Joiner",
+                              text: "Heritage Carpenter and Joiner"
+                         },
+                         {
+                              value: "Heritage engineering technician",
+                              text: "Heritage engineering technician"
+                         },
+                         {
+                              value: "High Speed Rail & Infrastructure Technician",
+                              text: "High Speed Rail & Infrastructure Technician"
+                         },
+                         {
+                              value: "Highway electrical maintenance and installation operative",
+                              text: "Highway electrical maintenance and installation operative"
+                         },
+                         {
+                              value: "Highways electrician / service operative",
+                              text: "Highways electrician / service operative"
+                         },
+                         {
+                              value: "Highways maintenance skilled operative",
+                              text: "Highways maintenance skilled operative"
+                         },
+                         {
+                              value: "Highways Maintenance Supervisor",
+                              text: "Highways Maintenance Supervisor"
+                         },
+                         {
+                              value: "Hire Controller (Plant, Tools and Equipment)",
+                              text: "Hire Controller (Plant, Tools and Equipment)"
+                         },
+                         {
+                              value: "Historic Environment Advisor",
+                              text: "Historic Environment Advisor"
+                         },
+                         {
+                              value: "HM Forces serviceperson (public services)",
+                              text: "HM Forces serviceperson (public services)"
+                         },
+                         {
+                              value: "Holistic therapist",
+                              text: "Holistic therapist"
+                         },
+                         {
+                              value: "Horticulture and Landscape Operative",
+                              text: "Horticulture and Landscape Operative"
+                         },
+                         {
+                              value: "Hospitality Manager",
+                              text: "Hospitality Manager"
+                         },
+                         {
+                              value: "Hospitality supervisor",
+                              text: "Hospitality supervisor"
+                         },
+                         {
+                              value: "Hospitality team member",
+                              text: "Hospitality team member"
+                         },
+                         {
+                              value: "Housing / property management assistant",
+                              text: "Housing / property management assistant"
+                         },
+                         {
+                              value: "Housing and Property Professional",
+                              text: "Housing and Property Professional"
+                         },
+                         {
+                              value: "Housing/property management",
+                              text: "Housing/property management"
+                         },
+                         {
+                              value: "HR Consultant / Partner",
+                              text: "HR Consultant / Partner"
+                         },
+                         {
+                              value: "HR Professional",
+                              text: "HR Professional"
+                         },
+                         {
+                              value: "HR Support",
+                              text: "HR Support"
+                         },
+                         {
+                              value: "Human Factors Integration",
+                              text: "Human Factors Integration"
+                         },
+                         {
+                              value: "Improvement leader",
+                              text: "Improvement leader"
+                         },
+                         {
+                              value: "Improvement practitioner",
+                              text: "Improvement practitioner"
+                         },
+                         {
+                              value: "Improvement Specialist",
+                              text: "Improvement Specialist"
+                         },
+                         {
+                              value: "Improvement technician",
+                              text: "Improvement technician"
+                         },
+                         {
+                              value: "In Situ Flooring Operative",
+                              text: "In Situ Flooring Operative"
+                         },
+                         {
+                              value: "Independent sexual violence advisor",
+                              text: "Independent sexual violence advisor"
+                         },
+                         {
+                              value: "Industrial coatings applicator",
+                              text: "Industrial coatings applicator"
+                         },
+                         {
+                              value: "Industrial Thermal Insulation Technician",
+                              text: "Industrial Thermal Insulation Technician"
+                         },
+                         {
+                              value: "Information manager",
+                              text: "Information manager"
+                         },
+                         {
+                              value: "Infrastructure asset management leader",
+                              text: "Infrastructure asset management leader"
+                         },
+                         {
+                              value: "Infrastructure asset management technician",
+                              text: "Infrastructure asset management technician"
+                         },
+                         {
+                              value: "Infrastructure technician",
+                              text: "Infrastructure technician"
+                         },
+                         {
+                              value: "Installation electrician / maintenance electrician",
+                              text: "Installation electrician / maintenance electrician"
+                         },
+                         {
+                              value: "Insurance practitioner",
+                              text: "Insurance practitioner"
+                         },
+                         {
+                              value: "Insurance professional",
+                              text: "Insurance professional"
+                         },
+                         {
+                              value: "Intelligence Analyst",
+                              text: "Intelligence Analyst"
+                         },
+                         {
+                              value: "Interior systems operative",
+                              text: "Interior systems operative"
+                         },
+                         {
+                              value: "Internal audit practitioner",
+                              text: "Internal audit practitioner"
+                         },
+                         {
+                              value: "Internal audit professional",
+                              text: "Internal audit professional"
+                         },
+                         {
+                              value: "International freight forwarding specialist",
+                              text: "International freight forwarding specialist"
+                         },
+                         {
+                              value: "Investment operations administrator",
+                              text: "Investment operations administrator"
+                         },
+                         {
+                              value: "Investment operations specialist",
+                              text: "Investment operations specialist"
+                         },
+                         {
+                              value: "Investment operations technician",
+                              text: "Investment operations technician"
+                         },
+                         {
+                              value: "IS Business Analyst",
+                              text: "IS Business Analyst"
+                         },
+                         {
+                              value: "IT solution technician",
+                              text: "IT solution technician"
+                         },
+                         {
+                              value: "IT technical salesperson",
+                              text: "IT technical salesperson"
+                         },
+                         {
+                              value: "Jewellery Maker",
+                              text: "Jewellery Maker"
+                         },
+                         {
+                              value: "Journalist (degree)",
+                              text: "Journalist (degree)"
+                         },
+                         {
+                              value: "Journeyman bookbinder",
+                              text: "Journeyman bookbinder"
+                         },
+                         {
+                              value: "Junior 2D artist (visual effects)",
+                              text: "Junior 2D artist (visual effects)"
+                         },
+                         {
+                              value: "Junior animator",
+                              text: "Junior animator"
+                         },
+                         {
+                              value: "Junior content producer",
+                              text: "Junior content producer"
+                         },
+                         {
+                              value: "Junior energy manager",
+                              text: "Junior energy manager"
+                         },
+                         {
+                              value: "Junior estate agent",
+                              text: "Junior estate agent"
+                         },
+                         {
+                              value: "Junior journalist",
+                              text: "Junior journalist"
+                         },
+                         {
+                              value: "Junior management consultant",
+                              text: "Junior management consultant"
+                         },
+                         {
+                              value: "Keeper and aquarist",
+                              text: "Keeper and aquarist"
+                         },
+                         {
+                              value: "L6 Procurement and Supply",
+                              text: "L6 Procurement and Supply"
+                         },
+                         {
+                              value: "Laboratory scientist",
+                              text: "Laboratory scientist"
+                         },
+                         {
+                              value: "Laboratory scientist (degree)",
+                              text: "Laboratory scientist (degree)"
+                         },
+                         {
+                              value: "Laboratory technician",
+                              text: "Laboratory technician"
+                         },
+                         {
+                              value: "Land-based service engineer",
+                              text: "Land-based service engineer"
+                         },
+                         {
+                              value: "Land-based service engineering technician",
+                              text: "Land-based service engineering technician"
+                         },
+                         {
+                              value: "Landscape assistant",
+                              text: "Landscape assistant"
+                         },
+                         {
+                              value: "Landscape professional",
+                              text: "Landscape professional"
+                         },
+                         {
+                              value: "Landscape/horticulture supervisor",
+                              text: "Landscape/horticulture supervisor"
+                         },
+                         {
+                              value: "Large goods vehicle (LGV) driver",
+                              text: "Large goods vehicle (LGV) driver"
+                         },
+                         {
+                              value: "Lead adult care worker",
+                              text: "Lead adult care worker"
+                         },
+                         {
+                              value: "Lead practitioner in adult care",
+                              text: "Lead practitioner in adult care"
+                         },
+                         {
+                              value: "Leader in adult care",
+                              text: "Leader in adult care"
+                         },
+                         {
+                              value: "Lean Manufacturing Operative",
+                              text: "Lean Manufacturing Operative"
+                         },
+                         {
+                              value: "Learning and development consultant/ business partner",
+                              text: "Learning and development consultant/ business partner"
+                         },
+                         {
+                              value: "Learning and development practitioner",
+                              text: "Learning and development practitioner"
+                         },
+                         {
+                              value: "Learning and Development Professional",
+                              text: "Learning and Development Professional"
+                         },
+                         {
+                              value: "Learning and skills teacher",
+                              text: "Learning and skills teacher"
+                         },
+                         {
+                              value: "Learning mentor",
+                              text: "Learning mentor"
+                         },
+                         {
+                              value: "Leather craftsperson",
+                              text: "Leather craftsperson"
+                         },
+                         {
+                              value: "Leisure & Entertainment Engineering Technician",
+                              text: "Leisure & Entertainment Engineering Technician"
+                         },
+                         {
+                              value: "Leisure duty manager",
+                              text: "Leisure duty manager"
+                         },
+                         {
+                              value: "Leisure team member",
+                              text: "Leisure team member"
+                         },
+                         {
+                              value: "Library, information & archive services assistant",
+                              text: "Library, information & archive services assistant"
+                         },
+                         {
+                              value: "Licensed conveyancer",
+                              text: "Licensed conveyancer"
+                         },
+                         {
+                              value: "Lift and escalator electromechanic",
+                              text: "Lift and escalator electromechanic"
+                         },
+                         {
+                              value: "Lift truck and powered access engineering technician",
+                              text: "Lift truck and powered access engineering technician"
+                         },
+                         {
+                              value: "Lifting Technician",
+                              text: "Lifting Technician"
+                         },
+                         {
+                              value: "Light water reactor scientist and engineer",
+                              text: "Light water reactor scientist and engineer"
+                         },
+                         {
+                              value: "Lightning protection operative",
+                              text: "Lightning protection operative"
+                         },
+                         {
+                              value: "Live event rigger",
+                              text: "Live event rigger"
+                         },
+                         {
+                              value: "Live event technician",
+                              text: "Live event technician"
+                         },
+                         {
+                              value: "Maintenance and operations engineering technician",
+                              text: "Maintenance and operations engineering technician"
+                         },
+                         {
+                              value: "Mammography Associate",
+                              text: "Mammography Associate"
+                         },
+                         {
+                              value: "Manufacturing engineer (degree)",
+                              text: "Manufacturing engineer (degree)"
+                         },
+                         {
+                              value: "Manufacturing manager (degree)",
+                              text: "Manufacturing manager (degree)"
+                         },
+                         {
+                              value: "Marina and boatyard operative",
+                              text: "Marina and boatyard operative"
+                         },
+                         {
+                              value: "Marine Engineer",
+                              text: "Marine Engineer"
+                         },
+                         {
+                              value: "Marine Pilot",
+                              text: "Marine Pilot"
+                         },
+                         {
+                              value: "Marine surveyor",
+                              text: "Marine surveyor"
+                         },
+                         {
+                              value: "Marine technical superintendent (degree)",
+                              text: "Marine technical superintendent (degree)"
+                         },
+                         {
+                              value: "Maritime caterer",
+                              text: "Maritime caterer"
+                         },
+                         {
+                              value: "Maritime electrical / mechanical mechanic",
+                              text: "Maritime electrical / mechanical mechanic"
+                         },
+                         {
+                              value: "Maritime operations officer",
+                              text: "Maritime operations officer"
+                         },
+                         {
+                              value: "Marketing assistant",
+                              text: "Marketing assistant"
+                         },
+                         {
+                              value: "Marketing executive",
+                              text: "Marketing executive"
+                         },
+                         {
+                              value: "Marketing manager",
+                              text: "Marketing manager"
+                         },
+                         {
+                              value: "Mastic asphalter",
+                              text: "Mastic asphalter"
+                         },
+                         {
+                              value: "Materials process engineer (Degree)",
+                              text: "Materials process engineer (Degree)"
+                         },
+                         {
+                              value: "Materials science technologist",
+                              text: "Materials science technologist"
+                         },
+                         {
+                              value: "Meat Hygiene Inspector",
+                              text: "Meat Hygiene Inspector"
+                         },
+                         {
+                              value: "Media production co-ordinator",
+                              text: "Media production co-ordinator"
+                         },
+                         {
+                              value: "Medical Physics and Clinical Engineering",
+                              text: "Medical Physics and Clinical Engineering"
+                         },
+                         {
+                              value: "Metal casting, foundry & patternmaking technician",
+                              text: "Metal casting, foundry & patternmaking technician"
+                         },
+                         {
+                              value: "Metal Decking Installer",
+                              text: "Metal Decking Installer"
+                         },
+                         {
+                              value: "Metal fabricator",
+                              text: "Metal fabricator"
+                         },
+                         {
+                              value: "Metal recycling general operative",
+                              text: "Metal recycling general operative"
+                         },
+                         {
+                              value: "Metrology Technician",
+                              text: "Metrology Technician"
+                         },
+                         {
+                              value: "Midwife",
+                              text: "Midwife"
+                         },
+                         {
+                              value: "Military engineering construction technician",
+                              text: "Military engineering construction technician"
+                         },
+                         {
+                              value: "Mineral and construction product sampling and testing operations",
+                              text: "Mineral and construction product sampling and testing operations"
+                         },
+                         {
+                              value: "Mineral Processing General Site Operative",
+                              text: "Mineral Processing General Site Operative"
+                         },
+                         {
+                              value: "Mineral Processing Mobile and Static Plant Operator",
+                              text: "Mineral Processing Mobile and Static Plant Operator"
+                         },
+                         {
+                              value: "Mineral processing weighbridge operator",
+                              text: "Mineral processing weighbridge operator"
+                         },
+                         {
+                              value: "Mineral Products Technician",
+                              text: "Mineral Products Technician"
+                         },
+                         {
+                              value: "Minister in pastoral charge (degree)",
+                              text: "Minister in pastoral charge (degree)"
+                         },
+                         {
+                              value: "Modular & Portable Building Operative",
+                              text: "Modular & Portable Building Operative"
+                         },
+                         {
+                              value: "Mortgage adviser",
+                              text: "Mortgage adviser"
+                         },
+                         {
+                              value: "Motor Finance Specialist",
+                              text: "Motor Finance Specialist"
+                         },
+                         {
+                              value: "Motor vehicle service and maintenance technician (light vehicle)",
+                              text: "Motor vehicle service and maintenance technician (light vehicle)"
+                         },
+                         {
+                              value: "Motorcycle technician (repair and maintenance)",
+                              text: "Motorcycle technician (repair and maintenance)"
+                         },
+                         {
+                              value: "Multi-positional welder (arc processes)",
+                              text: "Multi-positional welder (arc processes)"
+                         },
+                         {
+                              value: "Museums & Galleries Technician",
+                              text: "Museums & Galleries Technician"
+                         },
+                         {
+                              value: "Nail services technician",
+                              text: "Nail services technician"
+                         },
+                         {
+                              value: "Network cable installer",
+                              text: "Network cable installer"
+                         },
+                         {
+                              value: "Network engineer",
+                              text: "Network engineer"
+                         },
+                         {
+                              value: "Network Operations",
+                              text: "Network Operations"
+                         },
+                         {
+                              value: "New furniture product developer",
+                              text: "New furniture product developer"
+                         },
+                         {
+                              value: "Non-destructive testing (NDT) operator",
+                              text: "Non-destructive testing (NDT) operator"
+                         },
+                         {
+                              value: "Non-destructive testing engineer (degree)",
+                              text: "Non-destructive testing engineer (degree)"
+                         },
+                         {
+                              value: "Non-destructive testing engineering technician",
+                              text: "Non-destructive testing engineering technician"
+                         },
+                         {
+                              value: "Non-home office police officer",
+                              text: "Non-home office police officer"
+                         },
+                         {
+                              value: "Nuclear health physics monitor",
+                              text: "Nuclear health physics monitor"
+                         },
+                         {
+                              value: "Nuclear Operative",
+                              text: "Nuclear Operative"
+                         },
+                         {
+                              value: "Nuclear reactor desk engineer",
+                              text: "Nuclear reactor desk engineer"
+                         },
+                         {
+                              value: "Nuclear scientist and nuclear engineer (degree)",
+                              text: "Nuclear scientist and nuclear engineer (degree)"
+                         },
+                         {
+                              value: "Nuclear Technician",
+                              text: "Nuclear Technician"
+                         },
+                         {
+                              value: "Nuclear welding inspection technician",
+                              text: "Nuclear welding inspection technician"
+                         },
+                         {
+                              value: "Nursing associate - NMC 2018",
+                              text: "Nursing associate - NMC 2018"
+                         },
+                         {
+                              value: "Occupational therapist (integrated degree)",
+                              text: "Occupational therapist (integrated degree)"
+                         },
+                         {
+                              value: "Operating department practitioner (integrated degree)",
+                              text: "Operating department practitioner (integrated degree)"
+                         },
+                         {
+                              value: "Operational Firefighter",
+                              text: "Operational Firefighter"
+                         },
+                         {
+                              value: "Operations / departmental manager",
+                              text: "Operations / departmental manager"
+                         },
+                         {
+                              value: "Optical Assistant",
+                              text: "Optical Assistant"
+                         },
+                         {
+                              value: "Optometrist",
+                              text: "Optometrist"
+                         },
+                         {
+                              value: "Oral Health Practitioner",
+                              text: "Oral Health Practitioner"
+                         },
+                         {
+                              value: "Ordnance munitions and explosives (OME) professional",
+                              text: "Ordnance munitions and explosives (OME) professional"
+                         },
+                         {
+                              value: "Ordnance munitions and explosives specialist",
+                              text: "Ordnance munitions and explosives specialist"
+                         },
+                         {
+                              value: "Ordnance, Munitions and Explosives Technician",
+                              text: "Ordnance, Munitions and Explosives Technician"
+                         },
+                         {
+                              value: "Organ builder",
+                              text: "Organ builder"
+                         },
+                         {
+                              value: "Orthodontic therapist",
+                              text: "Orthodontic therapist"
+                         },
+                         {
+                              value: "Outdoor activity instructor",
+                              text: "Outdoor activity instructor"
+                         },
+                         {
+                              value: "Outside broadcasting engineer (degree)",
+                              text: "Outside broadcasting engineer (degree)"
+                         },
+                         {
+                              value: "Packaging professional (degree)",
+                              text: "Packaging professional (degree)"
+                         },
+                         {
+                              value: "Packhouse line leader",
+                              text: "Packhouse line leader"
+                         },
+                         {
+                              value: "Painter and decorator",
+                              text: "Painter and decorator"
+                         },
+                         {
+                              value: "Papermaker",
+                              text: "Papermaker"
+                         },
+                         {
+                              value: "Paralegal",
+                              text: "Paralegal"
+                         },
+                         {
+                              value: "Paramedic (degree)",
+                              text: "Paramedic (degree)"
+                         },
+                         {
+                              value: "Paraplanner",
+                              text: "Paraplanner"
+                         },
+                         {
+                              value: "Passenger transport driver - bus, coach and tram",
+                              text: "Passenger transport driver - bus, coach and tram"
+                         },
+                         {
+                              value: "Passenger Transport onboard & station team member",
+                              text: "Passenger Transport onboard & station team member"
+                         },
+                         {
+                              value: "Passenger Transport Operations Manager",
+                              text: "Passenger Transport Operations Manager"
+                         },
+                         {
+                              value: "Payroll administrator",
+                              text: "Payroll administrator"
+                         },
+                         {
+                              value: "Personal Trainer",
+                              text: "Personal Trainer"
+                         },
+                         {
+                              value: "Pest Control Technician",
+                              text: "Pest Control Technician"
+                         },
+                         {
+                              value: "Pharmacist",
+                              text: "Pharmacist"
+                         },
+                         {
+                              value: "Pharmacy services assistant",
+                              text: "Pharmacy services assistant"
+                         },
+                         {
+                              value: "Pharmacy technician (integrated)",
+                              text: "Pharmacy technician (integrated)"
+                         },
+                         {
+                              value: "Photographic Assistant",
+                              text: "Photographic Assistant"
+                         },
+                         {
+                              value: "Physical Activity and Sports Development Professional - Degree Apprenticeship",
+                              text: "Physical Activity and Sports Development Professional - Degree Apprenticeship"
+                         },
+                         {
+                              value: "Physicians associate",
+                              text: "Physicians associate"
+                         },
+                         {
+                              value: "Physiotherapist (integrated degree)",
+                              text: "Physiotherapist (integrated degree)"
+                         },
+                         {
+                              value: "Piling attendant",
+                              text: "Piling attendant"
+                         },
+                         {
+                              value: "Pipe welder",
+                              text: "Pipe welder"
+                         },
+                         {
+                              value: "Plasterer",
+                              text: "Plasterer"
+                         },
+                         {
+                              value: "Plate welder",
+                              text: "Plate welder"
+                         },
+                         {
+                              value: "Play worker",
+                              text: "Play worker"
+                         },
+                         {
+                              value: "Plumbing and Domestic Heating Technician",
+                              text: "Plumbing and Domestic Heating Technician"
+                         },
+                         {
+                              value: "Podiatrist (degree)",
+                              text: "Podiatrist (degree)"
+                         },
+                         {
+                              value: "Police community support officer",
+                              text: "Police community support officer"
+                         },
+                         {
+                              value: "Police constable (degree)",
+                              text: "Police constable (degree)"
+                         },
+                         {
+                              value: "Policy Officer",
+                              text: "Policy Officer"
+                         },
+                         {
+                              value: "Port Agent",
+                              text: "Port Agent"
+                         },
+                         {
+                              value: "Port Marine Operations Officer",
+                              text: "Port Marine Operations Officer"
+                         },
+                         {
+                              value: "Port operative",
+                              text: "Port operative"
+                         },
+                         {
+                              value: "Port plant machinery operative",
+                              text: "Port plant machinery operative"
+                         },
+                         {
+                              value: "Post graduate engineer",
+                              text: "Post graduate engineer"
+                         },
+                         {
+                              value: "Post- Production Technical Operator",
+                              text: "Post- Production Technical Operator"
+                         },
+                         {
+                              value: "Poultry technician",
+                              text: "Poultry technician"
+                         },
+                         {
+                              value: "Poultry worker",
+                              text: "Poultry worker"
+                         },
+                         {
+                              value: "Power and Propulsion Engineer",
+                              text: "Power and Propulsion Engineer"
+                         },
+                         {
+                              value: "Power engineer (degree)",
+                              text: "Power engineer (degree)"
+                         },
+                         {
+                              value: "Power network craftsperson",
+                              text: "Power network craftsperson"
+                         },
+                         {
+                              value: "Powered Pedestrian Door Installer and Service Engineer",
+                              text: "Powered Pedestrian Door Installer and Service Engineer"
+                         },
+                         {
+                              value: "Print Technician",
+                              text: "Print Technician"
+                         },
+                         {
+                              value: "Probate Technician",
+                              text: "Probate Technician"
+                         },
+                         {
+                              value: "Probation Officer",
+                              text: "Probation Officer"
+                         },
+                         {
+                              value: "Probation services practitioner",
+                              text: "Probation services practitioner"
+                         },
+                         {
+                              value: "Process automation engineer (degree)",
+                              text: "Process automation engineer (degree)"
+                         },
+                         {
+                              value: "Process control systems engineer (degree)",
+                              text: "Process control systems engineer (degree)"
+                         },
+                         {
+                              value: "Process leader",
+                              text: "Process leader"
+                         },
+                         {
+                              value: "Procurement & Supply",
+                              text: "Procurement & Supply"
+                         },
+                         {
+                              value: "Product design and development engineer (degree)",
+                              text: "Product design and development engineer (degree)"
+                         },
+                         {
+                              value: "Production chef",
+                              text: "Production chef"
+                         },
+                         {
+                              value: "Professional accounting / taxation technician",
+                              text: "Professional accounting / taxation technician"
+                         },
+                         {
+                              value: "Professional adviser - agriculture/horticulture",
+                              text: "Professional adviser - agriculture/horticulture"
+                         },
+                         {
+                              value: "Professional economist (degree)",
+                              text: "Professional economist (degree)"
+                         },
+                         {
+                              value: "Project Controls Professional",
+                              text: "Project Controls Professional"
+                         },
+                         {
+                              value: "Project controls technician",
+                              text: "Project controls technician"
+                         },
+                         {
+                              value: "Project manager (degree)",
+                              text: "Project manager (degree)"
+                         },
+                         {
+                              value: "Property maintenance operative",
+                              text: "Property maintenance operative"
+                         },
+                         {
+                              value: "Props Technician",
+                              text: "Props Technician"
+                         },
+                         {
+                              value: "Propulsion technician",
+                              text: "Propulsion technician"
+                         },
+                         {
+                              value: "Prosthetic and orthotic technician",
+                              text: "Prosthetic and orthotic technician"
+                         },
+                         {
+                              value: "Prosthetist / orthotist (degree)",
+                              text: "Prosthetist / orthotist (degree)"
+                         },
+                         {
+                              value: "Psychological Wellbeing Practitioner",
+                              text: "Psychological Wellbeing Practitioner"
+                         },
+                         {
+                              value: "Public health practitioner",
+                              text: "Public health practitioner"
+                         },
+                         {
+                              value: "Public relations and communications assistant",
+                              text: "Public relations and communications assistant"
+                         },
+                         {
+                              value: "Public sector compliance / investigation officer",
+                              text: "Public sector compliance / investigation officer"
+                         },
+                         {
+                              value: "Public service operational delivery officer",
+                              text: "Public service operational delivery officer"
+                         },
+                         {
+                              value: "Publishing assistant",
+                              text: "Publishing assistant"
+                         },
+                         {
+                              value: "Puppet Maker",
+                              text: "Puppet Maker"
+                         },
+                         {
+                              value: "Quality leader",
+                              text: "Quality leader"
+                         },
+                         {
+                              value: "Quality manager",
+                              text: "Quality manager"
+                         },
+                         {
+                              value: "Radiation Protection Scientist",
+                              text: "Radiation Protection Scientist"
+                         },
+                         {
+                              value: "Radio network technician",
+                              text: "Radio network technician"
+                         },
+                         {
+                              value: "Rail & rail systems engineer",
+                              text: "Rail & rail systems engineer"
+                         },
+                         {
+                              value: "Rail & rail systems principal engineer (degree)",
+                              text: "Rail & rail systems principal engineer (degree)"
+                         },
+                         {
+                              value: "Rail & rail systems senior engineer (degree)",
+                              text: "Rail & rail systems senior engineer (degree)"
+                         },
+                         {
+                              value: "Rail engineering advanced technician",
+                              text: "Rail engineering advanced technician"
+                         },
+                         {
+                              value: "Rail engineering operative",
+                              text: "Rail engineering operative"
+                         },
+                         {
+                              value: "Rail engineering technician",
+                              text: "Rail engineering technician"
+                         },
+                         {
+                              value: "Rail Infrastructure Operator",
+                              text: "Rail Infrastructure Operator"
+                         },
+                         {
+                              value: "Railway engineering design technician",
+                              text: "Railway engineering design technician"
+                         },
+                         {
+                              value: "Recruitment Consultant",
+                              text: "Recruitment Consultant"
+                         },
+                         {
+                              value: "Recruitment Resourcer",
+                              text: "Recruitment Resourcer"
+                         },
+                         {
+                              value: "Refrigeration air conditioning and heat pump engineering technician",
+                              text: "Refrigeration air conditioning and heat pump engineering technician"
+                         },
+                         {
+                              value: "Registered nurse - degree (NMC 2010)",
+                              text: "Registered nurse - degree (NMC 2010)"
+                         },
+                         {
+                              value: "Registered nurse - degree (NMC 2018)",
+                              text: "Registered nurse - degree (NMC 2018)"
+                         },
+                         {
+                              value: "Registrar (creative & cultural)",
+                              text: "Registrar (creative & cultural)"
+                         },
+                         {
+                              value: "Regulatory affairs specialist (degree)",
+                              text: "Regulatory affairs specialist (degree)"
+                         },
+                         {
+                              value: "Regulatory Compliance Officer",
+                              text: "Regulatory Compliance Officer"
+                         },
+                         {
+                              value: "Rehabilitation Worker (Visual Impairment)",
+                              text: "Rehabilitation Worker (Visual Impairment)"
+                         },
+                         {
+                              value: "Relationship manager (banking)",
+                              text: "Relationship manager (banking)"
+                         },
+                         {
+                              value: "Research scientist",
+                              text: "Research scientist"
+                         },
+                         {
+                              value: "Resource Technical Manager",
+                              text: "Resource Technical Manager"
+                         },
+                         {
+                              value: "Retail leadership degree apprenticeship",
+                              text: "Retail leadership degree apprenticeship"
+                         },
+                         {
+                              value: "Retail manager",
+                              text: "Retail manager"
+                         },
+                         {
+                              value: "Retail team leader",
+                              text: "Retail team leader"
+                         },
+                         {
+                              value: "Retailer",
+                              text: "Retailer"
+                         },
+                         {
+                              value: "Revenues and welfare benefits practitioner",
+                              text: "Revenues and welfare benefits practitioner"
+                         },
+                         {
+                              value: "Risk and safety management professional (degree)",
+                              text: "Risk and safety management professional (degree)"
+                         },
+                         {
+                              value: "Road surfacing operative",
+                              text: "Road surfacing operative"
+                         },
+                         {
+                              value: "Road transport engineering manager",
+                              text: "Road transport engineering manager"
+                         },
+                         {
+                              value: "Roofer",
+                              text: "Roofer"
+                         },
+                         {
+                              value: "Safety, Health and Environment Technician",
+                              text: "Safety, Health and Environment Technician"
+                         },
+                         {
+                              value: "Sales executive",
+                              text: "Sales executive"
+                         },
+                         {
+                              value: "Scaffolder",
+                              text: "Scaffolder"
+                         },
+                         {
+                              value: "School Business Professional",
+                              text: "School Business Professional"
+                         },
+                         {
+                              value: "Science industry maintenance technician",
+                              text: "Science industry maintenance technician"
+                         },
+                         {
+                              value: "Science industry process/plant engineer (degree)",
+                              text: "Science industry process/plant engineer (degree)"
+                         },
+                         {
+                              value: "Science Manufacturing Process Operative",
+                              text: "Science Manufacturing Process Operative"
+                         },
+                         {
+                              value: "Science manufacturing technician",
+                              text: "Science manufacturing technician"
+                         },
+                         {
+                              value: "Scrum Master",
+                              text: "Scrum Master"
+                         },
+                         {
+                              value: "Security First Line Manager",
+                              text: "Security First Line Manager"
+                         },
+                         {
+                              value: "Senior / head of facilities management (degree)",
+                              text: "Senior / head of facilities management (degree)"
+                         },
+                         {
+                              value: "Senior chef culinary arts",
+                              text: "Senior chef culinary arts"
+                         },
+                         {
+                              value: "Senior compliance / risk specialist",
+                              text: "Senior compliance / risk specialist"
+                         },
+                         {
+                              value: "Senior equine groom",
+                              text: "Senior equine groom"
+                         },
+                         {
+                              value: "Senior financial services customer adviser",
+                              text: "Senior financial services customer adviser"
+                         },
+                         {
+                              value: "Senior healthcare support worker",
+                              text: "Senior healthcare support worker"
+                         },
+                         {
+                              value: "Senior housing / property management",
+                              text: "Senior housing / property management"
+                         },
+                         {
+                              value: "Senior insurance professional",
+                              text: "Senior insurance professional"
+                         },
+                         {
+                              value: "Senior investment / commercial banking professional",
+                              text: "Senior investment / commercial banking professional"
+                         },
+                         {
+                              value: "Senior leader",
+                              text: "Senior leader"
+                         },
+                         {
+                              value: "Senior metrology technician",
+                              text: "Senior metrology technician"
+                         },
+                         {
+                              value: "Senior production chef",
+                              text: "Senior production chef"
+                         },
+                         {
+                              value: "Senior professional economist",
+                              text: "Senior professional economist"
+                         },
+                         {
+                              value: "Serious and complex crime investigator (degree)",
+                              text: "Serious and complex crime investigator (degree)"
+                         },
+                         {
+                              value: "Sewing Machinist",
+                              text: "Sewing Machinist"
+                         },
+                         {
+                              value: "Signage technician",
+                              text: "Signage technician"
+                         },
+                         {
+                              value: "Smart Home Technician",
+                              text: "Smart Home Technician"
+                         },
+                         {
+                              value: "Social worker (degree)",
+                              text: "Social worker (degree)"
+                         },
+                         {
+                              value: "Software developer",
+                              text: "Software developer"
+                         },
+                         {
+                              value: "Software development technician",
+                              text: "Software development technician"
+                         },
+                         {
+                              value: "Software tester",
+                              text: "Software tester"
+                         },
+                         {
+                              value: "Solicitor",
+                              text: "Solicitor"
+                         },
+                         {
+                              value: "Sonographer (degree)",
+                              text: "Sonographer (degree)"
+                         },
+                         {
+                              value: "Space Engineer (degree)",
+                              text: "Space Engineer (degree)"
+                         },
+                         {
+                              value: "Space Technician",
+                              text: "Space Technician"
+                         },
+                         {
+                              value: "Specialist Community and Public Health Nurse",
+                              text: "Specialist Community and Public Health Nurse"
+                         },
+                         {
+                              value: "Specialist Rescue Operative",
+                              text: "Specialist Rescue Operative"
+                         },
+                         {
+                              value: "Specialist tyre operative",
+                              text: "Specialist tyre operative"
+                         },
+                         {
+                              value: "Spectacle maker",
+                              text: "Spectacle maker"
+                         },
+                         {
+                              value: "Speech and language therapist (degree)",
+                              text: "Speech and language therapist (degree)"
+                         },
+                         {
+                              value: "Sport Performance Analyst",
+                              text: "Sport Performance Analyst"
+                         },
+                         {
+                              value: "Sporting excellence professional",
+                              text: "Sporting excellence professional"
+                         },
+                         {
+                              value: "Sports turf operative",
+                              text: "Sports turf operative"
+                         },
+                         {
+                              value: "Stairlift, Platform Lift, Service Lift Electromechanic",
+                              text: "Stairlift, Platform Lift, Service Lift Electromechanic"
+                         },
+                         {
+                              value: "Steel Fixer",
+                              text: "Steel Fixer"
+                         },
+                         {
+                              value: "Steeplejack",
+                              text: "Steeplejack"
+                         },
+                         {
+                              value: "Stock Broker",
+                              text: "Stock Broker"
+                         },
+                         {
+                              value: "Stockperson (beef, pigs, sheep, dairy)",
+                              text: "Stockperson (beef, pigs, sheep, dairy)"
+                         },
+                         {
+                              value: "Stonemason",
+                              text: "Stonemason"
+                         },
+                         {
+                              value: "Storyboard artist (degree)",
+                              text: "Storyboard artist (degree)"
+                         },
+                         {
+                              value: "Structural steelwork erector",
+                              text: "Structural steelwork erector"
+                         },
+                         {
+                              value: "Structural steelwork fabricator",
+                              text: "Structural steelwork fabricator"
+                         },
+                         {
+                              value: "Supply chain leadership professional (degree)",
+                              text: "Supply chain leadership professional (degree)"
+                         },
+                         {
+                              value: "Supply chain operator",
+                              text: "Supply chain operator"
+                         },
+                         {
+                              value: "Supply Chain Practitioner (Fast Moving Consumer Goods) [Previously Operator/Manager]",
+                              text: "Supply Chain Practitioner (Fast Moving Consumer Goods) [Previously Operator/Manager]"
+                         },
+                         {
+                              value: "Supply chain warehouse operative",
+                              text: "Supply chain warehouse operative"
+                         },
+                         {
+                              value: "Surveying technician",
+                              text: "Surveying technician"
+                         },
+                         {
+                              value: "Survival equipment fitter",
+                              text: "Survival equipment fitter"
+                         },
+                         {
+                              value: "Sustainable Business Specialist",
+                              text: "Sustainable Business Specialist"
+                         },
+                         {
+                              value: "Systems engineering masters level",
+                              text: "Systems engineering masters level"
+                         },
+                         {
+                              value: "Systems thinking",
+                              text: "Systems thinking"
+                         },
+                         {
+                              value: "Teacher",
+                              text: "Teacher"
+                         },
+                         {
+                              value: "Teaching assistant",
+                              text: "Teaching assistant"
+                         },
+                         {
+                              value: "Team leader / supervisor",
+                              text: "Team leader / supervisor"
+                         },
+                         {
+                              value: "Technical dyer and colourist",
+                              text: "Technical dyer and colourist"
+                         },
+                         {
+                              value: "Technical Specialist in Nuclear Engineering, Science or Technology",
+                              text: "Technical Specialist in Nuclear Engineering, Science or Technology"
+                         },
+                         {
+                              value: "Technician Scientist",
+                              text: "Technician Scientist"
+                         },
+                         {
+                              value: "Telecoms field operative",
+                              text: "Telecoms field operative"
+                         },
+                         {
+                              value: "Temporary Traffic Management Operative",
+                              text: "Temporary Traffic Management Operative"
+                         },
+                         {
+                              value: "Textile care operative",
+                              text: "Textile care operative"
+                         },
+                         {
+                              value: "Textile manufacturing operative",
+                              text: "Textile manufacturing operative"
+                         },
+                         {
+                              value: "Textile technical specialist",
+                              text: "Textile technical specialist"
+                         },
+                         {
+                              value: "Thatcher",
+                              text: "Thatcher"
+                         },
+                         {
+                              value: "Therapeutic radiographer (integrated degree)",
+                              text: "Therapeutic radiographer (integrated degree)"
+                         },
+                         {
+                              value: "Through life engineering services specialist",
+                              text: "Through life engineering services specialist"
+                         },
+                         {
+                              value: "Tool process design engineer",
+                              text: "Tool process design engineer"
+                         },
+                         {
+                              value: "Trade supplier",
+                              text: "Trade supplier"
+                         },
+                         {
+                              value: "Train driver",
+                              text: "Train driver"
+                         },
+                         {
+                              value: "Tramway Construction Operative",
+                              text: "Tramway Construction Operative"
+                         },
+                         {
+                              value: "Transport and warehousing operations manager",
+                              text: "Transport and warehousing operations manager"
+                         },
+                         {
+                              value: "Transport and warehousing operations supervisor",
+                              text: "Transport and warehousing operations supervisor"
+                         },
+                         {
+                              value: "Transport planner (degree)",
+                              text: "Transport planner (degree)"
+                         },
+                         {
+                              value: "Transport planning technician",
+                              text: "Transport planning technician"
+                         },
+                         {
+                              value: "Travel consultant",
+                              text: "Travel consultant"
+                         },
+                         {
+                              value: "Tunnelling operative",
+                              text: "Tunnelling operative"
+                         },
+                         {
+                              value: "Underkeeper",
+                              text: "Underkeeper"
+                         },
+                         {
+                              value: "Unified communications technician",
+                              text: "Unified communications technician"
+                         },
+                         {
+                              value: "Unified communications trouble shooter",
+                              text: "Unified communications trouble shooter"
+                         },
+                         {
+                              value: "Union Official",
+                              text: "Union Official"
+                         },
+                         {
+                              value: "Utilities engineering technician",
+                              text: "Utilities engineering technician"
+                         },
+                         {
+                              value: "Vehicle Damage Assessor",
+                              text: "Vehicle Damage Assessor"
+                         },
+                         {
+                              value: "Vehicle damage mechanical, electrical and trim (MET) technician",
+                              text: "Vehicle damage mechanical, electrical and trim (MET) technician"
+                         },
+                         {
+                              value: "Vehicle damage paint technician",
+                              text: "Vehicle damage paint technician"
+                         },
+                         {
+                              value: "Vehicle damage panel technician",
+                              text: "Vehicle damage panel technician"
+                         },
+                         {
+                              value: "Veterinary nurse",
+                              text: "Veterinary nurse"
+                         },
+                         {
+                              value: "Visitor Experience and Economy Leader",
+                              text: "Visitor Experience and Economy Leader"
+                         },
+                         {
+                              value: "Wall and Floor Tiler",
+                              text: "Wall and Floor Tiler"
+                         },
+                         {
+                              value: "Waste resource operative",
+                              text: "Waste resource operative"
+                         },
+                         {
+                              value: "Watchmaker",
+                              text: "Watchmaker"
+                         },
+                         {
+                              value: "Water environment worker",
+                              text: "Water environment worker"
+                         },
+                         {
+                              value: "Water process technician",
+                              text: "Water process technician"
+                         },
+                         {
+                              value: "Water treatment technician",
+                              text: "Water treatment technician"
+                         },
+                         {
+                              value: "Wireless communications rigger",
+                              text: "Wireless communications rigger"
+                         },
+                         {
+                              value: "Wood product manufacturing operative",
+                              text: "Wood product manufacturing operative"
+                         },
+                         {
+                              value: "Workboat crewmember",
+                              text: "Workboat crewmember"
+                         },
+                         {
+                              value: "Workplace pensions (administrator or consultant)",
+                              text: "Workplace pensions (administrator or consultant)"
+                         },
+                         {
+                              value: "Youth Worker",
+                              text: "Youth Worker"
+                         }
+                    ]
                }) }}
 
                {{ govukButton({
@@ -37,5 +2716,16 @@
           </p>
      </div>
 </div>
+
+<script type="text/javascript">
+     element = document.querySelector('#fat-search')
+     id = 'apprenticeship-picker'
+     accessibleAutocomplete({
+          displayMenu: 'overlay',
+          element: element,
+          id: id,
+          source: countries
+     })
+</script>
 
 {% endblock %}
