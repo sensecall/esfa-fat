@@ -83,11 +83,11 @@ function fatCourseSearch(req,res) {
 	},
 	(error, response, body) => {
 		req.session.data['search-results'] = body
-		res.redirect(`/${req.version}/fat/search-results--no-results`)
+		res.redirect(`/${req.version}/fat/search-results--results`)
 	});
 }
 
-router.post(['/fat/search-results--no-results', '/fat/apprenticeship-or-provider'], (req, res) => {
+router.post(['/fat/search-results--results', '/fat/apprenticeship-or-provider'], (req, res) => {
 	fatCourseSearch(req,res);
 })
 
