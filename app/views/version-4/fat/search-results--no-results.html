@@ -1,0 +1,107 @@
+{% extends "./layout--fat.html" %}
+{% block content %}
+<div class="govuk-grid-row">
+     <div class="govuk-grid-column-full">
+          <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">
+               Search results
+          </h1>
+          <p>
+               Sorry, there is currently no apprenticeship training for '<b>{{data['apprenticeship-picker']}}</b>'.
+          </p>
+     </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form class="search-box" method="post">
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold govuk-!-width-three-quarters" for="name">Try a new search</label>
+                <span id="more-detail-hint" class="govuk-hint">Can include job title or apprenticeship</span>
+                <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-0" id="name" name="search-query" type="text" value="{{data['apprenticeship-picker']}}">
+                {{ govukButton({
+                    text: "Search"
+                }) }}
+            </div>
+        </form>
+    </div>
+</div>
+
+
+          {% if (data['search-results']|length == 0) %}
+          <div class="govuk-grid-row">
+               <div class="govuk-grid-column-one-half">
+                    <div class="editSearch">
+                         <h2 class="govuk-heading-m">
+                              Similar results
+                         </h2>
+
+                         <div id="similarSearch">
+                              <ol class="govuk-list govuk-list--number">
+                                   <li><a href="#">Delivery address</a></li>
+                                   <li><a href="#">Payment</a></li>
+                                   <li><a href="#">Confirmation</a></li>
+                              </ol>
+                         </div>
+                    </div>
+               </div>
+
+               <div id="apprenticeship-results" class="govuk-grid-column-one-half">
+                    <div class="govuk-grid-row">
+                         <div class="govuk-grid-column-one-half">
+                              <h2 class="govuk-heading-m">
+                                   Did you mean
+                              </h2>
+
+                              <div id="didYouMeanSearch">
+                                   <ol class="govuk-list govuk-list--number">
+                                        <li><a href="#">Delivery address</a></li>
+                                        <li><a href="#">Payment</a></li>
+                                        <li><a href="#">Confirmation</a></li>
+                                   </ol>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          {% else %}
+               {% for result in data['search-results'] %}
+               <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-one-third">
+                         
+                    </div>
+
+                    <div class="govuk-grid-column-two-thirds">
+
+                         <article class="app-search-result framework-result" id="framework-560-3-2">
+                              <h2 class="result-title govuk-!-margin-bottom-2">
+                                   {% if result.StandardId %}
+                                   {% set courseType = 'standard' %}
+                                   {% else %}
+                                   {% set courseType = 'framework' %}
+                                   {% endif %}
+                                   <a href="course?courseId={{result.StandardId or result.FrameworkId}}&courseType={{courseType}}">{{ result.Title }}</a>
+                              </h2>
+                              <ul class="govuk-list">
+                                   <li>
+                                        <b>Level:</b> {{ result.Level }} (equivalent to GCSEs at grades A* to C)
+                                   </li>
+                                   <li>
+                                        <b>Typical length:</b> {{ result.Duration }} months
+                                   </li>
+                                   <!-- <li>
+                                        <span class="govuk-!-font-weight-bold">Cost to you:</span> £{{ (([9,9,9,9,10,11,11,12,19,23,27] | random) * 100) | numeral().format('0,0') }}
+                                   </li> -->
+                              </ul>
+                         </article>
+                    </div>
+               </div>
+               {% endfor %}
+          {% endif %}
+
+{% endblock %}
+
+{% block pageScripts %}
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/toggler.js"></script>
+{% endblock %}

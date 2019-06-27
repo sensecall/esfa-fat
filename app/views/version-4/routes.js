@@ -73,7 +73,7 @@ router.get('/fat/course', (req, res) => {
 })
 
 function fatCourseSearch(req,res) {
-	var searchQuery = req.session.data['search-query']
+	var searchQuery = req.session.data['apprenticeship-picker']
 	var response = []
 
 	request.get('https://findapprenticeshiptraining-api.sfa.bis.gov.uk/apprenticeship-programmes/search?keywords=' + searchQuery,
@@ -83,11 +83,11 @@ function fatCourseSearch(req,res) {
 	},
 	(error, response, body) => {
 		req.session.data['search-results'] = body
-		res.redirect(`/${req.version}/fat/search-results--apprenticeships`)
+		res.redirect(`/${req.version}/fat/search-results--no-results`)
 	});
 }
 
-router.post(['/fat/search-results--apprenticeships', '/fat/apprenticeship-or-provider'], (req, res) => {
+router.post(['/fat/search-results--no-results', '/fat/apprenticeship-or-provider'], (req, res) => {
 	fatCourseSearch(req,res);
 })
 

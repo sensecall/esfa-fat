@@ -12,7 +12,6 @@
                {{ govukSelect({
                     id: "apprenticeship-picker",
                     name: "apprenticeship-picker",
-                    displayMenu: "overlay",
                     label: {
                          text: "Apprenticeship name or job role"
                     },
@@ -20,15 +19,8 @@
                          text: "Start typing the apprenticeship name"
                     },
                     items: [
-                         {
-                              value: "",
-                              text: "",
-                              selected: true
-                         },
-                         {
-                              value: "Abattoir worker",
-                              text: "Abattoir worker"
-                         },
+                         { value: "", text: "", selected: true },
+                         { value: "Abattoir worker", text: "Abattoir worker" },
                          {
                               value: "Able seafarer (deck)",
                               text: "Able seafarer (deck)"
@@ -2716,16 +2708,4 @@
           </p>
      </div>
 </div>
-
-<script type="text/javascript">
-     element = document.querySelector('#fat-search')
-     id = 'apprenticeship-picker'
-     accessibleAutocomplete({
-          displayMenu: 'overlay',
-          element: element,
-          id: id,
-          source: countries
-     })
-</script>
-
 {% endblock %}

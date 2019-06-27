@@ -13,5 +13,7 @@
 // })
 
 accessibleAutocomplete.enhanceSelectElement({
-     selectElement: document.querySelector('#apprenticeship-picker')
+     selectElement: document.querySelector('#apprenticeship-picker'),
+     displayMenu: "overlay",
+     showNoOptionsFound: false
 })

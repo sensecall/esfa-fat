@@ -28,12 +28,28 @@
 					content: "\25B6";
 				}
 
-			}   
+			}
 		}
 		#EditSearch {
 			@media (max-width: 640px) {
 				display: none
 			}
 		}
+	}
+}
+
+.autocomplete__wrapper {
+	.autocomplete__hint {
+		padding-left: 42px;
+		position: absolute;
+		width: 100%;
+		border: none !important;
+		box-shadow: none !important;
+		outline: none !important;
+	}
+	.autocomplete__input {
+		background: url('../../public/images/search.svg') no-repeat 10px 45%;
+		background-size: 1em;
+		padding-left: 40px;
 	}
 }
