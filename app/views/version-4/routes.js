@@ -73,7 +73,7 @@ router.get('/fat/course', (req, res) => {
 })
 
 function fatCourseSearch(req,res) {
-	var searchQuery = req.session.data['apprenticeship-picker']
+	var searchQuery = req.session.data['job-role']
 	var response = []
 
 	request.get('https://findapprenticeshiptraining-api.sfa.bis.gov.uk/apprenticeship-programmes/search?keywords=' + searchQuery,
