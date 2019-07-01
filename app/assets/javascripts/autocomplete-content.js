@@ -366,5 +366,6 @@ accessibleAutocomplete({
      name: id,
      showNoOptionsFound: false,
      id: id,
-     source: apprenticeships
+     source: apprenticeships,
+     minLength: 2
 })
