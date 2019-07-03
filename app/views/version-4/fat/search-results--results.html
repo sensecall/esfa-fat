@@ -68,7 +68,7 @@
 </div>
 {% else %}
 
-{% for result in data['search-results'] %}
+
 <div class="govuk-grid-row">
      <div class="govuk-grid-column-full">
           <a href="javascript:history.back()" class="govuk-back-link">Back</a>
@@ -92,7 +92,7 @@
                     <span id="fat-search-hint" class="govuk-hint">
                          Start typing the apprenticeship name
                     </span>
-                    <div id="search-wrapper">
+                    <div id="search-wrapper" data-default-value="{{data['job-role']}}">
                     </div>
                </div>
 
@@ -197,7 +197,7 @@
      </div>
 
      <div class="govuk-grid-column-two-thirds">
-
+          {% for result in data['search-results'] %}
           <article class="app-search-result framework-result" id="framework-560-3-2">
                <h2 class="result-title govuk-!-margin-bottom-2">
                     {% if result.StandardId %}
@@ -212,9 +212,10 @@
                     <li><b>Typical length:</b> {{ result.Duration }} months</li>
                </ul>
           </article>
+          {% endfor %}
      </div>
 </div>
-{% endfor %}
+
 
 {% endif %}
 

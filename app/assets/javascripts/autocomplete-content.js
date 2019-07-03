@@ -367,5 +367,6 @@ accessibleAutocomplete({
      showNoOptionsFound: false,
      id: id,
      source: apprenticeships,
-     minLength: 2
+     minLength: 2,
+     defaultValue: $(element).data('default-value')
 })
