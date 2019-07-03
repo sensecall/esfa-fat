@@ -142,7 +142,7 @@ $govuk-global-styles: true;
 }
 
 #fat-search {
-	&.no-results {
+	&.no-results, &.results {
 		margin-bottom: 2em;
 		display: inline-block;
 		width: 100%;
@@ -157,4 +157,9 @@ $govuk-global-styles: true;
 			margin: 1.575em 0 0 0em;
 		}
 	}
+	// &.results {
+	// 	.govuk-button {
+	// 		margin: 3.425em 0 0 0em;
+	// 	}
+	// }
 }

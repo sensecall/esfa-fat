@@ -84,20 +84,17 @@
 
 <div class="govuk-grid-row">
      <div class="govuk-grid-column-two-thirds">
-          <form method="post" id="fat-search">
+          <form method="post" id="fat-search" class="results">
                <div class="govuk-form-group">
                     <label class="govuk-label" for="job-role">
-                         Apprenticeship name or job role
+                         Showing search results for:
                     </label>
-                    <span id="fat-search-hint" class="govuk-hint">
-                         Start typing the apprenticeship name
-                    </span>
                     <div id="search-wrapper" data-default-value="{{data['job-role']}}">
                     </div>
                </div>
 
                {{ govukButton({
-                    text: "Search apprenticeship training"
+                    text: "Search"
                }) }}
           </form>
      </div>
