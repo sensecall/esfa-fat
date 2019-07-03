@@ -140,3 +140,21 @@ $govuk-global-styles: true;
 		}
 	}
 }
+
+#fat-search {
+	&.no-results {
+		margin-bottom: 2em;
+		display: inline-block;
+		width: 100%;
+		.govuk-form-group {
+			display: inline-block;
+			float: left;
+			width: 80%;
+		}
+		.govuk-button {
+			display: inline-block;
+			float: left;
+			margin: 1.575em 0 0 0em;
+		}
+	}
+}

@@ -9,22 +9,24 @@
                Search results
           </h1>
           <p>
-               Sorry, there is currently no apprenticeship training for '<b>{{data['apprenticeship-picker']}}</b>'.
+               Sorry, there is currently no apprenticeship training for '<b>{{data['job-role']}}</b>'.
           </p>
      </div>
 </div>
 
 <div class="govuk-grid-row">
      <div class="govuk-grid-column-two-thirds">
-          <form class="search-box" method="post">
+          <form method="post" id="fat-search" class="no-results">
                <div class="govuk-form-group">
-                    <label class="govuk-label govuk-!-font-weight-bold govuk-!-width-three-quarters" for="name">Try a new search</label>
-                    <span id="more-detail-hint" class="govuk-hint">Can include job title or apprenticeship</span>
-                    <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-0" id="name" name="search-query" type="text" value="{{data['apprenticeship-picker']}}">
-                    {{ govukButton({
-                         text: "Search"
-                    }) }}
+                    <label class="govuk-label" for="job-role">
+                         Try a new search
+                    </label>
+                    <div id="search-wrapper">
+                    </div>
                </div>
+               {{ govukButton({
+                    text: "Search"
+               }) }}
           </form>
      </div>
 </div>
@@ -75,21 +77,28 @@
                Search results
           </h1>
           <p>
-               There are <b>{{data['search-results'].length}}</b> apprenticeships matching your search for '<b>{{data['apprenticeship-picker']}}</b>'
+               There are <b>{{data['search-results'].length}}</b> apprenticeships matching your search for '<b>{{data['job-role']}}</b>'
           </p>
      </div>
 </div>
 
 <div class="govuk-grid-row">
      <div class="govuk-grid-column-two-thirds">
-          <form class="search-box" method="post">
+          <form method="post" id="fat-search">
                <div class="govuk-form-group">
-                    <label class="govuk-label govuk-!-font-weight-bold govuk-!-width-three-quarters" for="name">Showing search results for:</label>
-                    <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-0" id="name" name="search-query" type="text" value="{{data['apprenticeship-picker']}}">
-                    {{ govukButton({
-                         text: "Search"
-                    }) }}
+                    <label class="govuk-label" for="job-role">
+                         Apprenticeship name or job role
+                    </label>
+                    <span id="fat-search-hint" class="govuk-hint">
+                         Start typing the apprenticeship name
+                    </span>
+                    <div id="search-wrapper">
+                    </div>
                </div>
+
+               {{ govukButton({
+                    text: "Search apprenticeship training"
+               }) }}
           </form>
      </div>
 </div>
