@@ -15,9 +15,9 @@ $(document).ready(function () {
 //// MODAL CODE
 $(document).ready(function () {
      $('#acceptCookies').on('click',function(e) {
-
+          $('#cookieModal').hide();
      });
      $('#cookieSetting').on('click',function(e) {
-
+          $('#cookieModal').hide();
      });
 })
