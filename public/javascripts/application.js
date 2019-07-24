@@ -8,3 +8,16 @@ if (window.console && window.console.info) {
 $(document).ready(function () {
   window.GOVUKFrontend.initAll()
 })
+
+// $(window).load(function(){
+//      $('#cookieModal').modal('show');
+// });
+//// MODAL CODE
+$(document).ready(function () {
+     $('#acceptCookies').on('click',function(e) {
+
+     });
+     $('#cookieSetting').on('click',function(e) {
+
+     });
+})
