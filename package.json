@@ -32,7 +32,7 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-util": "^3.0.7",
     "marked": "^0.3.6",
-    "minimist": "1.2.0",
+    "minimist": "1.2.6",
     "notifications-node-client": "^3.0.0",
     "numeral": "^2.0.6",
     "nunjucks": "^3.1.3",
